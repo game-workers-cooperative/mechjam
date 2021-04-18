@@ -17,12 +17,19 @@ color = Color( 0.117647, 0.152941, 0.219608, 1 )
 [node name="Labels" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 3.17834
+margin_top = -1.05948
+margin_right = 3.17834
+margin_bottom = -1.05945
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Artist" type="Label" parent="Labels"]
-margin_left = 448.0
-margin_top = 64.0
-margin_right = 576.0
-margin_bottom = 136.0
+[node name="Title" type="Label" parent="Labels"]
+margin_left = 437.405
+margin_top = 45.9891
+margin_right = 565.405
+margin_bottom = 117.989
 text = "CREDITS"
 align = 1
 valign = 1
@@ -30,18 +37,88 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Programmers" type="Label" parent="Labels"]
+margin_left = 111.244
+margin_top = 196.001
+margin_right = 226.244
+margin_bottom = 312.001
+rect_pivot_offset = Vector2( 57.5, 15.5 )
+text = "Programming
+
+Akshat Shukla 
+Nick Clifton
+Ryan Masters"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Writers" type="Label" parent="Labels"]
+margin_left = 299.828
+margin_top = 198.12
+margin_right = 339.828
+margin_bottom = 212.12
+text = "Writing
+
+E.J. McIntyre
+Mike Ghaussy
+Nick Clifton"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Design" type="Label" parent="Labels"]
+margin_left = 466.164
+margin_top = 196.001
+margin_right = 555.164
+margin_bottom = 278.001
+text = "Design
+
+E.J. McIntyre
+Mike Ghaussy
+Ryan Masters"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Artists" type="Label" parent="Labels"]
+margin_left = 643.094
+margin_top = 197.06
+margin_right = 760.094
+margin_bottom = 245.06
+text = "Art
+
+James Weisbecker
+Marie Taeger"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lowercase" type="Label" parent="Labels"]
+margin_left = 450.272
+margin_top = 418.488
+margin_right = 662.272
+margin_bottom = 500.488
+text = "lowercase games"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Buttons" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.05945
+margin_top = -2.11892
+margin_right = -822.941
+margin_bottom = -452.119
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BackBtn" type="Button" parent="Buttons"]
-margin_left = 56.0
-margin_top = 48.0
-margin_right = 144.0
-margin_bottom = 96.0
+margin_left = 59.1784
+margin_top = 41.6432
+margin_right = 147.178
+margin_bottom = 89.6432
 text = "Back"
 script = ExtResource( 1 )
 target_scene = "res://scenes/Main Menu.tscn"
