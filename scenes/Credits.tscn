@@ -1,0 +1,132 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://objects/ui/SceneSwitcher.gd" type="Script" id=1]
+[ext_resource path="res://assets/fonts/tahoma.tres" type="DynamicFont" id=2]
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.117647, 0.152941, 0.219608, 1 )
+
+[node name="Labels" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.29727
+margin_top = -1.19209e-06
+margin_right = 5.29724
+margin_bottom = 6.10352e-05
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Labels"]
+margin_left = 442.703
+margin_top = 40.0
+margin_right = 570.703
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 2 )
+text = "CREDITS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Programmers" type="Label" parent="Labels"]
+margin_left = 122.703
+margin_top = 192.0
+margin_right = 281.703
+margin_bottom = 334.0
+rect_pivot_offset = Vector2( 57.5, 15.5 )
+custom_fonts/font = ExtResource( 2 )
+text = "Programming
+
+Akshat Shukla 
+Nick Clifton
+Ryan Masters"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Writers" type="Label" parent="Labels"]
+margin_left = 314.703
+margin_top = 192.0
+margin_right = 459.703
+margin_bottom = 334.0
+custom_fonts/font = ExtResource( 2 )
+text = "Writing
+
+E.J. McIntyre
+Mike Ghaussy
+Nick Clifton"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Design" type="Label" parent="Labels"]
+margin_left = 506.703
+margin_top = 192.0
+margin_right = 651.703
+margin_bottom = 334.0
+custom_fonts/font = ExtResource( 2 )
+text = "Design
+
+E.J. McIntyre
+Mike Ghaussy
+Ryan Masters"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Artists" type="Label" parent="Labels"]
+margin_left = 698.703
+margin_top = 192.0
+margin_right = 894.703
+margin_bottom = 305.0
+custom_fonts/font = ExtResource( 2 )
+text = "Art
+
+James Weisbecker
+Marie Taeger"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lowercase" type="Label" parent="Labels"]
+margin_left = 426.703
+margin_top = 416.0
+margin_right = 638.703
+margin_bottom = 498.0
+custom_fonts/font = ExtResource( 2 )
+text = "lowercase games"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.05945
+margin_top = -2.11892
+margin_right = -822.941
+margin_bottom = -452.119
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackBtn" type="Button" parent="Buttons"]
+margin_left = 40.1081
+margin_top = 41.6432
+margin_right = 128.108
+margin_bottom = 89.6432
+custom_fonts/font = ExtResource( 2 )
+text = "Back"
+script = ExtResource( 1 )
+target_scene = "res://scenes/Main Menu.tscn"
