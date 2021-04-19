@@ -1,0 +1,45 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/fbx/StandIn_BasicGroundTile.fbx" type="PackedScene" id=1]
+[ext_resource path="res://assets/fbx/StandIn_BarrelObstacle.fbx" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Battlefield/load.gd" type="Script" id=3]
+[ext_resource path="res://assets/fbx/StandIn_WindowlessWallTile.fbx" type="PackedScene" id=4]
+[ext_resource path="res://assets/fbx/StandIn_BasicWallTile.fbx" type="PackedScene" id=5]
+[ext_resource path="res://assets/fbx/StandIn_WindowlessCornerTile.fbx" type="PackedScene" id=6]
+[ext_resource path="res://assets/fbx/StandIn_GridGroundTile.fbx" type="PackedScene" id=7]
+[ext_resource path="res://assets/fbx/StandIn_SpikeGroundTile.fbx" type="PackedScene" id=8]
+
+[sub_resource type="Environment" id=1]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
+transform = Transform( 1, 0, 0, 0, -0.394952, 0.918702, 0, -0.918702, -0.394952, 10, 10, 0 )
+
+[node name="StandIn_BarrelObstacle" parent="WorldEnvironment" instance=ExtResource( 2 )]
+visible = false
+
+[node name="StandIn_BasicGroundTile" parent="WorldEnvironment" instance=ExtResource( 1 )]
+visible = false
+
+[node name="StandIn_BasicWallTile" parent="WorldEnvironment" instance=ExtResource( 5 )]
+visible = false
+
+[node name="StandIn_GridGroundTile" parent="WorldEnvironment" instance=ExtResource( 7 )]
+visible = false
+
+[node name="StandIn_SpikeGroundTile" parent="WorldEnvironment" instance=ExtResource( 8 )]
+visible = false
+
+[node name="StandIn_WindowlessCornerTile" parent="WorldEnvironment" instance=ExtResource( 6 )]
+visible = false
+
+[node name="StandIn_WindowlessWallTile" parent="WorldEnvironment" instance=ExtResource( 4 )]
+visible = false
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, 0.5, -0.5, 9, 8, -5 )

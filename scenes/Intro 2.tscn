@@ -10,7 +10,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.117647, 0.152941, 0.219608, 1 )
@@ -18,7 +18,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="Dialog Box" type="ColorRect" parent="."]
 margin_left = 24.0
 margin_top = 421.0
 margin_right = 1001.0
@@ -28,7 +28,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
+[node name="Dialogue" type="Label" parent="."]
 margin_left = 39.9406
 margin_top = 427.643
 margin_right = 819.941
@@ -40,7 +40,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="."]
+[node name="Next Button" type="Button" parent="."]
 margin_left = 898.762
 margin_top = 477.632
 margin_right = 980.762
@@ -51,3 +51,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 target_scene = "res://scenes/Intro 3.tscn"
+
+[node name="Skip Intro Button" type="Button" parent="."]
+margin_left = 898.762
+margin_top = 539.243
+margin_right = 980.762
+margin_bottom = 559.243
+text = "Skip Intro"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+target_scene = "res://scenes/Main Menu.tscn"
