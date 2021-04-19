@@ -1,72 +1,78 @@
 extends Control
-enum {IMMUNE,STRONG,NEUTRAL,WEAK,LIGHT,AVERAGE,HEAVY}
-
+enum STATVALUES {IMMUNE,STRONG,NEUTRAL,WEAK,LIGHT,AVERAGE,HEAVY,TRUE,FALSE}
+var stats =["blade","fire","energy","bullet","melee","weight","radioactive","knockback"]
 var _data :={
-	"1": {
+	"0": {
 		"name":"Steel",
-		"blade":STRONG,
-		"fire":NEUTRAL,
-		"energy":WEAK,
-		"bullet":STRONG,
-		"melee":NEUTRAL,
-		"weight":HEAVY,
-		"radioactive":false,
-		"knockback":false
+		"blade":STATVALUES.STRONG,
+		"fire":STATVALUES.NEUTRAL,
+		"energy":STATVALUES.WEAK,
+		"bullet":STATVALUES.STRONG,
+		"melee":STATVALUES.NEUTRAL,
+		"weight":STATVALUES.HEAVY,
+		"radioactive":STATVALUES.FALSE,
+		"knockback":STATVALUES.FALSE,
+		"cost":10
+	},
+	"1": {
+		"name":"Carbon Nanotech",
+		"blade":STATVALUES.WEAK,
+		"fire":STATVALUES.STRONG,
+		"energy":STATVALUES.STRONG,
+		"bullet":STATVALUES.NEUTRAL,
+		"melee":STATVALUES.NEUTRAL,
+		"weight":STATVALUES.LIGHT,
+		"radioactive":STATVALUES.FALSE,
+		"knockback":STATVALUES.FALSE,
+		"cost":10
 	},
 	"2": {
-		"name":"Carbon Nanotech",
-		"blade":WEAK,
-		"fire":STRONG,
-		"energy":STRONG,
-		"bullet":NEUTRAL,
-		"melee":NEUTRAL,
-		"weight":LIGHT,
-		"radioactive":false,
-		"knockback":false
-	},
-	"3": {
 		"name":"Ceramic",
-		"blade":WEAK,
-		"fire":IMMUNE,
-		"energy":STRONG,
-		"bullet":WEAK,
-		"melee":WEAK,
-		"weight":AVERAGE,
-		"radioactive":false,
-		"knockback":false
+		"blade":STATVALUES.WEAK,
+		"fire":STATVALUES.IMMUNE,
+		"energy":STATVALUES.STRONG,
+		"bullet":STATVALUES.WEAK,
+		"melee":STATVALUES.WEAK,
+		"weight":STATVALUES.AVERAGE,
+		"radioactive":STATVALUES.FALSE,
+		"knockback":STATVALUES.FALSE,
+		"cost":10
 	},	
-	"4": {
+	"3": {
 		"name":"Alien Hardwood",
-		"blade":NEUTRAL,
-		"fire":WEAK,
-		"energy":NEUTRAL,
-		"bullet":NEUTRAL,
-		"melee":STRONG,
-		"weight":AVERAGE,
-		"radioactive":false,
-		"knockback":false
+		"blade":STATVALUES.NEUTRAL,
+		"fire":STATVALUES.WEAK,
+		"energy":STATVALUES.NEUTRAL,
+		"bullet":STATVALUES.NEUTRAL,
+		"melee":STATVALUES.STRONG,
+		"weight":STATVALUES.AVERAGE,
+		"radioactive":STATVALUES.FALSE,
+		"knockback":STATVALUES.FALSE,
+		"cost":10
+	},
+	"4": {
+		"name":"Radioactive Waste",
+		"blade":STATVALUES.WEAK,
+		"fire":STATVALUES.WEAK,
+		"energy":STATVALUES.WEAK,
+		"bullet":STATVALUES.WEAK,
+		"melee":STATVALUES.WEAK,
+		"weight":STATVALUES.WEAK,
+		"radioactive":STATVALUES.TRUE,
+		"knockback":STATVALUES.FALSE,
+		"cost":10
 	},
 	"5": {
-		"name":"Radioactive Waste",
-		"blade":WEAK,
-		"fire":WEAK,
-		"energy":WEAK,
-		"bullet":WEAK,
-		"melee":WEAK,
-		"weight":WEAK,
-		"radioactive":true,
-		"knockback":false
-	},
-	"6": {
 		"name":"Rubber",
-		"blade":NEUTRAL,
-		"fire":NEUTRAL,
-		"energy":STRONG,
-		"bullet":WEAK,
-		"melee":STRONG,
-		"weight":AVERAGE,
-		"radioactive":false,
-		"knockback":true
+		"blade":STATVALUES.NEUTRAL,
+		"fire":STATVALUES.NEUTRAL,
+		"energy":STATVALUES.STRONG,
+		"bullet":STATVALUES.WEAK,
+		"melee":STATVALUES.STRONG,
+		"weight":STATVALUES.AVERAGE,
+		"radioactive":STATVALUES.FALSE,
+		"knockback":STATVALUES.TRUE,
+		"cost":10
 	},
 }
 var dictionary : Dictionary
