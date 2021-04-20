@@ -9,19 +9,60 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Control",
+"class": "Armor",
+"language": "GDScript",
+"path": "res://objects/equipment/armor.gd"
+}, {
+"base": "Control",
+"class": "Armors",
+"language": "GDScript",
+"path": "res://objects/equipment/armors.gd"
+}, {
 "base": "Resource",
 "class": "Cockpit",
 "language": "GDScript",
 "path": "res://resources/Cockpit.gd"
+}, {
+"base": "Control",
+"class": "Cockpits",
+"language": "GDScript",
+"path": "res://objects/equipment/cockpits.gd"
+}, {
+"base": "Control",
+"class": "Legs",
+"language": "GDScript",
+"path": "res://objects/equipment/legs.gd"
+}, {
+"base": "Button",
+"class": "StoreMenuButton",
+"language": "GDScript",
+"path": "res://StoreMenuButton.gd"
+}, {
+"base": "Control",
+"class": "Weapons",
+"language": "GDScript",
+"path": "res://objects/equipment/weapons.gd"
 } ]
 _global_script_class_icons={
-"Cockpit": ""
+"Armor": "",
+"Armors": "",
+"Cockpit": "",
+"Cockpits": "",
+"Legs": "",
+"StoreMenuButton": "",
+"Weapons": ""
 }
 
 [application]
 
 config/name="mechjam"
+run/main_scene="res://StoreUI.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://global.gd"
 
 [input]
 
