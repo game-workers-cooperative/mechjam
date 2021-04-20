@@ -76,10 +76,18 @@ var _data :={
 	},
 }
 var dictionary : Dictionary
+var json
+
+class_name Armors
 
 func _ready():
-	var json := to_json(_data)
+	pass
+	
+func get_data():
+	json = to_json(_data)
 	dictionary = JSON.parse(json).result
+	return dictionary
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
