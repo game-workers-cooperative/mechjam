@@ -4,14 +4,33 @@ var money = 200
 
 var store = {
 	'bought': {
-		'armor':[
+		'armors':[
 			false,
 			false,
 			false,
 			false,
 			false,
 			false,
-		]
+		],
+		'cockpits':[
+			false,
+			false,
+			false,
+			false
+		],
+		'legs':[
+			false,
+			false,
+			false,
+			false
+		],
+		'weapons':[
+			false,
+			false,
+			false,
+			false,
+			false,
+		],
 	}
 }
 

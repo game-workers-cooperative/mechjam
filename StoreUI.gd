@@ -1,53 +1,41 @@
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 onready var global = get_node("/root/Global")
 
-func _buy_button_pressed(type,equip):
-	var store
-	match type:
-		"cockpit":
-			pass
-		"armor":
-			store = global.store["bought"]["armor"]
-		"weapon":
-			pass
-		"legs":
-			pass
-	store[equip] = true
+func _clear_store():
 	for child in $StoreMarginContainer.get_children():
 		$StoreMarginContainer.remove_child(child)
+
+func _buy_button_pressed(store,equip,type):
+	store[equip] = true
 	_populate_store(type)
 	
 func _populate_store(type):
+	_clear_store()
 	var equipment
 	var store
 	var stats
+	var statBlock
+	var data
 	match type:
 		"cockpit":
-			pass
+			data = Cockpits.new()
+			store = global.store["bought"]["cockpits"]
 		"armor":
-			var armor = Armor.new()
-			equipment = armor.get_data()
-			stats = armor.stats
-			store = global.store["bought"]["armor"]
+			data = Armors.new()
+			store = global.store["bought"]["armors"]
 		"weapon":
-			pass
+			data = Weapons.new()
+			store = global.store["bought"]["weapons"]
 		"legs":
-			pass
+			data = Legs.new()
+			store = global.store["bought"]["legs"]
+	equipment = data.get_data()
+	stats = data.stats
+	statBlock = data.STATVALUES.keys()
 	for i in range(equipment.size()):
 		var equipLabel = RichTextLabel.new()
 		equipLabel.rect_min_size = Vector2(600,60)
@@ -56,19 +44,17 @@ func _populate_store(type):
 		buyButton.rect_size = Vector2(80,20)
 		buyButton.rect_min_size = Vector2(80,20)
 		buyButton.set_size(Vector2(80,20),true)
-		buyButton.connect("pressed",self,"_buy_button_pressed",[type,i])
+		buyButton.connect("pressed",self,"_buy_button_pressed",[store,i,type])
 		var textblock = ""
 		textblock+= equip.get("name")+"\n"
 		textblock+= "Stats:\n"
 		for statndx in range(stats.size()):
 			textblock+= stats[statndx].capitalize()
 			textblock+=  ": "
-			textblock+= Armor.STATVALUES.keys()[equip.get(stats[statndx])]
+			textblock+= statBlock[equip.get(stats[statndx])]
 			textblock+=  "    "
 			if statndx+1 % 4 == 0 and statndx < stats.size():
 				textblock+= "\n"
-			#if statndx < stats.size():
-			#	textblock+= "\n"
 		if store[i]:
 			textblock+= "Purchased"
 			equipLabel.text = textblock
@@ -78,9 +64,6 @@ func _populate_store(type):
 			equipLabel.text = textblock
 			$StoreMarginContainer.add_child(equipLabel)
 			$StoreMarginContainer.add_child(buyButton)
-		
-	#$MarginContainer/StoreTextLabel.text = textblock
-		
 
 func _on_CockpitButton_pressed():
 	_populate_store("cockpit")
