@@ -19,12 +19,12 @@ var buttons = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var test = Button.new().theme
 	for btn in buttons:
-		var newButton = StoreMenuButton.new()
+		var newButton = MenuButton.new()
 		newButton.set_size(Vector2(100,80))
 		newButton.text = btn["name"]
-		#newButton.theme.set_color("grey")
-		
+		newButton.theme.set_color("grey")
 		
 		newButton.theme = load("res://resources/mechjam_theme.tres")
 		var icon = Sprite.new()
