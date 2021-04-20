@@ -37,7 +37,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-target_scene = "res://objects/mecha/Mecha.tscn"
+target_scene = "res://StoreUI.tscn"
 
 [node name="Credits" type="Button" parent="ButtonHolder"]
 anchor_top = 0.5

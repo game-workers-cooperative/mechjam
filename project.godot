@@ -10,11 +10,6 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Control",
-"class": "Armor",
-"language": "GDScript",
-"path": "res://objects/equipment/Armor.gd"
-}, {
-"base": "Control",
 "class": "Armors",
 "language": "GDScript",
 "path": "res://objects/equipment/armors.gd"
@@ -34,30 +29,23 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://objects/equipment/legs.gd"
 }, {
-"base": "Button",
-"class": "StoreMenuButton",
-"language": "GDScript",
-"path": "res://StoreMenuButton.gd"
-}, {
 "base": "Control",
 "class": "Weapons",
 "language": "GDScript",
 "path": "res://objects/equipment/weapons.gd"
 } ]
 _global_script_class_icons={
-"Armor": "",
 "Armors": "",
 "Cockpit": "",
 "Cockpits": "",
 "Legs": "",
-"StoreMenuButton": "",
 "Weapons": ""
 }
 
 [application]
 
 config/name="mechjam"
-run/main_scene="res://StoreUI.tscn"
+run/main_scene="res://scenes/Intro 1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
