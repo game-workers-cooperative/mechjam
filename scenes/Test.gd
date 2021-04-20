@@ -9,12 +9,9 @@ onready var command_palette = $HUD/CommandPalette
 
 var commands = []
 
-
 func _ready() -> void:
 	for button in command_palette.get_children():
 		button.connect("command_selected", self, "_on_command_selected")
-	
-#	execute_commands()
 
 func execute_commands():
 	for command in commands:
@@ -24,7 +21,6 @@ func execute_commands():
 	
 	commands = []
 
-
 func _on_command_selected(button):
 	
 	var block = CommandBlock.instance()
@@ -33,12 +29,6 @@ func _on_command_selected(button):
 	block.index = commands.size()
 	commands.append(button.command)
 	command_editor.add_child(block)
-#	var new_btn = button.duplicate(DUPLICATE_USE_INSTANCING)
-	
-#	button.get_parent().remove_child(button)
-#	command_editor.add_child(button)
-	
-#	print(commands)
 
 func _on_block_selected(block):
 	commands.remove(block.index)
