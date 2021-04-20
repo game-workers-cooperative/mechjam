@@ -91,19 +91,37 @@ var map = {
 # tiles of the battlefield by row
 var level = [
 	[
-		'top_left_corner','top_wall','top_wall','top_wall','top_right_corner'
+		'top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_right_corner'
 	],
 	[
-		'left_wall','spike','floor','spike','right_wall'
+		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
 	],
 	[
-		'left_wall','floor','barrel','floor','right_wall'
+		'left_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'
 	],
 	[
-		'left_wall','spike','floor','spike','right_wall'
+		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
 	],
 	[
-		'bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner'
+		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
+	],
+	[
+		'left_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'
+	],
+	[
+		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
+	],
+	[
+		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
+	],
+	[
+		'left_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'
+	],
+	[
+		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
+	],
+	[
+		'bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner'
 	]
 ]
 
@@ -125,9 +143,19 @@ func add_tile(tileIndex, rowIndex, mapped):
 	
 	# add the node
 	self.add_child(node)
+	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# position the player
+	var midpoint = {
+		'x': floor(len(level)/2),
+		'z': floor(len(level[0])/2)
+	}
+	var mech = self.get_node("WorldEnvironment/Mech")
+	var initialMechPosition = Vector3(midpoint.x, 0, midpoint.z)
+	mech.translate(initialMechPosition)
+	
 	for rowIndex in len(level):
 		for tileIndex in len(level[rowIndex]):
 			# figure out which tile to use
