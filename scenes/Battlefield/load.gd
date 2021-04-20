@@ -2,55 +2,115 @@ extends Node
 
 # map of id to file
 var map = {
-	0: {
-		'label': 'StandIn_BasicGroundTile',
-		'wall': false
+	'floor': {
+		'asset': 'StandIn_BasicGroundTile',
+		'wall': false,
+		'rotate': 0,
+		'damage_touch': 0,
+		'damage_active': 0
 	},
-	1: {
-		'label': 'StandIn_BarrelObstacle',
-		'wall': false
+	'barrel': {
+		'asset': 'StandIn_BarrelObstacle',
+		'wall': false,
+		'rotate': 0,
+		'damage_touch': 0,
+		'damage_active': 1
 	},
-	2: {
-		'label': 'StandIn_GridGroundTile',
-		'wall': false
+	'grid': {
+		'asset': 'StandIn_GridGroundTile',
+		'wall': false,
+		'rotate': 0,
+		'damage_touch': 0,
+		'damage_active': 0
 	},
-	3: {
-		'label': 'StandIn_SpikeGroundTile',
-		'wall': false
+	'spike': {
+		'asset': 'StandIn_SpikeGroundTile',
+		'wall': false,
+		'rotate': 0,
+		'damage_touch': 1,
+		'damage_active': 0
 	},
-	4: {
-		'label': 'StandIn_WindowlessCornerTile',
-		'wall': true
+	'bottom_left_corner': {
+		'asset': 'StandIn_WindowlessCornerTile',
+		'wall': true,
+		'rotate': PI/2,
+		'damage_touch': 0,
+		'damage_active': 0
 	},
-	5: {
-		'label': 'StandIn_WindowlessWallTile',
-		'wall': true
+	'bottom_right_corner': {
+		'asset': 'StandIn_WindowlessCornerTile',
+		'wall': true,
+		'rotate': PI,
+		'damage_touch': 0,
+		'damage_active': 0
+	},
+	'top_left_corner': {
+		'asset': 'StandIn_WindowlessCornerTile',
+		'wall': true,
+		'rotate': 0,
+		'damage_touch': 0,
+		'damage_active': 0
+	},
+	'top_right_corner': {
+		'asset': 'StandIn_WindowlessCornerTile',
+		'wall': true,
+		'rotate': -PI/2,
+		'damage_touch': 0,
+		'damage_active': 0
+	},
+	'top_wall': {
+		'asset': 'StandIn_WindowlessWallTile',
+		'wall': true,
+		'rotate': PI/2,
+		'damage_touch': 0,
+		'damage_active': 0
+	},
+	'left_wall': {
+		'asset': 'StandIn_WindowlessWallTile',
+		'wall': true,
+		'rotate': PI,
+		'damage_touch': 0,
+		'damage_active': 0
+	},
+	'right_wall': {
+		'asset': 'StandIn_WindowlessWallTile',
+		'wall': true,
+		'rotate': 0,
+		'damage_touch': 0,
+		'damage_active': 0
+	},
+	'bottom_wall': {
+		'asset': 'StandIn_WindowlessWallTile',
+		'wall': true,
+		'rotate': -PI/2,
+		'damage_touch': 0,
+		'damage_active': 0
 	},
 }
 
 # tiles of the battlefield by row
 var level = [
 	[
-		4,5,5,5,4
+		'top_left_corner','top_wall','top_wall','top_wall','top_right_corner'
 	],
 	[
-		5,3,0,3,5
+		'left_wall','spike','floor','spike','right_wall'
 	],
 	[
-		5,0,1,0,5
+		'left_wall','floor','barrel','floor','right_wall'
 	],
 	[
-		5,3,0,3,5
+		'left_wall','spike','floor','spike','right_wall'
 	],
 	[
-		4,5,5,5,4
+		'bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner'
 	]
 ]
 
 # adds a tile to the scene
-func add_tile(tileIndex, rowIndex, mapped, position):
+func add_tile(tileIndex, rowIndex, mapped):
 	# duplicate a hidden asset node
-	var node = self.get_node("WorldEnvironment/" + mapped.label).duplicate()
+	var node = self.get_node("WorldEnvironment/" + mapped.asset).duplicate()
 	
 	# position the new node
 	var x = Vector3(1, 0, 0)
@@ -60,19 +120,9 @@ func add_tile(tileIndex, rowIndex, mapped, position):
 	node.transform = Transform(x, y, z, origin)
 	node.visible = true
 	
-	# if this is a wall, we need to rotate it some
-	if mapped.wall:		
-		# figure out how to rotate it
-		var rotateMap = {
-			'top' : PI/2,
-			'bottom' : PI/2,
-			'left' : PI/2,
-			'right' : PI/2
-		}
-		
-		var axis = Vector3(0, 1, 0)
-		node.rotate(axis, rotateMap[position])
-		
+	var axis = Vector3(0, 1, 0)
+	node.rotate(axis, mapped.rotate)
+	
 	# add the node
 	self.add_child(node)
 
@@ -81,13 +131,15 @@ func _ready():
 	for rowIndex in len(level):
 		for tileIndex in len(level[rowIndex]):
 			# figure out which tile to use
-			var mapped = map[level[rowIndex][tileIndex]]
+			var label = level[rowIndex][tileIndex]
+			var mapped = map[label]
+						
+			# add the tile	
+			add_tile(tileIndex, rowIndex, mapped)
 			
-			var position = 'top'
-			
-			# add the tile
-			add_tile(tileIndex, rowIndex, mapped, position)
-			
+			# add tile under this one if needed
+			if label == 'barrel':
+				add_tile(tileIndex, rowIndex, map['floor'])
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
