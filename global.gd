@@ -31,7 +31,14 @@ var store = {
 			false,
 			false,
 		],
-	}
+	},
+	'equipped':
+		{
+			'armor':'none',
+			'cockpit':'none',
+			'leg':'none',
+			'weapon':'none'
+		}
 }
 
 var save_store_path = "user://save"

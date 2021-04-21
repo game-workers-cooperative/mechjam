@@ -10,11 +10,6 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Control",
-"class": "Armor",
-"language": "GDScript",
-"path": "res://objects/equipment/armor.gd"
-}, {
-"base": "Control",
 "class": "Armors",
 "language": "GDScript",
 "path": "res://objects/equipment/armors.gd"
@@ -62,7 +57,7 @@ _global_script_class_icons={
 [application]
 
 config/name="mechjam"
-run/main_scene="res://scenes/Intro 1.tscn"
+run/main_scene="res://scenes/Main Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
