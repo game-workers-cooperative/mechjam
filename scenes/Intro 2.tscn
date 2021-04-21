@@ -30,11 +30,11 @@ __meta__ = {
 
 [node name="Dialogue" type="Label" parent="."]
 margin_left = 39.9406
-margin_top = 427.643
+margin_top = 442.237
 margin_right = 819.941
-margin_bottom = 569.643
+margin_bottom = 584.237
 custom_fonts/font = ExtResource( 1 )
-text = "But, like I said, life is quiet out here. A ship, even a generational ship, is too small to keep all it’s surprises and intrigues hidden for you for long. Sooner or later, you’ve seen all there is to see. So, you can hardly blame us for jumping at the opportunity of some new entertainment. "
+text = "But, like I said, life is quiet out here. A ship, even a generational ship, is too small to keep all its surprises and intrigues hidden from you for long. Sooner or later, you’ve seen all there is to see. You can hardly blame us for jumping at the opportunity of some new entertainment. "
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

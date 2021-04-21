@@ -29,6 +29,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://objects/equipment/legs.gd"
 }, {
+"base": "Node",
+"class": "Map",
+"language": "GDScript",
+"path": "res://scenes/Battlefield/map.gd"
+}, {
+"base": "Node",
+"class": "Mech",
+"language": "GDScript",
+"path": "res://scenes/Battlefield/mech.gd"
+}, {
 "base": "Control",
 "class": "Weapons",
 "language": "GDScript",
@@ -39,6 +49,8 @@ _global_script_class_icons={
 "Cockpit": "",
 "Cockpits": "",
 "Legs": "",
+"Map": "",
+"Mech": "",
 "Weapons": ""
 }
 

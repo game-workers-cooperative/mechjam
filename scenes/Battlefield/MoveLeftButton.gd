@@ -6,9 +6,9 @@ func _ready():
 
 # called when the button is clicked
 func _pressed():
-	var mech = self.get_parent().get_node("WorldEnvironment/Mech")
+	var player = self.get_parent().player
 	var position = Vector3(-1, 0, 0)
-	mech.translate(position)
+	player.try_move(position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
