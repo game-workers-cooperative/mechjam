@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/tahoma.tres" type="DynamicFont" id=1]
+[ext_resource path="res://objects/ui/SceneSwitcher.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.117647, 0.152941, 0.219608, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialog Box" type="ColorRect" parent="."]
+margin_left = 24.0
+margin_top = 421.0
+margin_right = 1001.0
+margin_bottom = 575.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialogue" type="Label" parent="."]
+margin_left = 39.9406
+margin_top = 442.237
+margin_right = 819.941
+margin_bottom = 584.237
+custom_fonts/font = ExtResource( 1 )
+text = "But, like I said, life is quiet out here. A ship, even a generational ship, is too small to keep all its surprises and intrigues hidden from you for long. Sooner or later, you’ve seen all there is to see. You can hardly blame us for jumping at the opportunity of some new entertainment. "
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next Button" type="Button" parent="."]
+margin_left = 898.762
+margin_top = 477.632
+margin_right = 980.762
+margin_bottom = 523.632
+text = "Next"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+target_scene = "res://scenes/Intro 3.tscn"
+
+[node name="Skip Intro Button" type="Button" parent="."]
+margin_left = 898.762
+margin_top = 539.243
+margin_right = 980.762
+margin_bottom = 559.243
+text = "Skip Intro"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+target_scene = "res://scenes/Main Menu.tscn"

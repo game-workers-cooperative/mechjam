@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/fonts/tahoma.tres" type="DynamicFont" id=1]
+[ext_resource path="res://objects/ui/SceneSwitcher.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.117647, 0.152941, 0.219608, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialog Box" type="ColorRect" parent="."]
+margin_left = 24.0
+margin_top = 421.0
+margin_right = 1001.0
+margin_bottom = 575.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialogue" type="Label" parent="."]
+margin_left = 41.3568
+margin_top = 434.0
+margin_right = 898.357
+margin_bottom = 547.0
+custom_fonts/font = ExtResource( 1 )
+text = "Life is quiet on the edge of the system. Course, a community needs to defend itself, even out here, billions of kilometers from the United Planetary Order. So some of our scientifically minded neighbors started a program, building mechs, and testing them against each other. Just in case."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next Button" type="Button" parent="."]
+margin_left = 899.0
+margin_top = 480.0
+margin_right = 981.0
+margin_bottom = 526.0
+text = "Next"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+target_scene = "res://scenes/Intro 2.tscn"
+
+[node name="Skip Intro Button" type="Button" parent="."]
+margin_left = 899.0
+margin_top = 540.0
+margin_right = 981.0
+margin_bottom = 560.0
+text = "Skip Intro"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+target_scene = "res://scenes/Main Menu.tscn"
