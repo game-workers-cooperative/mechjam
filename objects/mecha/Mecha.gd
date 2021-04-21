@@ -12,15 +12,32 @@ var MAX_HP = 10
 var HP = 10
 var ARMOR = 0
 
+var armor
+var leg
+
+var curArmor
+var curCockpit
+var curLeg
+var curWeapon
+
 var weapon
 
 var velocity = Vector2.ZERO
 var face_dir = Vector2.DOWN
 var grid_pos = Vector2(5, 5)
 
-onready var tween = $Tween
 
+onready var tween = $Tween
+onready var global = get_node("/root/Global")
+	
 func _ready() -> void:
+	
+	curArmor = Armors.new().find(global.store['equipped']['armor'])
+	#curCockpit = Cockpits.new().find(global.store['equipped']['cockpit'])
+	#curLeg = Legs.new().find(global.store['equipped']['leg'])
+	#curWeapon = Weapons.new().find(global.store['equipped']['weapon'])
+	
+	
 	global_position = cart_to_iso(grid_pos) * tile_size
 	
 	if cockpit:
@@ -40,6 +57,7 @@ func move(dir: Vector2) -> void:
 func attack():
 	# AnimationPlayer.play("weapon.get_animation")
 	weapon.attack(face_dir)
+
 
 func cart_to_iso(pos: Vector2):
 	return Vector2(pos.x - pos.y, (pos.y + pos.x)/2.0)

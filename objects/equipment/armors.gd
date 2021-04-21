@@ -83,6 +83,12 @@ class_name Armors
 func _ready():
 	pass
 	
+func find(text):
+	for n in _data:
+		if _data[n].get('name') == text:
+			return _data[n]
+		else:
+			return false
 func get_data():
 	json = to_json(_data)
 	dictionary = JSON.parse(json).result

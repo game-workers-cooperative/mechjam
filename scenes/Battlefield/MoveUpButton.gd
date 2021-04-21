@@ -1,17 +1,15 @@
 extends Button
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-export(int) var id
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if Global.store['bought']['armor'][id]:
-		self.text = "Bought"
-		self.disabled = true
+	pass # Replace with function body.
 
+# called when the button is clicked
+func _pressed():
+	var player = self.get_parent().player
+	var position = Vector3(0, 0, -1)
+	player.try_move(position)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
