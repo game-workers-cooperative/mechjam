@@ -131,6 +131,7 @@ margin_left = 16.0
 margin_top = 528.0
 margin_right = 1008.0
 margin_bottom = 584.0
+custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -146,8 +147,8 @@ command = {
 }
 
 [node name="MoveBackward" type="Button" parent="HUD/CommandPalette"]
-margin_left = 105.0
-margin_right = 216.0
+margin_left = 117.0
+margin_right = 228.0
 margin_bottom = 56.0
 text = "Move Backward"
 script = ExtResource( 13 )
@@ -157,8 +158,8 @@ command = {
 }
 
 [node name="TurnRight" type="Button" parent="HUD/CommandPalette"]
-margin_left = 220.0
-margin_right = 296.0
+margin_left = 244.0
+margin_right = 320.0
 margin_bottom = 56.0
 text = "Turn Right"
 script = ExtResource( 13 )
@@ -168,8 +169,8 @@ command = {
 }
 
 [node name="TurnLeft" type="Button" parent="HUD/CommandPalette"]
-margin_left = 300.0
-margin_right = 368.0
+margin_left = 336.0
+margin_right = 404.0
 margin_bottom = 56.0
 text = "Turn Left"
 script = ExtResource( 13 )
@@ -179,8 +180,8 @@ command = {
 }
 
 [node name="AttackPrimary" type="Button" parent="HUD/CommandPalette"]
-margin_left = 372.0
-margin_right = 477.0
+margin_left = 420.0
+margin_right = 525.0
 margin_bottom = 56.0
 text = "Attack Primary"
 script = ExtResource( 13 )
@@ -190,8 +191,8 @@ command = {
 }
 
 [node name="AttackSecondary" type="Button" parent="HUD/CommandPalette"]
-margin_left = 481.0
-margin_right = 602.0
+margin_left = 541.0
+margin_right = 662.0
 margin_bottom = 56.0
 text = "Attack Secondary"
 script = ExtResource( 13 )
@@ -201,8 +202,8 @@ command = {
 }
 
 [node name="SkipMove" type="Button" parent="HUD/CommandPalette"]
-margin_left = 606.0
-margin_right = 683.0
+margin_left = 678.0
+margin_right = 755.0
 margin_bottom = 56.0
 text = "Skip Move"
 script = ExtResource( 13 )
@@ -216,14 +217,15 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 1008.0
 margin_bottom = 64.0
+custom_constants/separation = 16
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StartBtn" type="Button" parent="HUD"]
-margin_left = 832.0
+margin_left = 896.0
 margin_top = 448.0
-margin_right = 896.0
+margin_right = 960.0
 margin_bottom = 512.0
 text = "Start"
 __meta__ = {
