@@ -127,6 +127,9 @@ var level = [
 	]
 ]
 
+# list of all mechs on the map
+var mechs = []
+
 # adds a tile to the scene
 func add_tile(baseNode, tileIndex, rowIndex, mapped):
 	# duplicate a hidden asset node
@@ -177,6 +180,13 @@ func get_midpoint():
 func _ready():
 	pass # Replace with function body.
 
+# add to the list of mechs
+func add_mech(mech):
+	mechs.append(mech)
+
+# get the mech list
+func get_mechs():
+	return mechs
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

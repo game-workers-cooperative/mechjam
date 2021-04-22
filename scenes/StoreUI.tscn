@@ -9,70 +9,98 @@ script = ExtResource( 1 )
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
-color = Color( 0.741176, 0, 0.313726, 1 )
+color = Color( 0.117647, 0.152941, 0.219608, 1 )
+
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ArmorButton" type="Button" parent="ColorRect"]
-margin_left = 24.0
-margin_top = 160.0
-margin_right = 76.0
-margin_bottom = 180.0
+margin_left = 112.0
+margin_top = 192.0
+margin_right = 192.0
+margin_bottom = 224.0
+
 text = "Armor"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="WeaponButton" type="Button" parent="ColorRect"]
-margin_left = 24.0
+margin_left = 16.0
 margin_top = 192.0
 margin_right = 88.0
-margin_bottom = 212.0
+margin_bottom = 224.0
+text = "Weapon"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Weapon2Button" type="Button" parent="ColorRect"]
+margin_left = 216.0
+margin_top = 192.0
+margin_right = 288.0
+margin_bottom = 224.0
+
 text = "Weapon"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CockpitButton" type="Button" parent="ColorRect"]
-margin_left = 24.0
-margin_top = 128.0
-margin_right = 83.0
-margin_bottom = 148.0
+margin_left = 112.0
+margin_top = 144.0
+margin_right = 192.0
+margin_bottom = 180.0
+
 text = "Cockpit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LegsButton" type="Button" parent="ColorRect"]
-margin_left = 24.0
-margin_top = 224.0
-margin_right = 83.0
-margin_bottom = 244.0
+margin_left = 112.0
+margin_top = 240.0
+margin_right = 192.0
+margin_bottom = 272.0
+
 text = "Legs"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="ColorRect"]
-margin_top = 552.0
-margin_right = 96.0
-margin_bottom = 600.0
-text = "Back"
+[node name="FightButton" type="Button" parent="ColorRect"]
+margin_left = 904.0
+margin_top = 528.0
+margin_right = 1000.0
+margin_bottom = 576.0
+text = "Fight!"
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-target_scene = "res://scenes/Main Menu.tscn"
+target_scene = "res://scenes/Battlefield/Battlefield.tscn"
+
+[node name="Money" type="Label" parent="ColorRect"]
+margin_left = 24.0
+margin_top = 568.0
+margin_right = 176.0
+margin_bottom = 582.0
+text = "Money: "
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="StoreMarginContainer" type="VBoxContainer" parent="."]
 margin_left = 424.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 512.0
+
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="ColorRect/ArmorButton" to="." method="_on_ArmorButton_pressed"]
 [connection signal="pressed" from="ColorRect/WeaponButton" to="." method="_on_WeaponButton_pressed"]
+[connection signal="pressed" from="ColorRect/Weapon2Button" to="." method="_on_WeaponButton_pressed"]
 [connection signal="pressed" from="ColorRect/CockpitButton" to="." method="_on_CockpitButton_pressed"]
 [connection signal="pressed" from="ColorRect/LegsButton" to="." method="_on_LegsButton_pressed"]

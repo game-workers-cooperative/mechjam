@@ -1,8 +1,9 @@
 extends Node
 
-var money = 200
+var initial_money = 200
+var money = initial_money
 
-var store = {
+var initial_store = {
 	'bought': {
 		'armors':[
 			false,
@@ -40,6 +41,7 @@ var store = {
 			'weapon':['none','none'],
 		}
 }
+var store = initial_store
 
 var save_store_path = "user://save"
 

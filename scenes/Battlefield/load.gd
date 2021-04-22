@@ -7,7 +7,7 @@ var enemy
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# get a map object
-	map = Map.new()
+	map = Map.new()	
 	
 	# position the player
 	var playerObject = self.get_node("WorldEnvironment/Mech")
@@ -22,7 +22,9 @@ func _ready():
 	enemyPosition.z += 2
 	enemy.try_move(enemyPosition)
 	
-	# build the map
+	# add mechs to the map
+	map.add_mech(player)
+	map.add_mech(enemy)
 	map.build_map(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

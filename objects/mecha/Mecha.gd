@@ -23,6 +23,8 @@ var effects = Armors.STATVALUES
 var damagetypes = Weapons.STATVALUES
 var cockpitValues = Cockpits.STATVALUES
 var legValues = Legs.STATVALUES
+var weapon
+var effects = Armors.STATVALUES
 
 var velocity = Vector2.ZERO
 var face_dir = Vector2.DOWN
@@ -145,7 +147,7 @@ func hit(damageType,origin):
 	if damageType == damagetypes.MELEE:
 		knockback(origin)
 	return returnState
-
+  
 func take_damage(damageAmount):
 	HP-=damageAmount
 	if HP <0:

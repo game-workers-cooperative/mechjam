@@ -1,7 +1,7 @@
 extends Node
 
 func _ready():
-	pass # Replace with function body.
+	_populate_store('cockpit')
 
 onready var global = get_node("/root/Global")
 
@@ -19,8 +19,10 @@ func _equip_weapon_button_pressed(name,type,index):
 	global.store['equipped'][type][index] = name
 	_populate_store(type)
 	
-func _buy_button_pressed(store,equip,type):
+func _buy_button_pressed(store,equip,type,cost):
 	store[equip] = true
+	if(Global.money - cost >= 0):
+		Global.money -= cost
 	_populate_store(type)
 	
 func _populate_store(type):
@@ -60,7 +62,8 @@ func _populate_store(type):
 		itemButtonSecondary.rect_size = Vector2(40,20)
 		itemButtonSecondary.rect_min_size = Vector2(40,20)
 		var multipleSlots = false		
-		var textblock = ""
+
+    var textblock = ""
 		textblock+= equip.get("name")+"\n"
 		textblock+= "Stats:\n"
 		for statndx in range(stats.size()):
@@ -107,7 +110,7 @@ func _populate_store(type):
 			itemButton.text = "Buy for "+str(equip.get("cost"))
 			equipLabel.text = textblock
 			$StoreMarginContainer.add_child(equipLabel)
-			itemButton.connect("pressed",self,"_buy_button_pressed",[store,i,type])
+			itemButton.connect("pressed",self,"_buy_button_pressed",[store,i,type,equip.get("cost")])
 		if multipleSlots:
 			$StoreMarginContainer.add_child(itemButtonPrimary)
 			$StoreMarginContainer.add_child(itemButtonSecondary)	
@@ -125,3 +128,6 @@ func _on_WeaponButton_pressed():
 
 func _on_LegsButton_pressed():
 	_populate_store("leg")
+
+func _process(delta):
+	$ColorRect/Money.text = "Money: " + str(Global.money)
