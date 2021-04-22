@@ -2,10 +2,14 @@ extends Node
 
 class_name Mech
 
+signal move_finished
+
 var object
 var map
 var health
 var position
+
+var tween
 
 # checks to see if it's possible to move
 func can_move(translation):
@@ -43,7 +47,13 @@ func get_position():
 
 # applies the provided translation
 func move(translation):
-	object.translate(translation)
+	if tween:
+		tween.interpolate_property(object, "translation", object.get_translation(), object.get_translation() + translation, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+		tween.start()
+		yield(tween, "tween_all_completed")
+		emit_signal("move_finished")
+	else:
+		object.translate(translation)
 	
 # applies environment damage if needed
 func check_environment_damage():
@@ -56,18 +66,10 @@ func try_move(translation):
 	if(can_move(translation)):
 		move(translation)
 		check_environment_damage()
-		
+
 # sets up this object
 func _init(objectInScene, currentMap, maxHealth):
 	object = objectInScene
 	map = currentMap
 	health = maxHealth
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	tween = object.get_node_or_null("Tween")
