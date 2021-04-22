@@ -37,7 +37,7 @@ var store = {
 			'armor':'none',
 			'cockpit':'none',
 			'leg':'none',
-			'weapon':'none'
+			'weapon':['none','none'],
 		}
 }
 

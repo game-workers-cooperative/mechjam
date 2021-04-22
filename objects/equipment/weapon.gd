@@ -18,6 +18,9 @@ func _ready():
 	
 func attack(grid_pos,facing):
 	var hitsquares = []
+	var hitpercent = randf()
+	if hitpercent > stats['hitPercent']:
+		return ['miss',[],stats['damage'],0]
 	match(facing):
 		Vector2.UP:
 			for ndx in range(1,stats['range']):
@@ -35,7 +38,7 @@ func attack(grid_pos,facing):
 			for ndx in range(1,stats['range']):
 				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
 					hitsquares.append(Vector2(grid_pos.x+ndx,grid_pos.y+spreadIndex))
-	return [hitsquares,stats['damage']]
+	return ['hit',hitsquares,stats['damage'],stats['damageAmount']]
 
 class_name Weapon
 
