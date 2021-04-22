@@ -10,7 +10,6 @@ func _clear_store():
 		$StoreMarginContainer.remove_child(child)
 
 func _equip_button_pressed(name,type):
-	print('equipping')
 	global.store['equipped'][type] = name
 	_populate_store(type)
 
@@ -62,7 +61,6 @@ func _populate_store(type):
 				textblock+= "\n"
 		if store[i]:
 			#textblock+= "Purchased"
-			print(global.store['equipped'][type])
 			if global.store['equipped'][type] == equip.get('name'):
 				itemButton.text = "Item Equipped"
 				itemButton.disabled = true
