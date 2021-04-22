@@ -63,7 +63,7 @@ func _populate_store(type):
 		itemButtonSecondary.rect_min_size = Vector2(40,20)
 		var multipleSlots = false		
 
-    var textblock = ""
+		var textblock = ""
 		textblock+= equip.get("name")+"\n"
 		textblock+= "Stats:\n"
 		for statndx in range(stats.size()):
