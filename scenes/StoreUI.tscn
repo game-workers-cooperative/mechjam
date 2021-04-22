@@ -10,6 +10,7 @@ script = ExtResource( 1 )
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.117647, 0.152941, 0.219608, 1 )
+
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -19,6 +20,7 @@ margin_left = 112.0
 margin_top = 192.0
 margin_right = 192.0
 margin_bottom = 224.0
+
 text = "Armor"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -39,6 +41,7 @@ margin_left = 216.0
 margin_top = 192.0
 margin_right = 288.0
 margin_bottom = 224.0
+
 text = "Weapon"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -49,6 +52,7 @@ margin_left = 112.0
 margin_top = 144.0
 margin_right = 192.0
 margin_bottom = 180.0
+
 text = "Cockpit"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -59,6 +63,7 @@ margin_left = 112.0
 margin_top = 240.0
 margin_right = 192.0
 margin_bottom = 272.0
+
 text = "Legs"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -90,6 +95,7 @@ __meta__ = {
 margin_left = 424.0
 margin_right = 1024.0
 margin_bottom = 512.0
+
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -38,7 +38,7 @@ var initial_store = {
 			'armor':'none',
 			'cockpit':'none',
 			'leg':'none',
-			'weapon':'none'
+			'weapon':['none','none'],
 		}
 }
 var store = initial_store

@@ -1,5 +1,5 @@
 extends Control
-enum STATVALUES {KINETIC,ENERGY,SLASHING,PIERCING,FIRE}
+enum STATVALUES {KINETIC,ENERGY,SLASHING,MELEE,FIRE}
 var stats =["damage"]
 var _data :={
 	"0": {
@@ -7,6 +7,8 @@ var _data :={
 		"damage":STATVALUES.KINETIC,
 		"range":10,
 		"spread":1,
+		"hitPercent":.9,
+		"damageAmount":3,
 		"cost":10
 	},
 	"1": {
@@ -14,6 +16,8 @@ var _data :={
 		"damage":STATVALUES.ENERGY,
 		"range":10,
 		"spread":1,
+		"hitPercent":1,
+		"damageAmount":2,
 		"cost":10
 	},
 	"2": {
@@ -21,13 +25,17 @@ var _data :={
 		"damage":STATVALUES.SLASHING,
 		"range":1,
 		"spread":2,
+		"hitPercent":1,
+		"damageAmount":3,		
 		"cost":10
 	},	
 	"3": {
 		"name":"Melee Weapon",
-		"damage":STATVALUES.PIERCING,
+		"damage":STATVALUES.MELEE,
 		"range":1,
 		"spread":1,
+		"hitPercent":1,
+		"damageAmount":3,		
 		"cost":10
 	},
 	"4": {
@@ -35,6 +43,8 @@ var _data :={
 		"damage":STATVALUES.FIRE,
 		"range":3,
 		"spread":2,
+		"hitPercent":1,
+		"damageAmount":3,		
 		"cost":10
 	},
 }
