@@ -1,5 +1,5 @@
 extends Resource
-class_name Cockpit
+#class_name Cockpit
 
 export(int) var HP
 export(int) var speed
