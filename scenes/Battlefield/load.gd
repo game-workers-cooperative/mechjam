@@ -10,6 +10,7 @@ var commands = []
 
 onready var command_editor = $HUD/CommandEditor
 onready var command_palette = $HUD/CommandPalette
+onready var startBtn = $HUD/StartBtn
 onready var global = get_node("/root/Global")
 
 # Called when the node enters the scene tree for the first time.
@@ -50,21 +51,31 @@ func execute_commands():
 		block.set_disabled(true)
 		
 	# execute the commands
-	for commandIndex in len(commands):
-		# run the command
-		var command = commands[commandIndex]
+#	for commandIndex in len(commands):
+#		# run the command
+#		var command = commands[commandIndex]
+#		player.call(command.method, command.parameters)
+#		yield(player, "move_finished")
+#
+#		# remove the command from the queue
+#		var child = command_editor.get_child(commandIndex)
+#		command_editor.remove_child(child)
+	
+	while commands.size() > 0:
+		var command = commands[0]
 		player.call(command.method, command.parameters)
 		yield(player, "move_finished")
-
-		# remove the command from the queue
-		var child = command_editor.get_child(commandIndex)
+		
+		commands.remove(0)
+		var child = command_editor.get_child(0)
 		command_editor.remove_child(child)
 	
+	command_palette.set_visible(true)
+	startBtn.set_visible(true)
 	# @todo i don't think this should be necessary but it is
-	while len(command_editor.get_children()) != 0:
-		command_editor.remove_child(command_editor.get_children()[0])
-
-	commands = []
+#	while len(command_editor.get_children()) != 0:
+#		command_editor.remove_child(command_editor.get_children()[0])
+#	commands = []
 
 # Utils
 
@@ -99,12 +110,12 @@ func _on_block_selected(block):
 	commands.remove(block.index)
 	block.queue_free()
 	check_block_index()
-	
-#	print(commands)
 
 # Executes the commands(Starts Battle Phase)
 func _on_StartBtn_pressed() -> void:
 	execute_commands()
+	command_palette.set_visible(false)
+	startBtn.set_visible(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
