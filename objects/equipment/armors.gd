@@ -75,6 +75,18 @@ var _data :={
 		"cost":10
 	},
 }
+var default = {
+	"name":"Default",
+	"blade":STATVALUES.AVERAGE,
+	"fire":STATVALUES.AVERAGE,
+	"energy":STATVALUES.AVERAGE,
+	"bullet":STATVALUES.AVERAGE,
+	"melee":STATVALUES.AVERAGE,
+	"weight":STATVALUES.AVERAGE,
+	"radioactive":STATVALUES.FALSE,
+	"knockback":STATVALUES.FALSE,
+	"cost":0
+}
 var dictionary : Dictionary
 var json
 
@@ -88,7 +100,7 @@ func find(text):
 		if _data[n].get('name') == text:
 			return _data[n]
 		else:
-			return false
+			return default
 func get_data():
 	json = to_json(_data)
 	dictionary = JSON.parse(json).result

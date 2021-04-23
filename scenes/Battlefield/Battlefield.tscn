@@ -31,20 +31,20 @@ environment = SubResource( 1 )
 [node name="DirectionalLight" type="DirectionalLight" parent="WorldEnvironment"]
 transform = Transform( 0.346651, 0.639398, 0.686296, -0.169178, -0.677045, 0.716232, 0.922611, -0.364389, -0.126527, 10, 10, 0 )
 
-[node name="Mech" type="KinematicBody" parent="WorldEnvironment"]
+[node name="Player" type="KinematicBody" parent="WorldEnvironment"]
 
-[node name="CollisionShape" type="CollisionShape" parent="WorldEnvironment/Mech"]
+[node name="CollisionShape" type="CollisionShape" parent="WorldEnvironment/Player"]
 transform = Transform( 0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.4, 0, 0.5, 0 )
 shape = SubResource( 2 )
 
-[node name="StandIn_BarrelObstacle" parent="WorldEnvironment/Mech" instance=ExtResource( 2 )]
+[node name="StandIn_BarrelObstacle" parent="WorldEnvironment/Player" instance=ExtResource( 2 )]
 
-[node name="Camera" type="Camera" parent="WorldEnvironment/Mech"]
+[node name="Camera" type="Camera" parent="WorldEnvironment/Player"]
 transform = Transform( 0.707107, -0.541675, 0.45452, 0, 0.642788, 0.766044, -0.707107, -0.541675, 0.45452, 5, 7.06395, 5 )
 projection = 1
 size = 10.0
 
-[node name="Tween" type="Tween" parent="WorldEnvironment/Mech"]
+[node name="Tween" type="Tween" parent="WorldEnvironment/Player"]
 
 [node name="Enemy" type="KinematicBody" parent="WorldEnvironment"]
 

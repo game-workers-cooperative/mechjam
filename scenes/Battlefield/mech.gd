@@ -78,7 +78,7 @@ func check_environment_damage():
 	var type = map.get_tile_type(object.translation)
 	match type:
 		'spike':
-			if leg['traction']!=legValues.HIGH:
+			if leg.stats['traction'] != legValues.HIGH:
 				take_damage(1)
 
 # tries to move
@@ -124,10 +124,10 @@ func hit(damageType,origin):
 	return returnState
   
 func take_damage(damageAmount):
-	HP-=damageAmount
-	if HP <0:
+	HP -= damageAmount
+	if HP <= 0:
 		functionality = DEAD
-		
+	
 func knockback(origin):
 	var knockbackAmount = 1
 	var currentPosition = grid_pos
@@ -183,30 +183,27 @@ func _init(objectInScene, currentMap, maxHealth, equippedArmor, equippedCockpit,
 	secondaryWeapon = equippedSecondaryWeapon
 
 	# make sure an armor is equipped before applying effects	
-	if(armor.stats != false):
-		match(armor.stats['weight']):
-			effects.LIGHT:
-				MAX_HP-=2
-				HP-=2
-				SPEED+=1
-			effects.HEAVY:
-				MAX_HP+=2
-				HP-=2
-				SPEED-=1
+	match(armor.stats['weight']):
+		effects.LIGHT:
+			MAX_HP -= 2
+			HP -= 2
+			SPEED += 1
+		effects.HEAVY:
+			MAX_HP += 2
+			HP -= 2
+			SPEED -= 1
 
 	# make sure legs are equipped before applying effects	
-	if(leg.stats != false):
-		match(leg.stats['mobility']):
-			legValues.LOW:
-				SPEED-=1
-			legValues.HIGH:
-				SPEED+=1
+	match(leg.stats['mobility']):
+		legValues.LOW:
+			SPEED -= 1
+		legValues.HIGH:
+			SPEED += 1
 	
 	# make sure a cockpit exists before applying effects
-	if cockpit:
-		var specs = cockpit.get_specs()
-		for spec in specs:
-			self[spec] += specs[spec]
+	var specs = cockpit.get_specs()
+	for spec in specs:
+		self[spec] += specs[spec]
 
 # gets the current speed of the mech
 func get_speed():

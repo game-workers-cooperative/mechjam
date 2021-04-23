@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/fonts/tahoma.tres" type="DynamicFont" id=1]
-[ext_resource path="res://objects/ui/SceneSwitcher.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Victory/GoToStoreButton.gd" type="Script" id=2]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -42,7 +42,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TryAgainButton" type="Button" parent="."]
+[node name="GoToStoreButton" type="Button" parent="."]
 margin_left = 880.0
 margin_top = 480.0
 margin_right = 962.0

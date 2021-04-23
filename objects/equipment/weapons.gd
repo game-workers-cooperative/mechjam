@@ -48,6 +48,15 @@ var _data :={
 		"cost":10
 	},
 }
+var default = {
+	"name":"Default",
+	"damage":STATVALUES.MELEE,
+	"range":1,
+	"spread":1,
+	"hitPercent":1,
+	"damageAmount":1,		
+	"cost":0
+}
 var dictionary : Dictionary
 var json
 
@@ -61,7 +70,7 @@ func find(text):
 		if _data[n].get('name') == text:
 			return _data[n]
 		else:
-			return false
+			return default
 			
 func get_data():
 	json = to_json(_data)

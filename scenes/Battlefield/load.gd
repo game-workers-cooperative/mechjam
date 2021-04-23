@@ -18,7 +18,7 @@ func _ready():
 	map = Map.new()	
 	
 	# position the player
-	var playerObject = self.get_node("WorldEnvironment/Mech")
+	var playerObject = self.get_node("WorldEnvironment/Player")
 	var armor = Armor.new(Armors.new().find(global.store['equipped']['armor']))
 	var cockpit = Cockpit.new(Cockpits.new().find(global.store['equipped']['cockpit']))
 	var leg = Leg.new(Legs.new().find(global.store['equipped']['leg']))
@@ -105,3 +105,13 @@ func _on_block_selected(block):
 # Executes the commands(Starts Battle Phase)
 func _on_StartBtn_pressed() -> void:
 	execute_commands()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	for mech in map.get_mechs():
+		if mech.HP <= 0:
+			# trigger win/lose screen if necessary
+			if mech.object == $WorldEnvironment/Player:
+				get_tree().change_scene('res://scenes/GameOver/GameOver.tscn')
+			else:
+				get_tree().change_scene('res://scenes/Victory/Victory.tscn')
