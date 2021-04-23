@@ -10,6 +10,7 @@ var commands = []
 
 onready var command_editor = $HUD/CommandEditor
 onready var command_palette = $HUD/CommandPalette
+onready var global = get_node("/root/Global")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,12 +19,17 @@ func _ready():
 	
 	# position the player
 	var playerObject = self.get_node("WorldEnvironment/Mech")
-	player = Mech.new(playerObject, map, 10)
+	var armor = Armor.new(Armors.new().find(global.store['equipped']['armor']))
+	var cockpit = Cockpit.new(Cockpits.new().find(global.store['equipped']['cockpit']))
+	var leg = Leg.new(Legs.new().find(global.store['equipped']['leg']))
+	var primaryWeapon = Weapon.new(Weapons.new().find(global.store['equipped']['weapon'][0]))
+	var secondaryWeapon = Weapon.new(Weapons.new().find(global.store['equipped']['weapon'][1]))
+	player = Mech.new(playerObject, map, 10, armor, cockpit, leg, primaryWeapon, secondaryWeapon)
 	player.try_move(map.get_midpoint())
 	
 	# position the enemy
 	var enemyObject = self.get_node("WorldEnvironment/Enemy")
-	enemy = Mech.new(enemyObject, map, 10)
+	enemy = Mech.new(enemyObject, map, 10, armor, cockpit, leg, primaryWeapon, secondaryWeapon)
 	var enemyPosition = map.get_midpoint()
 	enemyPosition.x += 2
 	enemyPosition.z += 2
@@ -39,12 +45,25 @@ func _ready():
 		button.connect("command_selected", self, "_on_command_selected")
 
 func execute_commands():
-	for command in commands:
-		print(command)
+	# disable all selected commands
+	for block in command_editor.get_children():
+		block.set_disabled(true)
+		
+	# execute the commands
+	for commandIndex in len(commands):
+		# run the command
+		var command = commands[commandIndex]
 		player.call(command.method, command.parameters)
 		yield(player, "move_finished")
+
+		# remove the command from the queue
+		var child = command_editor.get_child(commandIndex)
+		command_editor.remove_child(child)
 	
-	clear_children(command_editor)
+	# @todo i don't think this should be necessary but it is
+	while len(command_editor.get_children()) != 0:
+		command_editor.remove_child(command_editor.get_children()[0])
+
 	commands = []
 
 # Utils
@@ -65,12 +84,14 @@ func clear_children(parent):
 
 # Adds the Command to the command editor and command list
 func _on_command_selected(button):
-	var block = CommandBlock.instance()
-	block.connect("block_selected", self, "_on_block_selected")
-	block.set_text(button.get_text())
-	block.index = commands.size()
-	commands.append(button.command)
-	command_editor.add_child(block)
+	# limit by the mech's speed
+	if(player.get_speed() >= len(command_editor.get_children())):
+		var block = CommandBlock.instance()
+		block.connect("block_selected", self, "_on_block_selected")
+		block.set_text(button.get_text())
+		block.index = commands.size()
+		commands.append(button.command)
+		command_editor.add_child(block)
 
 
 # Removes the command from the editor and list

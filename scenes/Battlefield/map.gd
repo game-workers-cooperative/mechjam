@@ -33,59 +33,94 @@ var map = {
 		'damage_active': 0
 	},
 	'bottom_left_corner': {
-		'asset': 'StandIn_WindowlessCornerTile',
+		'asset': 'StandIn_BasicCornerTile',
 		'wall': true,
 		'rotate': PI/2,
 		'damage_touch': 0,
 		'damage_active': 0
 	},
 	'bottom_right_corner': {
-		'asset': 'StandIn_WindowlessCornerTile',
+		'asset': 'StandIn_BasicCornerTile',
 		'wall': true,
 		'rotate': PI,
 		'damage_touch': 0,
 		'damage_active': 0
 	},
 	'top_left_corner': {
-		'asset': 'StandIn_WindowlessCornerTile',
+		'asset': 'StandIn_BasicCornerTile',
 		'wall': true,
 		'rotate': 0,
 		'damage_touch': 0,
 		'damage_active': 0
 	},
 	'top_right_corner': {
-		'asset': 'StandIn_WindowlessCornerTile',
+		'asset': 'StandIn_BasicCornerTile',
 		'wall': true,
 		'rotate': -PI/2,
 		'damage_touch': 0,
 		'damage_active': 0
 	},
 	'top_wall': {
-		'asset': 'StandIn_WindowlessWallTile',
+		'asset': 'StandIn_BasicWallTile',
 		'wall': true,
-		'rotate': PI/2,
+		'rotate': -PI/2,
 		'damage_touch': 0,
 		'damage_active': 0
 	},
 	'left_wall': {
-		'asset': 'StandIn_WindowlessWallTile',
+		'asset': 'StandIn_BasicWallTile',
+		'wall': true,
+		'rotate': PI*2,
+		'damage_touch': 0,
+		'damage_active': 0
+	},
+	'right_wall': {
+		'asset': 'StandIn_BasicWallTile',
 		'wall': true,
 		'rotate': PI,
 		'damage_touch': 0,
 		'damage_active': 0
 	},
-	'right_wall': {
-		'asset': 'StandIn_WindowlessWallTile',
+	'bottom_wall': {
+		'asset': 'StandIn_BasicWallTile',
 		'wall': true,
-		'rotate': 0,
+		'rotate': PI/2,
 		'damage_touch': 0,
 		'damage_active': 0
 	},
-	'bottom_wall': {
-		'asset': 'StandIn_WindowlessWallTile',
+	'interior_top_wall': {
+		'asset': 'StandIn_BasicWallTile',
 		'wall': true,
 		'rotate': -PI/2,
 		'damage_touch': 0,
+		'damage_active': 0
+	},
+	'left_saw': {
+		'asset': 'StandIn_SawWallTile',
+		'wall': true,
+		'rotate': 0,
+		'damage_touch': 1,
+		'damage_active': 0
+	},
+	'top_saw': {
+		'asset': 'StandIn_SawWallTile',
+		'wall': true,
+		'rotate': -PI/2,
+		'damage_touch': 1,
+		'damage_active': 0
+	},
+	'bottom_saw': {
+		'asset': 'StandIn_SawWallTile',
+		'wall': true,
+		'rotate': PI/2,
+		'damage_touch': 1,
+		'damage_active': 0
+	},
+	'right_saw': {
+		'asset': 'StandIn_SawWallTile',
+		'wall': true,
+		'rotate': PI,
+		'damage_touch': 1,
 		'damage_active': 0
 	},
 }
@@ -93,7 +128,7 @@ var map = {
 # tiles of the battlefield by row
 var level = [
 	[
-		'top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_right_corner'
+		'top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_saw','top_right_corner'
 	],
 	[
 		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
@@ -111,10 +146,10 @@ var level = [
 		'left_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'
 	],
 	[
-		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
+		'left_saw','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
 	],
 	[
-		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
+		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_saw'
 	],
 	[
 		'left_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'
@@ -123,7 +158,7 @@ var level = [
 		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
 	],
 	[
-		'bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner'
+		'bottom_left_corner','bottom_wall','bottom_wall','bottom_saw','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner'
 	]
 ]
 
