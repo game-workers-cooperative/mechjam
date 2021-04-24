@@ -88,8 +88,29 @@ var map = {
 		'damage_touch': 0,
 		'damage_active': 0
 	},
-	'interior_top_wall': {
-		'asset': 'StandIn_BasicWallTile',
+	'top_window_wall': {
+		'asset': 'StandIn_WindowlessWallTile',
+		'wall': true,
+		'rotate': PI/2,
+		'damage_touch': 0,
+		'damage_active': 0
+	},
+	'left_window_wall': {
+		'asset': 'StandIn_WindowlessWallTile',
+		'wall': true,
+		'rotate': PI,
+		'damage_touch': 0,
+		'damage_active': 0
+	},
+	'right_window_wall': {
+		'asset': 'StandIn_WindowlessWallTile',
+		'wall': true,
+		'rotate': PI*2,
+		'damage_touch': 0,
+		'damage_active': 0
+	},
+	'bottom_window_wall': {
+		'asset': 'StandIn_WindowlessWallTile',
 		'wall': true,
 		'rotate': -PI/2,
 		'damage_touch': 0,
@@ -128,37 +149,37 @@ var map = {
 # tiles of the battlefield by row
 var level = [
 	[
-		'top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_saw','top_right_corner'
+		'top_left_corner','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_saw','top_right_corner'
 	],
 	[
-		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
+		'left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'
 	],
 	[
-		'left_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'
+		'left_window_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_window_wall'
 	],
 	[
-		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
+		'left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'
 	],
 	[
-		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
+		'left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'
 	],
 	[
-		'left_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'
+		'left_window_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_window_wall'
 	],
 	[
-		'left_saw','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
+		'left_saw','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'
 	],
 	[
-		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_saw'
+		'left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_saw'
 	],
 	[
-		'left_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'
+		'left_window_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_window_wall'
 	],
 	[
-		'left_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_wall'
+		'left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'
 	],
 	[
-		'bottom_left_corner','bottom_wall','bottom_wall','bottom_saw','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner'
+		'bottom_left_corner','bottom_window_wall','bottom_window_wall','bottom_saw','bottom_window_wall','bottom_window_wall','bottom_window_wall','bottom_window_wall','bottom_window_wall','bottom_right_corner'
 	]
 ]
 
