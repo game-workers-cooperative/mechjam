@@ -60,7 +60,7 @@ func execute_commands():
 #		# remove the command from the queue
 #		var child = command_editor.get_child(commandIndex)
 #		command_editor.remove_child(child)
-	
+	print(commands)
 	while commands.size() > 0:
 		var command = commands[0]
 		player.call(command.method, command.parameters)
@@ -111,8 +111,60 @@ func _on_block_selected(block):
 	block.queue_free()
 	check_block_index()
 
+func testMoves(position,facing,depth,moves):
+	
+	var possibleMoves = ['forward','backward','left','right','attack','attack2','skip']
+	var moveScores = []
+	var newPos = position
+	var newAngle = facing
+	var testAngle = facing
+	for testMove in possibleMoves:
+		var score = 0
+		match(testMove):
+			'forward':
+				newPos = position+facing
+				testAngle = newPos.angle_to(player.grid_pos)
+			'backward':
+				newPos = position-facing
+				testAngle = newPos.angle_to(player.grid_pos)
+			'left':
+				newAngle = facing.rotated(-deg2rad(90))
+			'right':
+				newAngle = facing.rotated(deg2rad(90))
+			'attack1':
+				var weaponHitArea = enemy.primaryWeapon.aim(position,facing)
+				if weaponHitArea.search(player.grid_pos):
+					score = 0
+				else:
+					score +=10
+			'attack2':
+				var weaponHitArea = enemy.secondaryWeapon.aim(position,facing)
+				if weaponHitArea.find(player.grid_pos):
+					score = 0
+				else:
+					score +=10
+			'skip':
+				pass
+		moves[testMove] = score
+		score += testAngle
+		score = position.distance_to(newPos)
+		score += abs(testAngle + position.angle_to(player.grid_pos))
+		if depth>=0:
+			testMoves(newPos, newAngle, depth-1, moves)
+		else:
+			return moves
+
+func calculate_enemy_action():
+	
+	#for testMove in enemy.SPEED
+	var possibleMoves = testMoves(enemy.grid_pos,enemy.face_dir,enemy.SPEED,{})
+	print(possibleMoves)
+	
+			
+
 # Executes the commands(Starts Battle Phase)
 func _on_StartBtn_pressed() -> void:
+	calculate_enemy_action()
 	execute_commands()
 	command_palette.set_visible(false)
 	startBtn.set_visible(false)

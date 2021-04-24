@@ -205,7 +205,7 @@ text = "Attack Primary"
 script = ExtResource( 13 )
 command = {
 "method": "attack",
-"parameters": true
+"parameters": "'primary'"
 }
 
 [node name="AttackSecondary" type="Button" parent="HUD/CommandPalette"]
@@ -216,7 +216,7 @@ text = "Attack Secondary"
 script = ExtResource( 13 )
 command = {
 "method": "attack",
-"parameters": false
+"parameters": "'secondary'"
 }
 
 [node name="SkipMove" type="Button" parent="HUD/CommandPalette"]
@@ -249,4 +249,5 @@ text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="HUD/StartBtn" to="." method="_on_StartBtn_pressed"]
