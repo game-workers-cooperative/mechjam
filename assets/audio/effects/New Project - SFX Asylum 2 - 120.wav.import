@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/New Project - SFX Asylum 2 - 120.wav-565eba6896d075954aa9d09e1926d78a.sample"
+
+[deps]
+
+source_file="res://assets/audio/effects/New Project - SFX Asylum 2 - 120.wav"
+dest_files=[ "res://.import/New Project - SFX Asylum 2 - 120.wav-565eba6896d075954aa9d09e1926d78a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

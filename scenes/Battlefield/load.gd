@@ -51,16 +51,6 @@ func execute_commands():
 		block.set_disabled(true)
 		
 	# execute the commands
-#	for commandIndex in len(commands):
-#		# run the command
-#		var command = commands[commandIndex]
-#		player.call(command.method, command.parameters)
-#		yield(player, "move_finished")
-#
-#		# remove the command from the queue
-#		var child = command_editor.get_child(commandIndex)
-#		command_editor.remove_child(child)
-	
 	while commands.size() > 0:
 		var command = commands[0]
 		player.call(command.method, command.parameters)
@@ -72,10 +62,6 @@ func execute_commands():
 	
 	command_palette.set_visible(true)
 	startBtn.set_visible(true)
-	# @todo i don't think this should be necessary but it is
-#	while len(command_editor.get_children()) != 0:
-#		command_editor.remove_child(command_editor.get_children()[0])
-#	commands = []
 
 # Utils
 
@@ -104,24 +90,81 @@ func _on_command_selected(button):
 		commands.append(button.command)
 		command_editor.add_child(block)
 
-
 # Removes the command from the editor and list
 func _on_block_selected(block):
 	commands.remove(block.index)
 	block.queue_free()
 	check_block_index()
 
+func testMoves(position,facing,depth,moves):
+	var possibleMoves = ['forward','backward','left','right','attack','attack2','skip']
+	var moveScores = []
+	var newPos = position
+	var newAngle = facing
+	var testAngle = facing
+	for testMove in possibleMoves:
+		var score = 0
+		match(testMove):
+			'forward':
+				newPos = position+facing
+				testAngle = newPos.angle_to(player.grid_pos)
+			'backward':
+				newPos = position-facing
+				testAngle = newPos.angle_to(player.grid_pos)
+			'left':
+				newAngle = facing.rotated(-deg2rad(90))
+			'right':
+				newAngle = facing.rotated(deg2rad(90))
+			'attack1':
+				var weaponHitArea = enemy.primaryWeapon.aim(position,facing)
+				if weaponHitArea.search(player.grid_pos):
+					score = 0
+				else:
+					score +=10
+			'attack2':
+				var weaponHitArea = enemy.secondaryWeapon.aim(position,facing)
+				if weaponHitArea.find(player.grid_pos):
+					score = 0
+				else:
+					score +=10
+			'skip':
+				pass
+		moves[testMove] = score
+		score += testAngle
+		score = position.distance_to(newPos)
+		score += abs(testAngle + position.angle_to(player.grid_pos))
+		if depth>=0:
+			testMoves(newPos, newAngle, depth-1, moves)
+		else:
+			return moves
+
+func calculate_enemy_action():	
+	#for testMove in enemy.SPEED
+	var possibleMoves = testMoves(enemy.grid_pos,enemy.face_dir,enemy.SPEED,{})				
+
 # Executes the commands(Starts Battle Phase)
 func _on_StartBtn_pressed() -> void:
+	calculate_enemy_action()
 	execute_commands()
 	command_palette.set_visible(false)
 	startBtn.set_visible(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# make sure the camera is always following the player
+	var playerPosition = $WorldEnvironment/Player.translation
+	$WorldEnvironment/Camera.translation = Vector3(playerPosition.x + 4, $WorldEnvironment/Camera.translation.y, playerPosition.z + 4)
+	
 	for mech in map.get_mechs():
+		# position health bars as necessary
+		var position = $WorldEnvironment/Camera.unproject_position(mech.object.translation)
+		position += Vector2(-22,-70)
+		var progress = mech.object.find_node('ProgressBar')
+		progress.set_position(position)
+		progress.set_value(float(mech.HP)/float(mech.MAX_HP) * 100)
+		
+		# trigger win/lose screen if necessary
 		if mech.HP <= 0:
-			# trigger win/lose screen if necessary
 			if mech.object == $WorldEnvironment/Player:
 				get_tree().change_scene('res://scenes/GameOver/GameOver.tscn')
 			else:

@@ -36,23 +36,9 @@ var functionality = ALIVE
 func can_move(translation):
 	# check if the environment stops the move
 	var type = map.get_tile_type(object.translation + translation)
-	match type:
-		'bottom_wall':
-			return false
-		'top_wall':
-			return false
-		'left_wall':
-			return false
-		'right_wall':
-			return false
-		'top_left_corner':
-			return false
-		'top_right_corner':
-			return false
-		'bottom_left_corner':
-			return false
-		'bottom_right_corner':
-			return false
+	var info = map.get_type_info(type)
+	if info.wall:
+		return false
 			
 	# check if there's another mech in the way
 	var mechs = map.get_mechs()
@@ -68,9 +54,21 @@ func get_position():
 
 # applies the provided translation
 func move(translation):
+	# play the step sound
+	var player = object.get_parent().get_parent().find_node('Step1')
+	player.play()
+	
+	# move the player
 	tween.interpolate_property(object, "translation", object.get_translation(), object.get_translation() + translation, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
+	
+	# play the other step sound
+	player = object.get_parent().get_parent().find_node('Step2')
+	player.play()
+	
 	yield(tween, "tween_all_completed")
+	
+	# tell the command manager we're done
 	emit_signal("move_finished")
 	
 # applies environment damage if needed
@@ -78,8 +76,16 @@ func check_environment_damage():
 	var type = map.get_tile_type(object.translation)
 	match type:
 		'spike':
-			if leg.stats['traction'] != legValues.HIGH:
+			if !JUMPSTATE and leg.stats['traction'] != legValues.HIGH:
 				take_damage(1)
+		'left_saw':
+			take_damage(1)
+		'right_saw':
+			take_damage(1)
+		'top_saw':
+			take_damage(1)
+		'bottom_saw':
+			take_damage(1)
 
 # tries to move
 func try_move(translation):
@@ -94,11 +100,33 @@ func jump():
 		JUMPSTATE = true
 		
 func attack(weaponSlot):
+	# figure out which weapon to use
+	var weapon = primaryWeapon
+	if weaponSlot == 'secondary':
+		weapon = secondaryWeapon
+	
+	# play sound effect based on name
+	var playerName
+	match weapon.stats['name']:
+		'Gun Type Weapon':
+			playerName = 'Gunshot'
+		'Energy Type weapon':
+			playerName = 'Laser'
+		'Melee Weapon':
+			playerName = 'Punch'
+		'FlameThrower':
+			playerName = 'Flamethrower'
+	if typeof(playerName) == TYPE_STRING:
+		var player = object.get_parent().get_parent().find_node(playerName)
+		player.play()
+	
 	# AnimationPlayer.play("weapon.get_animation")
-	if weaponSlot == 'primary':
-		primaryWeapon.attack(grid_pos,face_dir)
-	elif weaponSlot =='secondary':
-		secondaryWeapon.attack(grid_pos,face_dir)
+	
+	# attack
+	weapon.attack(grid_pos,face_dir)
+		
+	# let the command manager know we're done
+	emit_signal("move_finished")
 
 func raise_shield():
 	if cockpit['shield'] == cockpitValues.TRUE and SHIELDCOOLDOWN <= 0:

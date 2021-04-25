@@ -15,7 +15,7 @@ func _equip_button_pressed(name,type):
 
 func _equip_weapon_button_pressed(name,type,index):
 	print('equip weapon')
-	print(index)
+	print(name, ' ', index)
 	global.store['equipped'][type][index] = name
 	_populate_store(type)
 	

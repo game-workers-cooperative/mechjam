@@ -55,16 +55,14 @@ func find(text):
 	for n in _data:
 		if _data[n].get('name') == text:
 			return _data[n]
-		else:
-			return default
+	
+	return default
 	
 func get_data():
 	json = to_json(_data)
 	dictionary = JSON.parse(json).result
 	return dictionary
 	
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
