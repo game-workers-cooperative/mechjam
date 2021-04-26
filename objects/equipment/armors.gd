@@ -12,7 +12,7 @@ var _data :={
 		"weight":STATVALUES.HEAVY,
 		"radioactive":STATVALUES.FALSE,
 		"knockback":STATVALUES.FALSE,
-		"cost":10
+		"cost":0
 	},
 	"1": {
 		"name":"Carbon Nanotech",
@@ -24,7 +24,7 @@ var _data :={
 		"weight":STATVALUES.LIGHT,
 		"radioactive":STATVALUES.FALSE,
 		"knockback":STATVALUES.FALSE,
-		"cost":10
+		"cost":0
 	},
 	"2": {
 		"name":"Ceramic",
@@ -36,7 +36,7 @@ var _data :={
 		"weight":STATVALUES.AVERAGE,
 		"radioactive":STATVALUES.FALSE,
 		"knockback":STATVALUES.FALSE,
-		"cost":10
+		"cost":500
 	},	
 	"3": {
 		"name":"Alien Hardwood",
@@ -48,7 +48,7 @@ var _data :={
 		"weight":STATVALUES.AVERAGE,
 		"radioactive":STATVALUES.FALSE,
 		"knockback":STATVALUES.FALSE,
-		"cost":10
+		"cost":200
 	},
 	"4": {
 		"name":"Radioactive Waste",
@@ -60,7 +60,7 @@ var _data :={
 		"weight":STATVALUES.WEAK,
 		"radioactive":STATVALUES.TRUE,
 		"knockback":STATVALUES.FALSE,
-		"cost":10
+		"cost":1500
 	},
 	"5": {
 		"name":"Rubber",
@@ -72,7 +72,7 @@ var _data :={
 		"weight":STATVALUES.AVERAGE,
 		"radioactive":STATVALUES.FALSE,
 		"knockback":STATVALUES.TRUE,
-		"cost":10
+		"cost":750
 	},
 }
 var default = {
