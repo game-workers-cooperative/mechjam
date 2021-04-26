@@ -7,28 +7,28 @@ var _data :={
 		"weight":STATVALUES.AVERAGE,
 		"armor":STATVALUES.AVERAGE,
 		"shield":STATVALUES.FALSE,
-		"cost":10
+		"cost":0
 	},
 	"1": {
 		"name":"Lightweight",
 		"weight":STATVALUES.LOW,
 		"armor":STATVALUES.LOW,
 		"shield":STATVALUES.FALSE,
-		"cost":10
+		"cost":150
 	},
 	"2": {
 		"name":"Shielded",
 		"weight":STATVALUES.AVERAGE,
 		"armor":STATVALUES.LOW,
 		"shield":STATVALUES.TRUE,
-		"cost":10
+		"cost":175
 	},	
 	"3": {
 		"name":"Heavy",
 		"weight":STATVALUES.HIGH,
 		"armor":STATVALUES.HIGH,
 		"shield":STATVALUES.FALSE,
-		"cost":10
+		"cost":225
 	},
 }
 var default = {
