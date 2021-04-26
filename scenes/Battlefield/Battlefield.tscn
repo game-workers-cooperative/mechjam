@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://assets/fbx/StandIn_BasicGroundTile.fbx" type="PackedScene" id=1]
 [ext_resource path="res://assets/fbx/MechJam-protag-unit.fbx" type="PackedScene" id=2]
@@ -8,10 +8,6 @@
 [ext_resource path="res://assets/fbx/StandIn_WindowlessCornerTile.fbx" type="PackedScene" id=6]
 [ext_resource path="res://assets/fbx/StandIn_GridGroundTile.fbx" type="PackedScene" id=7]
 [ext_resource path="res://assets/fbx/StandIn_SpikeGroundTile.fbx" type="PackedScene" id=8]
-[ext_resource path="res://scenes/Battlefield/MoveRightButton.gd" type="Script" id=9]
-[ext_resource path="res://scenes/Battlefield/MoveDownButton.gd" type="Script" id=10]
-[ext_resource path="res://scenes/Battlefield/MoveUpButton.gd" type="Script" id=11]
-[ext_resource path="res://scenes/Battlefield/MoveLeftButton.gd" type="Script" id=12]
 [ext_resource path="res://objects/ui/CommandButton.gd" type="Script" id=13]
 [ext_resource path="res://assets/fbx/StandIn_InnerCornerTile.fbx" type="PackedScene" id=14]
 [ext_resource path="res://assets/fbx/StandIn_BasicCornerTile.fbx" type="PackedScene" id=15]
@@ -77,7 +73,7 @@ __meta__ = {
 }
 
 [node name="MechJam-protag-unit" parent="WorldEnvironment/Enemy" instance=ExtResource( 2 )]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+transform = Transform( -0.1, 0, -3.25841e-08, 0, 0.1, 0, 3.25841e-08, 0, -0.1, 0, 0, 0 )
 
 [node name="StandIn_BasicGroundTile" parent="WorldEnvironment" instance=ExtResource( 1 )]
 visible = false
@@ -122,54 +118,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MoveRight" type="Button" parent="."]
-visible = false
-margin_left = 47.3636
-margin_top = 489.0
-margin_right = 178.364
-margin_bottom = 558.0
-text = "Move Right"
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MoveLeft" type="Button" parent="."]
-visible = false
-margin_left = 201.366
-margin_top = 489.0
-margin_right = 332.366
-margin_bottom = 558.0
-text = "Move Left"
-script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MoveUp" type="Button" parent="."]
-visible = false
-margin_left = 350.611
-margin_top = 489.0
-margin_right = 481.612
-margin_bottom = 558.0
-text = "Move Up"
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MoveDown" type="Button" parent="."]
-visible = false
-margin_left = 506.135
-margin_top = 489.0
-margin_right = 637.135
-margin_bottom = 558.0
-text = "Move Down"
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="CommandPalette" type="HBoxContainer" parent="HUD"]
@@ -210,8 +158,8 @@ margin_bottom = 56.0
 text = "Turn Right"
 script = ExtResource( 13 )
 command = {
-"method": "try_move",
-"parameters": Vector3( 1, 0, 0 )
+"method": "turn_right",
+"parameters": null
 }
 
 [node name="TurnLeft" type="Button" parent="HUD/CommandPalette"]
@@ -221,8 +169,8 @@ margin_bottom = 56.0
 text = "Turn Left"
 script = ExtResource( 13 )
 command = {
-"method": "try_move",
-"parameters": Vector3( -1, 0, 0 )
+"method": "turn_left",
+"parameters": null
 }
 
 [node name="AttackPrimary" type="Button" parent="HUD/CommandPalette"]

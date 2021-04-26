@@ -179,7 +179,8 @@ func knockback(origin):
 			currentPosition.x+=knockbackAmount
 	try_move(currentPosition)
 	
-func turnLeft():
+func turn_left():
+	object.set_rotation(Vector3(0, PI/2, 0))
 	match(face_dir):
 		Vector2.LEFT:
 			face_dir = Vector2.DOWN
@@ -190,7 +191,8 @@ func turnLeft():
 		Vector2.DOWN:
 			face_dir = Vector2.RIGHT
 			
-func turnRight():
+func turn_right():
+	object.set_rotation(Vector3(0, -PI/2, 0))
 	match(face_dir):
 		Vector2.LEFT:
 			face_dir = Vector2.UP
@@ -202,8 +204,9 @@ func turnRight():
 			face_dir = Vector2.LEFT
 
 # sets up this object
-func _init(objectInScene, currentMap, maxHealth, equippedArmor, equippedCockpit, equippedLeg, equippedPrimaryWeapon, equippedSecondaryWeapon):
+func _init(objectInScene, facingDirection, currentMap, maxHealth, equippedArmor, equippedCockpit, equippedLeg, equippedPrimaryWeapon, equippedSecondaryWeapon):
 	object = objectInScene
+	face_dir = facingDirection
 	map = currentMap
 	MAX_HP = maxHealth
 	HP = maxHealth

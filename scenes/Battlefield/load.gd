@@ -25,15 +25,15 @@ func _ready():
 	var leg = Leg.new(Legs.new().find(global.store['equipped']['leg']))
 	var primaryWeapon = Weapon.new(Weapons.new().find(global.store['equipped']['weapon'][0]))
 	var secondaryWeapon = Weapon.new(Weapons.new().find(global.store['equipped']['weapon'][1]))
-	player = Mech.new(playerObject, map, 10, armor, cockpit, leg, primaryWeapon, secondaryWeapon)
-	player.try_move(map.get_midpoint())
+	player = Mech.new(playerObject, Vector2.UP, map, 10, armor, cockpit, leg, primaryWeapon, secondaryWeapon)
+	var position = map.get_midpoint() + Vector3(0, 0, 2)
+	player.try_move(position)
 	
 	# position the enemy
 	var enemyObject = self.get_node("WorldEnvironment/Enemy")
-	enemy = Mech.new(enemyObject, map, 10, armor, cockpit, leg, primaryWeapon, secondaryWeapon)
-	var enemyPosition = map.get_midpoint()
-	enemyPosition.x += 2
-	enemyPosition.z += 2
+	enemy = Mech.new(enemyObject, Vector2.DOWN, map, 10, armor, cockpit, leg, primaryWeapon, secondaryWeapon)
+	var enemyPosition = position + Vector3(0, 0, -2)
+	enemyPosition.z -= 2
 	enemy.try_move(enemyPosition)
 	
 	# add mechs to the map
@@ -63,7 +63,7 @@ func execute_commands():
 	# execute the commands
 	while commands.size() > 0:
 		var command = commands[0]
-		player.call(command.method, command.parameters)
+		player.call_deferred(command.method, command.parameters)
 		yield(player, "move_finished")
 		
 		commands.remove(0)
@@ -112,9 +112,6 @@ func _on_block_selected(block):
 	block.queue_free()
 	check_block_index()
 
-
-
-
 func testMoves(position,facing,depth,moves=[]):
 	var possibleMoves = ['forward','backward','left','right','attack','attack2','skip']
 	var newPos = position
@@ -160,10 +157,12 @@ func testMoves(position,facing,depth,moves=[]):
 		if testMoves.values()[x] < maxScore.values()[0]:
 			maxScore = {testMoves.keys()[x]:testMoves.values()[x]}
 	moves.append(maxScore)
+	
 	if depth>=0:
 		var deepMoves = testMoves(newPos, newAngle, depth-1)
 		for deepMove in deepMoves:
 			moves.append(deepMove)
+			
 	return moves
 
 
