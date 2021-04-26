@@ -110,7 +110,8 @@ custom_fonts/font = ExtResource( 2 )
 text = "Art
 
 James Weisbecker
-Marie Taeger"
+Marie Taeger
+Makuda \"Dog\""
 __meta__ = {
 "_edit_use_anchors_": false
 }

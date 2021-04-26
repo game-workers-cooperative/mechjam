@@ -1,0 +1,290 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://objects/ui/SceneSwitcher.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/songs/Dellic - Space Soul - 102 (mastered).wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/texture/intro1.png" type="Texture" id=3]
+[ext_resource path="res://assets/texture/intro3.png" type="Texture" id=4]
+[ext_resource path="res://assets/texture/intro2.png" type="Texture" id=5]
+[ext_resource path="res://assets/fonts/tahoma_big.tres" type="DynamicFont" id=6]
+[ext_resource path="res://scenes/Menus/Next Button.gd" type="Script" id=7]
+[ext_resource path="res://scenes/Menus/Skip Intro Button.gd" type="Script" id=8]
+[ext_resource path="res://assets/fonts/tahoma.tres" type="DynamicFont" id=9]
+[ext_resource path="res://scenes/Menus/Credits.gd" type="Script" id=10]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screen1" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screen2" type="TextureRect" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screen3" type="TextureRect" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialogue1" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 456.0
+margin_right = 840.0
+margin_bottom = 598.0
+rect_scale = Vector2( 0.95, 0.95 )
+custom_fonts/font = ExtResource( 9 )
+text = "Life is quiet on the edge of the system. Course, a community needs to defend itself, even out here, light years from the United Planetary Order. So some of our scientifically minded neighbors started a program. Building mechs. Testing them against each other. Just in case."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next Button" type="Button" parent="."]
+margin_left = 899.0
+margin_top = 480.0
+margin_right = 981.0
+margin_bottom = 526.0
+text = "Next"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skip Intro Button" type="Button" parent="."]
+margin_left = 899.0
+margin_top = 540.0
+margin_right = 981.0
+margin_bottom = 560.0
+text = "Skip Intro"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="Dialogue2" type="Label" parent="."]
+visible = false
+margin_left = 35.4507
+margin_top = 454.584
+margin_right = 815.451
+margin_bottom = 596.584
+custom_fonts/font = ExtResource( 9 )
+text = "But, like I said, life is quiet out here. A ship, even a generational ship, is too small to keep all its surprises and intrigues hidden from you for long. Sooner or later, you’ve seen all there is to see. You can hardly blame us for jumping at the opportunity of some new entertainment. "
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialogue3" type="Label" parent="."]
+visible = false
+margin_left = 50.0109
+margin_top = 475.714
+margin_right = 785.011
+margin_bottom = 588.714
+custom_fonts/font = ExtResource( 9 )
+text = "It’s still scientific research, o’course. But it’s something else too. It’s a sport. It’s a lifestyle. It’s..."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+visible = false
+margin_left = 56.0
+margin_top = 448.0
+margin_right = 512.0
+margin_bottom = 542.0
+rect_scale = Vector2( 1.8, 1.8 )
+custom_fonts/font = ExtResource( 6 )
+text = "Mecha Battle Bots"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 6.10352e-05
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Credits"]
+margin_left = 442.703
+margin_top = 40.0
+margin_right = 570.703
+margin_bottom = 112.0
+custom_fonts/font = ExtResource( 9 )
+text = "CREDITS"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Programmers" type="Label" parent="Credits"]
+margin_left = 122.703
+margin_top = 192.0
+margin_right = 281.703
+margin_bottom = 334.0
+rect_pivot_offset = Vector2( 57.5, 15.5 )
+custom_fonts/font = ExtResource( 9 )
+text = "Programming
+
+Akshat Shukla 
+Nick Clifton
+Ryan Masters"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Programmers2" type="Label" parent="Credits"]
+margin_left = 122.703
+margin_top = 384.0
+margin_right = 382.703
+margin_bottom = 526.0
+rect_pivot_offset = Vector2( 57.5, 15.5 )
+custom_fonts/font = ExtResource( 9 )
+text = "Music and Sound Effects
+
+Rev-Dellic
+    dellic.bandcamp.com
+	    soundcloud.com/revdellic"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Writers" type="Label" parent="Credits"]
+margin_left = 314.703
+margin_top = 192.0
+margin_right = 459.703
+margin_bottom = 334.0
+custom_fonts/font = ExtResource( 9 )
+text = "Writing
+
+E.J. McIntyre
+Mike Ghaussy
+Nick Clifton"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Design" type="Label" parent="Credits"]
+margin_left = 506.703
+margin_top = 192.0
+margin_right = 651.703
+margin_bottom = 334.0
+custom_fonts/font = ExtResource( 9 )
+text = "Design
+
+E.J. McIntyre
+Mike Ghaussy
+Ryan Masters"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Artists" type="Label" parent="Credits"]
+margin_left = 698.703
+margin_top = 192.0
+margin_right = 894.703
+margin_bottom = 305.0
+custom_fonts/font = ExtResource( 9 )
+text = "Art
+
+James Weisbecker
+Marie Taeger"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="lowercase" type="Label" parent="Credits"]
+margin_left = 656.0
+margin_top = 416.0
+margin_right = 842.0
+margin_bottom = 448.0
+custom_fonts/font = ExtResource( 9 )
+text = "Together we are "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LowercaseTitle" type="Label" parent="Credits"]
+margin_left = 568.0
+margin_top = 440.0
+margin_right = 944.0
+margin_bottom = 512.0
+custom_fonts/font = ExtResource( 6 )
+text = "lowercase games"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackBtn" type="Button" parent="."]
+visible = false
+margin_left = 40.1081
+margin_top = 41.6432
+margin_right = 128.108
+margin_bottom = 89.6432
+custom_fonts/font = ExtResource( 9 )
+text = "Back"
+script = ExtResource( 8 )
+
+[node name="StartGame" type="Button" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 840.0
+margin_top = 146.941
+margin_right = -16.0
+margin_bottom = 203.941
+custom_fonts/font = ExtResource( 9 )
+text = "Start"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+target_scene = "res://scenes/StoreUI.tscn"
+
+[node name="CreditsButton" type="Button" parent="."]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.172
+anchor_bottom = 0.5
+margin_left = 840.0
+margin_top = 220.0
+margin_right = -192.128
+margin_bottom = 276.0
+custom_fonts/font = ExtResource( 9 )
+text = "Credits"
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
