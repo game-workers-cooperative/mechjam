@@ -92,10 +92,13 @@ func check_environment_damage():
 
 # tries to move
 func try_move(translation):
-	if(!can_move(translation)):
-		translation = Vector3(0,0,0)
+	var translation_rotated = translation.rotated(Vector3(0, 1, 0), object.get_rotation().y)
+	print(translation_rotated)
+	
+	if(!can_move(translation_rotated)):
+		translation_rotated = Vector3(0,0,0)
 		
-	move(translation)
+	move(translation_rotated)
 	check_environment_damage()
 
 func jump():
