@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource( 1 )
-HP = 15
+HP = 100
 speed = 50
 armor = 0
