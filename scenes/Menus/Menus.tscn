@@ -147,10 +147,10 @@ __meta__ = {
 }
 
 [node name="Programmers" type="Label" parent="Credits"]
-margin_left = 122.703
-margin_top = 192.0
-margin_right = 281.703
-margin_bottom = 334.0
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 287.0
+margin_bottom = 270.0
 rect_pivot_offset = Vector2( 57.5, 15.5 )
 custom_fonts/font = ExtResource( 9 )
 text = "Programming
@@ -163,10 +163,10 @@ __meta__ = {
 }
 
 [node name="Programmers2" type="Label" parent="Credits"]
-margin_left = 122.703
-margin_top = 384.0
-margin_right = 382.703
-margin_bottom = 526.0
+margin_left = 128.0
+margin_top = 312.0
+margin_right = 431.0
+margin_bottom = 454.0
 rect_pivot_offset = Vector2( 57.5, 15.5 )
 custom_fonts/font = ExtResource( 9 )
 text = "Music and Sound Effects
@@ -179,10 +179,10 @@ __meta__ = {
 }
 
 [node name="Writers" type="Label" parent="Credits"]
-margin_left = 314.703
-margin_top = 192.0
-margin_right = 459.703
-margin_bottom = 334.0
+margin_left = 320.0
+margin_top = 128.0
+margin_right = 465.0
+margin_bottom = 270.0
 custom_fonts/font = ExtResource( 9 )
 text = "Writing
 
@@ -194,10 +194,10 @@ __meta__ = {
 }
 
 [node name="Design" type="Label" parent="Credits"]
-margin_left = 506.703
-margin_top = 192.0
-margin_right = 651.703
-margin_bottom = 334.0
+margin_left = 512.0
+margin_top = 128.0
+margin_right = 657.0
+margin_bottom = 270.0
 custom_fonts/font = ExtResource( 9 )
 text = "Design
 
@@ -209,15 +209,20 @@ __meta__ = {
 }
 
 [node name="Artists" type="Label" parent="Credits"]
-margin_left = 698.703
-margin_top = 192.0
-margin_right = 894.703
-margin_bottom = 305.0
+margin_left = 704.0
+margin_top = 120.0
+margin_right = 1092.0
+margin_bottom = 472.0
 custom_fonts/font = ExtResource( 9 )
 text = "Art
 
 James Weisbecker
-Marie Taeger"
+Marie Taeger
+Makuda
+   Insta: 
+   diego.trampitas_makuda
+   Linkedin:
+   Diego Vidal De La Plaza"
 __meta__ = {
 "_edit_use_anchors_": false
 }
