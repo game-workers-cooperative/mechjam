@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/MechJam-protag-unit.dae-07b5aab7d263f2f18c0f0b89015147c5.scn"
+path="res://.import/MechJam-protag-unit.fbx-0d8ad26be7c900a2a9aac5e7e8b4675a.scn"
 
 [deps]
 
-source_file="res://assets/fbx/MechJam-protag-unit.dae"
-dest_files=[ "res://.import/MechJam-protag-unit.dae-07b5aab7d263f2f18c0f0b89015147c5.scn" ]
+source_file="res://assets/fbx/MechJam-protag-unit.fbx"
+dest_files=[ "res://.import/MechJam-protag-unit.fbx-0d8ad26be7c900a2a9aac5e7e8b4675a.scn" ]
 
 [params]
 
@@ -16,7 +16,6 @@ nodes/root_name="Scene Root"
 nodes/root_scale=1.0
 nodes/custom_script=""
 nodes/storage=0
-nodes/use_legacy_names=true
 materials/location=1
 materials/storage=1
 materials/keep_on_reimport=true
