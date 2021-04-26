@@ -179,7 +179,12 @@ func knockback(origin):
 	try_move(currentPosition)
 	
 func turn_left():
-	object.set_rotation(Vector3(0, PI/2, 0))
+	tween.interpolate_property(object, "rotation", object.rotation, object.get_rotation() + Vector3(0, PI/2, 0), 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	tween.start()
+	
+	yield(tween, "tween_all_completed")
+	
+#	object.set_rotation(Vector3(0, PI/2, 0))
 	match(face_dir):
 		Vector2.LEFT:
 			face_dir = Vector2.DOWN
@@ -194,7 +199,12 @@ func turn_left():
 	emit_signal("move_finished")
 			
 func turn_right():
-	object.set_rotation(Vector3(0, -PI/2, 0))
+	tween.interpolate_property(object, "rotation", object.rotation, object.get_rotation() - Vector3(0, PI/2, 0), 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	tween.start()
+	
+	yield(tween, "tween_all_completed")
+	
+#	object.set_rotation(Vector3(0, -PI/2, 0))
 	match(face_dir):
 		Vector2.LEFT:
 			face_dir = Vector2.UP

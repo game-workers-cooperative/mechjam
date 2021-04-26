@@ -35,7 +35,7 @@ func _on_pressed():
 		title.visible = true
 		nextButton.visible = false
 		skipIntroButton.visible = false
-		buttonHolder.visible = true
+#		buttonHolder.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

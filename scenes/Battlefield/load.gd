@@ -79,7 +79,12 @@ func execute_commands():
 	# execute the commands
 	while commands.size() > 0:
 		var command = commands[0]
-		player.call_deferred(command.method, command.parameters)
+		
+		if command.parameters:
+			player.call_deferred(command.method, command.parameters)
+		else:
+			player.call_deferred(command.method)
+		
 		yield(player, "move_finished")
 		
 		commands.remove(0)
