@@ -5,7 +5,7 @@ const CommandBlock = preload("res://objects/ui/CommandBlock.tscn")
 var map
 var player
 var enemy
-
+var enemyCommands = {}
 var commands = []
 
 onready var command_editor = $HUD/CommandEditor
@@ -59,6 +59,12 @@ func execute_commands():
 		commands.remove(0)
 		var child = command_editor.get_child(0)
 		command_editor.remove_child(child)
+		
+		var enemyCommand = enemyCommands[enemy][0]
+		enemy.call(enemyCommand.method, enemyCommand.parameters)
+		yield(enemy,"move_finished")
+		enemyCommands[enemy].remove(0)
+		
 	
 	command_palette.set_visible(true)
 	startBtn.set_visible(true)
@@ -96,12 +102,14 @@ func _on_block_selected(block):
 	block.queue_free()
 	check_block_index()
 
-func testMoves(position,facing,depth,moves):
+func testMoves(position,facing,depth,moves=[]):
 	var possibleMoves = ['forward','backward','left','right','attack','attack2','skip']
 	var moveScores = []
 	var newPos = position
 	var newAngle = facing
 	var testAngle = facing
+	var testMoves = {}
+	var maxScore = {'none':1000.0}
 	for testMove in possibleMoves:
 		var score = 0
 		match(testMove):
@@ -120,31 +128,75 @@ func testMoves(position,facing,depth,moves):
 				if weaponHitArea.search(player.grid_pos):
 					score = 0
 				else:
-					score +=10
+					score +=.5
 			'attack2':
 				var weaponHitArea = enemy.secondaryWeapon.aim(position,facing)
 				if weaponHitArea.find(player.grid_pos):
 					score = 0
 				else:
-					score +=10
+					score +=.5
 			'skip':
 				pass
-		moves[testMove] = score
 		score += testAngle
 		score = position.distance_to(newPos)
 		score += abs(testAngle + position.angle_to(player.grid_pos))
-		if depth>=0:
-			testMoves(newPos, newAngle, depth-1, moves)
-		else:
-			return moves
+		testMoves[testMove]=score
+	
+	for x in range(testMoves.size()):
+		print(testMoves.values()[x])
+		print(maxScore.values()[0])
+		if testMoves.values()[x] < maxScore.values()[0]:
+			maxScore = {testMoves.keys()[x]:testMoves.values()[x]}
+	moves.append(maxScore)
+	if depth>=0:
+		var deepMoves = testMoves(newPos, newAngle, depth-1)
+		for deepMove in deepMoves:
+			moves.append(deepMove)
+	return moves
 
-func calculate_enemy_action():	
+
+
+func calculate_enemy_action(enemy):	
 	#for testMove in enemy.SPEED
-	var possibleMoves = testMoves(enemy.grid_pos,enemy.face_dir,enemy.SPEED,{})				
+	var enemyInstMoves = []
+	var bestMoves = testMoves(enemy.grid_pos,enemy.face_dir,enemy.SPEED-2)				
+	for move in bestMoves:
+		match(move.keys()[0]):
+			'forward':
+				enemyInstMoves.append(
+					{'method':'try_move','parameters':Vector3(0,0,-1)}
+					)
+			'backward':
+				enemyInstMoves.append(
+					{'method':'try_move','parameters':Vector3(0,0,1)}
+					)
+			'left':
+				enemyInstMoves.append(
+					{'method':'try_move','parameters':Vector3(1,0,0)}
+					)
+			'right':
+				enemyInstMoves.append(
+					{'method':'try_move','parameters':Vector3(-1,0,0)}
+					)
+			'attack1':
+				enemyInstMoves.append(
+					{'method':'attack','parameters':'primary'}
+					)
+			'attack2':
+				enemyInstMoves.append(
+					{'method':'attack','parameters':'secondary'}
+					)
+			'skip':
+				enemyInstMoves.append(
+					{'method':'skip','parameters':null}
+					)
+	enemyCommands[enemy] = enemyInstMoves	
+		
+	#var result = recursiveTest(5)
 
 # Executes the commands(Starts Battle Phase)
 func _on_StartBtn_pressed() -> void:
-	calculate_enemy_action()
+	calculate_enemy_action(enemy)
 	execute_commands()
 	command_palette.set_visible(false)
 	startBtn.set_visible(false)

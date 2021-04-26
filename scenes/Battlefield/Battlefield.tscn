@@ -316,4 +316,5 @@ stream = ExtResource( 25 )
 
 [node name="Flamethrower" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 28 )
+
 [connection signal="pressed" from="HUD/StartBtn" to="." method="_on_StartBtn_pressed"]
