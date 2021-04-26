@@ -17,6 +17,8 @@ func _on_pressed():
 	var nextButton = parent.find_node('Next Button')
 	var skipIntroButton = parent.find_node('Skip Intro Button')
 	var buttonHolder = parent.find_node('ButtonHolder')
+	var startButton = parent.find_node('StartGame')
+	var creditsButton = parent.find_node('CreditsButton')
 	var visible1 = screen1.visible
 	var visible2 = screen2.visible
 	var visible3 = screen3.visible
@@ -36,6 +38,8 @@ func _on_pressed():
 		nextButton.visible = false
 		skipIntroButton.visible = false
 #		buttonHolder.visible = true
+		startButton.visible = true
+		creditsButton.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
