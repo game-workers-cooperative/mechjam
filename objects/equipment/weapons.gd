@@ -8,8 +8,8 @@ var _data :={
 		"range":10,
 		"spread":1,
 		"hitPercent":.9,
-		"damageAmount":3,
-		"cost":10
+		"damageAmount":20,
+		"cost":50
 	},
 	"1": {
 		"name":"Energy Type weapon",
@@ -17,8 +17,8 @@ var _data :={
 		"range":10,
 		"spread":1,
 		"hitPercent":1,
-		"damageAmount":2,
-		"cost":10
+		"damageAmount":25,
+		"cost":150
 	},
 	"2": {
 		"name":"Saw Weapon",
@@ -26,8 +26,8 @@ var _data :={
 		"range":1,
 		"spread":2,
 		"hitPercent":1,
-		"damageAmount":3,		
-		"cost":10
+		"damageAmount":55,		
+		"cost":100
 	},	
 	"3": {
 		"name":"Melee Weapon",
@@ -35,8 +35,8 @@ var _data :={
 		"range":1,
 		"spread":1,
 		"hitPercent":1,
-		"damageAmount":3,		
-		"cost":10
+		"damageAmount":40,		
+		"cost":0
 	},
 	"4": {
 		"name":"FlameThrower",
@@ -44,8 +44,8 @@ var _data :={
 		"range":3,
 		"spread":2,
 		"hitPercent":1,
-		"damageAmount":3,		
-		"cost":10
+		"damageAmount":60,		
+		"cost":500
 	},
 }
 var default = {
