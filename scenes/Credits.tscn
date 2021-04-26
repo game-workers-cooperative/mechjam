@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://objects/ui/SceneSwitcher.gd" type="Script" id=1]
 [ext_resource path="res://assets/fonts/tahoma.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/tahoma_big.tres" type="DynamicFont" id=3]
 
 [node name="Credits" type="Control"]
 anchor_right = 1.0
@@ -18,9 +19,8 @@ color = Color( 0.117647, 0.152941, 0.219608, 1 )
 [node name="Labels" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 5.29727
-margin_top = -1.19209e-06
-margin_right = 5.29724
+margin_left = 8.0
+margin_right = 8.0
 margin_bottom = 6.10352e-05
 __meta__ = {
 "_edit_use_anchors_": false
@@ -51,6 +51,22 @@ text = "Programming
 Akshat Shukla 
 Nick Clifton
 Ryan Masters"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Programmers2" type="Label" parent="Labels"]
+margin_left = 122.703
+margin_top = 384.0
+margin_right = 382.703
+margin_bottom = 526.0
+rect_pivot_offset = Vector2( 57.5, 15.5 )
+custom_fonts/font = ExtResource( 2 )
+text = "Music and Sound Effects
+
+Rev-Dellic
+    dellic.bandcamp.com
+	    soundcloud.com/revdellic"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -100,12 +116,25 @@ __meta__ = {
 }
 
 [node name="lowercase" type="Label" parent="Labels"]
-margin_left = 426.703
+margin_left = 656.0
 margin_top = 416.0
-margin_right = 638.703
-margin_bottom = 498.0
+margin_right = 842.0
+margin_bottom = 448.0
 custom_fonts/font = ExtResource( 2 )
+text = "Together we are "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LowercaseTitle" type="Label" parent="Labels"]
+margin_left = 568.0
+margin_top = 440.0
+margin_right = 944.0
+margin_bottom = 512.0
+custom_fonts/font = ExtResource( 3 )
 text = "lowercase games"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

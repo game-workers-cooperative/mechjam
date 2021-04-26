@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/fbx/StandIn_BasicGroundTile.fbx" type="PackedScene" id=1]
 [ext_resource path="res://assets/fbx/StandIn_BarrelObstacle.fbx" type="PackedScene" id=2]
@@ -17,6 +17,18 @@
 [ext_resource path="res://assets/fbx/StandIn_BasicCornerTile.fbx" type="PackedScene" id=15]
 [ext_resource path="res://assets/fbx/StandIn_SawWallTile.fbx" type="PackedScene" id=16]
 [ext_resource path="res://assets/fbx/StandIn_InnerCornerTileWindowless.fbx" type="PackedScene" id=17]
+[ext_resource path="res://assets/audio/songs/Dellic - Bending Time - 140 (mastered).wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/audio/effects/New Project - Lazer GunFingers 1 - 120.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/audio/effects/New Project - Shot TestGround 1 - 120.wav" type="AudioStream" id=20]
+[ext_resource path="res://assets/audio/effects/New Project - Gunshots Macspit - 120.wav" type="AudioStream" id=21]
+[ext_resource path="res://assets/audio/effects/New Project - SFX Huntemann 2 - 120.wav" type="AudioStream" id=22]
+[ext_resource path="res://assets/audio/effects/New Project - Shot TestGround 2 - 120.wav" type="AudioStream" id=23]
+[ext_resource path="res://assets/audio/effects/New Project - SFX Asylum 2 - 120.wav" type="AudioStream" id=24]
+[ext_resource path="res://assets/audio/effects/New Project - Step Dusty 2 - 120.wav" type="AudioStream" id=25]
+[ext_resource path="res://assets/audio/effects/New Project - Step Dusty 1 - 120.wav" type="AudioStream" id=26]
+[ext_resource path="res://assets/audio/effects/New Project - SFX MudWarble - 120.wav" type="AudioStream" id=27]
+[ext_resource path="res://assets/audio/effects/flamethrower.wav" type="AudioStream" id=28]
+[ext_resource path="res://assets/fbx/MechJam-protag-unit.dae" type="PackedScene" id=29]
 
 [sub_resource type="Environment" id=1]
 
@@ -37,14 +49,17 @@ transform = Transform( 0.346651, 0.639398, 0.686296, -0.169178, -0.677045, 0.716
 transform = Transform( 0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.4, 0, 0.5, 0 )
 shape = SubResource( 2 )
 
-[node name="StandIn_BarrelObstacle" parent="WorldEnvironment/Player" instance=ExtResource( 2 )]
-
-[node name="Camera" type="Camera" parent="WorldEnvironment/Player"]
-transform = Transform( 0.707107, -0.541675, 0.45452, 0, 0.642788, 0.766044, -0.707107, -0.541675, 0.45452, 5, 7.06395, 5 )
-projection = 1
-size = 10.0
+[node name="MechJam-protag-unit" parent="WorldEnvironment/Player" instance=ExtResource( 29 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 
 [node name="Tween" type="Tween" parent="WorldEnvironment/Player"]
+
+[node name="ProgressBar" type="ProgressBar" parent="WorldEnvironment/Player"]
+margin_right = 47.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Enemy" type="KinematicBody" parent="WorldEnvironment"]
 
@@ -52,14 +67,18 @@ size = 10.0
 transform = Transform( 0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.4, 0, 0.5, 0 )
 shape = SubResource( 2 )
 
-[node name="StandIn_BarrelObstacle" parent="WorldEnvironment/Enemy" instance=ExtResource( 2 )]
-
-[node name="Camera" type="Camera" parent="WorldEnvironment/Enemy"]
-transform = Transform( 0.707107, -0.541675, 0.45452, 0, 0.642788, 0.766044, -0.707107, -0.541675, 0.45452, 5, 7.06395, 5 )
-projection = 1
-size = 10.0
+[node name="MechJam-protag-unit" parent="WorldEnvironment/Enemy" instance=ExtResource( 29 )]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 
 [node name="Tween" type="Tween" parent="WorldEnvironment/Enemy"]
+
+[node name="ProgressBar" type="ProgressBar" parent="WorldEnvironment/Enemy"]
+margin_top = 22.595
+margin_right = 47.0
+margin_bottom = 36.595
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="StandIn_BarrelObstacle" parent="WorldEnvironment" instance=ExtResource( 2 )]
 visible = false
@@ -93,6 +112,19 @@ visible = false
 
 [node name="StandIn_SawWallTile" parent="WorldEnvironment" instance=ExtResource( 16 )]
 visible = false
+
+[node name="Camera" type="Camera" parent="WorldEnvironment"]
+transform = Transform( 0.707107, -0.541675, 0.45452, 0, 0.642788, 0.766044, -0.707107, -0.541675, 0.45452, 5, 7.06395, 5 )
+projection = 1
+size = 10.0
+
+[node name="ProgressBar" type="ProgressBar" parent="WorldEnvironment"]
+visible = false
+margin_right = 47.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MoveRight" type="Button" parent="."]
 visible = false
@@ -205,7 +237,7 @@ text = "Attack Primary"
 script = ExtResource( 13 )
 command = {
 "method": "attack",
-"parameters": true
+"parameters": "primary"
 }
 
 [node name="AttackSecondary" type="Button" parent="HUD/CommandPalette"]
@@ -216,7 +248,7 @@ text = "Attack Secondary"
 script = ExtResource( 13 )
 command = {
 "method": "attack",
-"parameters": false
+"parameters": "secondary"
 }
 
 [node name="SkipMove" type="Button" parent="HUD/CommandPalette"]
@@ -249,4 +281,40 @@ text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BattleTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+volume_db = -5.0
+autoplay = true
+
+[node name="Gunshot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+
+[node name="Laser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+
+[node name="THICCLazer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 24 )
+
+[node name="Shield" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+
+[node name="Punch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 27 )
+
+[node name="smolLaser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+
+[node name="smollestLaser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+
+[node name="Step1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 26 )
+
+[node name="Step2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 25 )
+
+[node name="Flamethrower" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 28 )
+
 [connection signal="pressed" from="HUD/StartBtn" to="." method="_on_StartBtn_pressed"]

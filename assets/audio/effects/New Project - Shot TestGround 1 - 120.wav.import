@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/New Project - Shot TestGround 1 - 120.wav-9435ab9c44b4454ab14a7bd1d42021ca.sample"
+
+[deps]
+
+source_file="res://assets/audio/effects/New Project - Shot TestGround 1 - 120.wav"
+dest_files=[ "res://.import/New Project - Shot TestGround 1 - 120.wav-9435ab9c44b4454ab14a7bd1d42021ca.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

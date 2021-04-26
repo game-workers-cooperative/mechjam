@@ -5,7 +5,7 @@ const CommandBlock = preload("res://objects/ui/CommandBlock.tscn")
 var map
 var player
 var enemy
-
+var enemyCommands = {}
 var commands = []
 
 onready var command_editor = $HUD/CommandEditor
@@ -44,6 +44,16 @@ func _ready():
 	# Connect each button's pressed signal to this node
 	for button in command_palette.get_children():
 		button.connect("command_selected", self, "_on_command_selected")
+	
+	player.connect("weapon_attack",self,"on_weapon_attack")
+	enemy.connect("weapon_attack",self,"on_weapon_attack")
+
+func on_weapon_attack(hitArray):
+	if hitArray[0]=='hit':
+		if player.grid_pos in hitArray[1]:
+			player.hit(hitArray[1],hitArray[3])
+		if enemy.grid_pos in hitArray[1]:
+			enemy.hit(hitArray[1],hitArray[3])
 
 func execute_commands():
 	# disable all selected commands
@@ -51,16 +61,6 @@ func execute_commands():
 		block.set_disabled(true)
 		
 	# execute the commands
-#	for commandIndex in len(commands):
-#		# run the command
-#		var command = commands[commandIndex]
-#		player.call(command.method, command.parameters)
-#		yield(player, "move_finished")
-#
-#		# remove the command from the queue
-#		var child = command_editor.get_child(commandIndex)
-#		command_editor.remove_child(child)
-	
 	while commands.size() > 0:
 		var command = commands[0]
 		player.call(command.method, command.parameters)
@@ -69,13 +69,15 @@ func execute_commands():
 		commands.remove(0)
 		var child = command_editor.get_child(0)
 		command_editor.remove_child(child)
+		
+		var enemyCommand = enemyCommands[enemy][0]
+		enemy.call(enemyCommand.method, enemyCommand.parameters)
+		yield(enemy,"move_finished")
+		enemyCommands[enemy].remove(0)
+		
 	
 	command_palette.set_visible(true)
 	startBtn.set_visible(true)
-	# @todo i don't think this should be necessary but it is
-#	while len(command_editor.get_children()) != 0:
-#		command_editor.remove_child(command_editor.get_children()[0])
-#	commands = []
 
 # Utils
 
@@ -104,24 +106,129 @@ func _on_command_selected(button):
 		commands.append(button.command)
 		command_editor.add_child(block)
 
-
 # Removes the command from the editor and list
 func _on_block_selected(block):
 	commands.remove(block.index)
 	block.queue_free()
 	check_block_index()
 
+
+
+
+func testMoves(position,facing,depth,moves=[]):
+	var possibleMoves = ['forward','backward','left','right','attack','attack2','skip']
+	var newPos = position
+	var newAngle = facing
+	var testAngle = facing
+	var testMoves = {}
+	var maxScore = {'none':1000.0}
+	for testMove in possibleMoves:
+		var score = 0
+		match(testMove):
+			'forward':
+				newPos = position+facing
+				testAngle = newPos.angle_to(player.grid_pos)
+			'backward':
+				newPos = position-facing
+				testAngle = newPos.angle_to(player.grid_pos)
+			'left':
+				newAngle = facing.rotated(-deg2rad(90))
+			'right':
+				newAngle = facing.rotated(deg2rad(90))
+			'attack1':
+				var weaponHitArea = enemy.primaryWeapon.aim(position,facing)
+				if weaponHitArea.search(player.grid_pos):
+					score = 0
+				else:
+					score +=.5
+			'attack2':
+				var weaponHitArea = enemy.secondaryWeapon.aim(position,facing)
+				if weaponHitArea.find(player.grid_pos):
+					score = 0
+				else:
+					score +=.5
+			'skip':
+				pass
+		score += testAngle
+		score = position.distance_to(newPos)
+		score += abs(testAngle + position.angle_to(player.grid_pos))
+		testMoves[testMove]=score
+	
+	for x in range(testMoves.size()):
+		print(testMoves.values()[x])
+		print(maxScore.values()[0])
+		if testMoves.values()[x] < maxScore.values()[0]:
+			maxScore = {testMoves.keys()[x]:testMoves.values()[x]}
+	moves.append(maxScore)
+	if depth>=0:
+		var deepMoves = testMoves(newPos, newAngle, depth-1)
+		for deepMove in deepMoves:
+			moves.append(deepMove)
+	return moves
+
+
+
+func calculate_enemy_action(enemy=enemy):	
+	#for testMove in enemy.SPEED
+	var enemyInstMoves = []
+	var bestMoves = testMoves(enemy.grid_pos,enemy.face_dir,enemy.SPEED-2)				
+	for move in bestMoves:
+		match(move.keys()[0]):
+			'forward':
+				enemyInstMoves.append(
+					{'method':'try_move','parameters':Vector3(0,0,-1)}
+					)
+			'backward':
+				enemyInstMoves.append(
+					{'method':'try_move','parameters':Vector3(0,0,1)}
+					)
+			'left':
+				enemyInstMoves.append(
+					{'method':'try_move','parameters':Vector3(1,0,0)}
+					)
+			'right':
+				enemyInstMoves.append(
+					{'method':'try_move','parameters':Vector3(-1,0,0)}
+					)
+			'attack1':
+				enemyInstMoves.append(
+					{'method':'attack','parameters':'primary'}
+					)
+			'attack2':
+				enemyInstMoves.append(
+					{'method':'attack','parameters':'secondary'}
+					)
+			'skip':
+				enemyInstMoves.append(
+					{'method':'skip','parameters':null}
+					)
+	enemyCommands[enemy] = enemyInstMoves	
+		
+	#var result = recursiveTest(5)
+
 # Executes the commands(Starts Battle Phase)
 func _on_StartBtn_pressed() -> void:
+	calculate_enemy_action(enemy)
 	execute_commands()
 	command_palette.set_visible(false)
 	startBtn.set_visible(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
+	# make sure the camera is always following the player
+	var playerPosition = $WorldEnvironment/Player.translation
+	$WorldEnvironment/Camera.translation = Vector3(playerPosition.x + 4, $WorldEnvironment/Camera.translation.y, playerPosition.z + 4)
+	
 	for mech in map.get_mechs():
+		# position health bars as necessary
+		var position = $WorldEnvironment/Camera.unproject_position(mech.object.translation)
+		position += Vector2(-22,-70)
+		var progress = mech.object.find_node('ProgressBar')
+		progress.set_position(position)
+		progress.set_value(float(mech.HP)/float(mech.MAX_HP) * 100)
+		
+		# trigger win/lose screen if necessary
 		if mech.HP <= 0:
-			# trigger win/lose screen if necessary
 			if mech.object == $WorldEnvironment/Player:
 				get_tree().change_scene('res://scenes/GameOver/GameOver.tscn')
 			else:

@@ -209,6 +209,10 @@ func add_tile(baseNode, tileIndex, rowIndex, mapped):
 func get_tile_type(location):
 	return level[location.z][location.x]
 
+# gets the info about the type of tile
+func get_type_info(type):
+	return map[type]
+
 # builds a map from the given level info
 func build_map(baseNode):
 	for rowIndex in len(level):

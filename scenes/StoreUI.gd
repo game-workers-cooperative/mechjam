@@ -15,7 +15,7 @@ func _equip_button_pressed(name,type):
 
 func _equip_weapon_button_pressed(name,type,index):
 	print('equip weapon')
-	print(index)
+	print(name, ' ', index)
 	global.store['equipped'][type][index] = name
 	_populate_store(type)
 	
@@ -129,5 +129,5 @@ func _on_WeaponButton_pressed():
 func _on_LegsButton_pressed():
 	_populate_store("leg")
 
-func _process(delta):
+func _process(_delta):
 	$ColorRect/Money.text = "Money: " + str(Global.money)
