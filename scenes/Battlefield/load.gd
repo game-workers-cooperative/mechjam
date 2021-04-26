@@ -29,9 +29,25 @@ func _ready():
 	var position = map.get_midpoint() + Vector3(0, 0, 2)
 	player.try_move(position)
 	
+	# get equipment for enemy
+	var enemyMoney = Global.enemy_money
+	var randomSelection = Armors.new().get_random(enemyMoney)
+	var enemyArmor = Armor.new(Armors.new().find(randomSelection))
+	enemyMoney -= enemyArmor.stats['cost']
+	randomSelection = Cockpits.new().get_random(enemyMoney)
+	var enemyCockpit = Cockpit.new(Cockpits.new().find(randomSelection))
+	enemyMoney -= enemyCockpit.stats['cost']
+	randomSelection = Legs.new().get_random(enemyMoney)
+	var enemyLegs = Leg.new(Legs.new().find(randomSelection))
+	enemyMoney -= enemyLegs.stats['cost']
+	randomSelection = Weapons.new().get_random(enemyMoney)
+	var enemyPrimaryWeapon = Weapon.new(Weapons.new().find(randomSelection))
+	enemyMoney -= enemyPrimaryWeapon.stats['cost']
+	var enemySecondaryWeapon = Weapon.new(Weapons.new().find(randomSelection))
+	
 	# position the enemy
 	var enemyObject = self.get_node("WorldEnvironment/Enemy")
-	enemy = Mech.new(enemyObject, Vector2.DOWN, map, 10, armor, cockpit, leg, primaryWeapon, secondaryWeapon)
+	enemy = Mech.new(enemyObject, Vector2.DOWN, map, 10, enemyArmor, enemyCockpit, enemyLegs, enemyPrimaryWeapon, enemySecondaryWeapon)
 	var enemyPosition = position + Vector3(0, 0, -2)
 	enemyPosition.z -= 2
 	enemy.try_move(enemyPosition)

@@ -2,6 +2,7 @@ extends Node
 
 var initial_money = 50
 var money = initial_money
+var enemy_money = initial_money
 
 var initial_store = {
 	'bought': {

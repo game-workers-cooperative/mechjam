@@ -102,6 +102,15 @@ func find(text):
 	
 	return default
 	
+# gets a random item from the list that is afforable given the provided budget
+func get_random(budget):
+	var available = []
+	for n in _data:
+		if _data[n].cost <= budget:
+			available.append(_data[n])
+	
+	return available[randi() % len(available)].name
+	
 func get_data():
 	json = to_json(_data)
 	dictionary = JSON.parse(json).result

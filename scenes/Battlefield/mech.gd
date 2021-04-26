@@ -129,7 +129,6 @@ func attack(weaponSlot):
 	var attackArray = weapon.attack(grid_pos,face_dir)
 	attackArray.append(grid_pos)
 	emit_signal("weapon_attack",attackArray)
-	
 		
 	# let the command manager know we're done
 	emit_signal("move_finished")
@@ -190,6 +189,9 @@ func turn_left():
 			face_dir = Vector2.LEFT
 		Vector2.DOWN:
 			face_dir = Vector2.RIGHT
+	
+	# let the command manager know we're done
+	emit_signal("move_finished")
 			
 func turn_right():
 	object.set_rotation(Vector3(0, -PI/2, 0))
@@ -202,6 +204,9 @@ func turn_right():
 			face_dir = Vector2.RIGHT
 		Vector2.DOWN:
 			face_dir = Vector2.LEFT
+			
+	# let the command manager know we're done
+	emit_signal("move_finished")
 
 # sets up this object
 func _init(objectInScene, facingDirection, currentMap, maxHealth, equippedArmor, equippedCockpit, equippedLeg, equippedPrimaryWeapon, equippedSecondaryWeapon):

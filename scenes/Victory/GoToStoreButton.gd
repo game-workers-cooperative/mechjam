@@ -10,5 +10,6 @@ func _ready() -> void:
 
 func _on_pressed():
 	Global.money += 100
+	Global.enemy_money += 100
 	var err = get_tree().change_scene(target_scene)
 	if err: print(err)
