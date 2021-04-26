@@ -7,5 +7,6 @@ func _ready() -> void:
 	if err: print(err)
 
 func _on_pressed():
-	var err = get_tree().change_scene(target_scene)
-	if err: print(err)
+#	var err = get_tree().change_scene(target_scene)
+#	if err: print(err)
+	Global.transition(get_tree().current_scene, target_scene, 1, Color.black)
