@@ -3,6 +3,7 @@ extends Node
 class_name Mech
 
 signal move_finished
+signal weapon_attack(attackArray)
 
 export(Resource) var cockpit
 
@@ -31,6 +32,8 @@ var face_dir = Vector2.DOWN
 var grid_pos = Vector2(5, 5)
 enum {ALIVE,DEAD}
 var functionality = ALIVE
+
+
 
 # checks to see if it's possible to move
 func can_move(translation):
@@ -123,7 +126,10 @@ func attack(weaponSlot):
 	# AnimationPlayer.play("weapon.get_animation")
 	
 	# attack
-	weapon.attack(grid_pos,face_dir)
+	var attackArray = weapon.attack(grid_pos,face_dir)
+	attackArray.append(grid_pos)
+	emit_signal("weapon_attack",attackArray)
+	
 		
 	# let the command manager know we're done
 	emit_signal("move_finished")
@@ -171,7 +177,7 @@ func knockback(origin):
 			currentPosition.x-=knockbackAmount
 		else:
 			currentPosition.x+=knockbackAmount
-	get_parent().try_move(currentPosition)
+	try_move(currentPosition)
 	
 func turnLeft():
 	match(face_dir):

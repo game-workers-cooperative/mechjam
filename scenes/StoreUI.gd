@@ -129,5 +129,5 @@ func _on_WeaponButton_pressed():
 func _on_LegsButton_pressed():
 	_populate_store("leg")
 
-func _process(delta):
+func _process(_delta):
 	$ColorRect/Money.text = "Money: " + str(Global.money)

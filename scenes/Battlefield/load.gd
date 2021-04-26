@@ -44,6 +44,16 @@ func _ready():
 	# Connect each button's pressed signal to this node
 	for button in command_palette.get_children():
 		button.connect("command_selected", self, "_on_command_selected")
+	
+	player.connect("weapon_attack",self,"on_weapon_attack")
+	enemy.connect("weapon_attack",self,"on_weapon_attack")
+
+func on_weapon_attack(hitArray):
+	if hitArray[0]=='hit':
+		if player.grid_pos in hitArray[1]:
+			player.hit(hitArray[1],hitArray[3])
+		if enemy.grid_pos in hitArray[1]:
+			enemy.hit(hitArray[1],hitArray[3])
 
 func execute_commands():
 	# disable all selected commands
@@ -102,9 +112,11 @@ func _on_block_selected(block):
 	block.queue_free()
 	check_block_index()
 
+
+
+
 func testMoves(position,facing,depth,moves=[]):
 	var possibleMoves = ['forward','backward','left','right','attack','attack2','skip']
-	var moveScores = []
 	var newPos = position
 	var newAngle = facing
 	var testAngle = facing
@@ -156,7 +168,7 @@ func testMoves(position,facing,depth,moves=[]):
 
 
 
-func calculate_enemy_action(enemy):	
+func calculate_enemy_action(enemy=enemy):	
 	#for testMove in enemy.SPEED
 	var enemyInstMoves = []
 	var bestMoves = testMoves(enemy.grid_pos,enemy.face_dir,enemy.SPEED-2)				
@@ -202,7 +214,7 @@ func _on_StartBtn_pressed() -> void:
 	startBtn.set_visible(false)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	# make sure the camera is always following the player
 	var playerPosition = $WorldEnvironment/Player.translation
 	$WorldEnvironment/Camera.translation = Vector3(playerPosition.x + 4, $WorldEnvironment/Camera.translation.y, playerPosition.z + 4)
