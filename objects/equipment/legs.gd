@@ -8,7 +8,7 @@ var _data :={
 		"agility":STATVALUES.HIGH,
 		"jump":STATVALUES.FALSE,
 		"traction":STATVALUES.AVERAGE,
-		"cost":10
+		"cost":0
 	},
 	"1": {
 		"name":"Bipedal",
@@ -16,7 +16,7 @@ var _data :={
 		"agility":STATVALUES.AVERAGE,
 		"jump":STATVALUES.TRUE,
 		"traction":STATVALUES.AVERAGE,
-		"cost":10
+		"cost":150
 	},
 	"2": {
 		"name":"Treads",
@@ -24,7 +24,7 @@ var _data :={
 		"agility":STATVALUES.LOW,
 		"jump":STATVALUES.FALSE,
 		"traction":STATVALUES.HIGH,
-		"cost":10
+		"cost":75
 	},	
 	"3": {
 		"name":"Hover",
@@ -32,7 +32,7 @@ var _data :={
 		"agility":STATVALUES.LOW,
 		"jump":STATVALUES.FALSE,
 		"traction":STATVALUES.AVERAGE,
-		"cost":10
+		"cost":300
 	},
 }
 var default = {
