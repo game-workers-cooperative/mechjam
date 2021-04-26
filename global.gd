@@ -1,26 +1,26 @@
 extends Node
 
-var initial_money = 200
+var initial_money = 50
 var money = initial_money
 
 var initial_store = {
 	'bought': {
 		'armors':[
-			false,
-			false,
+			true,
+			true,
 			false,
 			false,
 			false,
 			false,
 		],
 		'cockpits':[
-			false,
+			true,
 			false,
 			false,
 			false
 		],
 		'legs':[
-			false,
+			true,
 			false,
 			false,
 			false
@@ -29,7 +29,7 @@ var initial_store = {
 			false,
 			false,
 			false,
-			false,
+			true,
 			false,
 		],
 	},
