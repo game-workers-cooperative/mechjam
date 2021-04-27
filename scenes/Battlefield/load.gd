@@ -65,11 +65,13 @@ func _ready():
 	enemy.connect("weapon_attack",self,"on_weapon_attack")
 
 func on_weapon_attack(hitArray):
+	var playerGridPos = Vector2(player.object.translation.x,player.object.translation.z)
+	var enemyGridPos = Vector2(enemy.object.translation.x,enemy.object.translation.z)
 	if hitArray[0]=='hit':
-		if player.grid_pos in hitArray[1]:
-			player.hit(hitArray[1],hitArray[3])
-		if enemy.grid_pos in hitArray[1]:
-			enemy.hit(hitArray[1],hitArray[3])
+		if playerGridPos in hitArray[1]:
+			player.hit(hitArray[2],hitArray[1])
+		if enemyGridPos in hitArray[1]:
+			enemy.hit(hitArray[2],hitArray[1])
 
 func execute_commands():
 	# disable all selected commands
@@ -140,28 +142,29 @@ func testMoves(position,facing,depth,moves=[]):
 	var testAngle = facing
 	var testMoves = {}
 	var maxScore = {'none':1000.0}
+	var playerGridPos = Vector2(player.object.translation.x,player.object.translation.z)
 	for testMove in possibleMoves:
 		var score = 0
 		match(testMove):
 			'forward':
 				newPos = position+facing
-				testAngle = newPos.angle_to(player.grid_pos)
+				testAngle = newPos.angle_to(playerGridPos)
 			'backward':
 				newPos = position-facing
-				testAngle = newPos.angle_to(player.grid_pos)
+				testAngle = newPos.angle_to(playerGridPos)
 			'left':
 				newAngle = facing.rotated(-deg2rad(90))
 			'right':
 				newAngle = facing.rotated(deg2rad(90))
 			'attack1':
 				var weaponHitArea = enemy.primaryWeapon.aim(position,facing)
-				if weaponHitArea.search(player.grid_pos):
+				if weaponHitArea.search(playerGridPos):
 					score = 0
 				else:
 					score +=.5
 			'attack2':
 				var weaponHitArea = enemy.secondaryWeapon.aim(position,facing)
-				if weaponHitArea.find(player.grid_pos):
+				if weaponHitArea.find(playerGridPos):
 					score = 0
 				else:
 					score +=.5
@@ -169,7 +172,7 @@ func testMoves(position,facing,depth,moves=[]):
 				pass
 		score += testAngle
 		score = position.distance_to(newPos)
-		score += abs(testAngle + position.angle_to(player.grid_pos))
+		score += abs(testAngle + position.angle_to(playerGridPos))
 		testMoves[testMove]=score
 	
 	for x in range(testMoves.size()):
@@ -191,7 +194,7 @@ func testMoves(position,facing,depth,moves=[]):
 func calculate_enemy_action(enemy=enemy):	
 	#for testMove in enemy.SPEED
 	var enemyInstMoves = []
-	var bestMoves = testMoves(enemy.grid_pos,enemy.face_dir,enemy.SPEED-2)				
+	var bestMoves = testMoves(Vector2(enemy.object.translation.x,enemy.object.translation.z),enemy.face_dir,enemy.SPEED-2)				
 	for move in bestMoves:
 		match(move.keys()[0]):
 			'forward':

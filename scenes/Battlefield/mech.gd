@@ -29,7 +29,6 @@ var legValues = Legs.STATVALUES
 var weapon
 var velocity = Vector2.ZERO
 var face_dir = Vector2.DOWN
-var grid_pos = Vector2(5, 5)
 enum {ALIVE,DEAD}
 var functionality = ALIVE
 
@@ -129,8 +128,8 @@ func attack(weaponSlot):
 	# AnimationPlayer.play("weapon.get_animation")
 	
 	# attack
-	var attackArray = weapon.attack(grid_pos,face_dir)
-	attackArray.append(grid_pos)
+	var attackArray = weapon.attack(get_position(),face_dir)
+	attackArray.append(get_position())
 	emit_signal("weapon_attack",attackArray)
 		
 	# let the command manager know we're done
@@ -166,7 +165,7 @@ func take_damage(damageAmount):
 	
 func knockback(origin):
 	var knockbackAmount = 1
-	var currentPosition = grid_pos
+	var currentPosition = get_position()
 	if leg['name']== 'Hover':
 		knockbackAmount += 1
 	if origin.x == currentPosition.x:

@@ -62,7 +62,7 @@ func attack(grid_pos,facing):
 				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
 					hitsquares.append(Vector2(grid_pos.x+ndx,grid_pos.y+spreadIndex))
 
-	print('finished attacking')
+
 	return ['hit',hitsquares,stats['damage'],stats['damageAmount']]
 
 class_name Weapon

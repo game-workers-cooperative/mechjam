@@ -1,5 +1,5 @@
 extends Control
-enum STATVALUES {KINETIC,ENERGY,SLASHING,MELEE,FIRE}
+enum STATVALUES {SLASHING,FIRE,ENERGY,KINETIC,MELEE}
 var stats =["damage"]
 var _data :={
 	"0": {

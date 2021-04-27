@@ -1,6 +1,6 @@
 extends Control
 enum STATVALUES {IMMUNE,STRONG,NEUTRAL,WEAK,LIGHT,AVERAGE,HEAVY,TRUE,FALSE}
-var stats =["blade","fire","energy","bullet","melee","weight","radioactive","knockback"]
+export var stats =["blade","fire","energy","bullet","melee","weight","radioactive","knockback"]
 var _data :={
 	"0": {
 		"name":"Steel",
