@@ -61,8 +61,12 @@ func attack(grid_pos,facing):
 			for ndx in range(1,stats['range']):
 				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
 					hitsquares.append(Vector2(grid_pos.x+ndx,grid_pos.y+spreadIndex))
+	
+	# make sure to not hit the mech that used the weapon
+	var index = hitsquares.find(Vector2(grid_pos.x, grid_pos.z))
+	if index > -1:
+		hitsquares.remove(index)
 
-	print('finished attacking')
 	return ['hit',hitsquares,stats['damage'],stats['damageAmount']]
 
 class_name Weapon

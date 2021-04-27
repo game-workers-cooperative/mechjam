@@ -14,7 +14,9 @@ func _ready():
 	pass # Replace with function body.
 
 func hit(damageType):
-	match(stats[damageType]):
+	# @todo this should be replaces with armors.stats
+	var temp = ["blade","fire","energy","bullet","melee","weight","radioactive","knockback"]
+	match(stats[temp[damageType]]):
 		effects.IMMUNE:
 			return 0
 		effects.STRONG:
@@ -23,7 +25,6 @@ func hit(damageType):
 			return 2
 		effects.WEAK:
 			return 3	
-	
 
 class_name Armor
 

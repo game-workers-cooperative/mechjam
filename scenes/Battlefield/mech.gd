@@ -29,7 +29,6 @@ var legValues = Legs.STATVALUES
 var weapon
 var velocity = Vector2.ZERO
 var face_dir = Vector2.DOWN
-var grid_pos = Vector2(5, 5)
 enum {ALIVE,DEAD}
 var functionality = ALIVE
 
@@ -129,8 +128,8 @@ func attack(weaponSlot):
 	# AnimationPlayer.play("weapon.get_animation")
 	
 	# attack
-	var attackArray = weapon.attack(grid_pos,face_dir)
-	attackArray.append(grid_pos)
+	var attackArray = weapon.attack(get_position(),face_dir)
+	attackArray.append(get_position())
 	emit_signal("weapon_attack",attackArray)
 		
 	# let the command manager know we're done
@@ -155,8 +154,10 @@ func hit(damageType,origin):
 	else:
 		take_damage(armor.hit(damageType))
 		returnState = true
+		
 	if damageType == damagetypes.MELEE:
 		knockback(origin)
+		
 	return returnState
   
 func take_damage(damageAmount):
@@ -166,7 +167,7 @@ func take_damage(damageAmount):
 	
 func knockback(origin):
 	var knockbackAmount = 1
-	var currentPosition = grid_pos
+	var currentPosition = get_position()
 	if leg['name']== 'Hover':
 		knockbackAmount += 1
 	if origin.x == currentPosition.x:
@@ -182,12 +183,12 @@ func knockback(origin):
 	try_move(currentPosition)
 	
 func turn_left():
+	# turn the mech
 	tween.interpolate_property(object, "rotation", object.rotation, object.get_rotation() + Vector3(0, PI/2, 0), 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
-	
 	yield(tween, "tween_all_completed")
 	
-#	object.set_rotation(Vector3(0, PI/2, 0))
+	# update the direction it is facing
 	match(face_dir):
 		Vector2.LEFT:
 			face_dir = Vector2.DOWN
