@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://assets/fbx/StandIn_BasicGroundTile.fbx" type="PackedScene" id=1]
 [ext_resource path="res://assets/fbx/MechJam-protag-unit.fbx" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/fbx/StandIn_WindowlessCornerTile.fbx" type="PackedScene" id=6]
 [ext_resource path="res://assets/fbx/StandIn_GridGroundTile.fbx" type="PackedScene" id=7]
 [ext_resource path="res://assets/fbx/StandIn_SpikeGroundTile.fbx" type="PackedScene" id=8]
+[ext_resource path="res://assets/fbx/StandIn_BarrelObstacle.fbx" type="PackedScene" id=9]
 [ext_resource path="res://objects/ui/CommandButton.gd" type="Script" id=13]
 [ext_resource path="res://assets/fbx/StandIn_InnerCornerTile.fbx" type="PackedScene" id=14]
 [ext_resource path="res://assets/fbx/StandIn_BasicCornerTile.fbx" type="PackedScene" id=15]
@@ -76,6 +77,9 @@ __meta__ = {
 [node name="MechJam-protag-unit" parent="WorldEnvironment/Enemy" instance=ExtResource( 2 )]
 transform = Transform( -0.1, 0, -3.25841e-08, 0, 0.1, 0, 3.25841e-08, 0, -0.1, 0, 0, 0 )
 
+[node name="StandIn_BarrelObstacle" parent="WorldEnvironment" instance=ExtResource( 9 )]
+visible = false
+
 [node name="StandIn_BasicGroundTile" parent="WorldEnvironment" instance=ExtResource( 1 )]
 visible = false
 
@@ -121,30 +125,47 @@ __meta__ = {
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="CommandPalette" type="HBoxContainer" parent="HUD"]
-margin_left = 16.0
-margin_top = 528.0
-margin_right = 1008.0
-margin_bottom = 584.0
-custom_constants/separation = 16
+[node name="StartBtn" type="Button" parent="HUD"]
+margin_left = 952.0
+margin_top = 544.0
+margin_right = 1016.0
+margin_bottom = 592.0
+text = "Start"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CommandPalette" type="Container" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MoveForward" type="Button" parent="HUD/CommandPalette"]
-margin_right = 101.0
-margin_bottom = 56.0
+anchor_top = -1.0
+anchor_bottom = -1.0
+margin_left = 128.0
+margin_top = 432.0
+margin_right = 240.0
+margin_bottom = 468.0
 text = "Move Forward"
 script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 command = {
 "method": "try_move",
 "parameters": Vector3( 0, 0, -1 )
 }
 
 [node name="MoveBackward" type="Button" parent="HUD/CommandPalette"]
-margin_left = 117.0
-margin_right = 228.0
-margin_bottom = 56.0
+anchor_top = -1.0
+anchor_bottom = -1.0
+margin_left = 128.0
+margin_top = 480.0
+margin_right = 240.0
+margin_bottom = 516.0
 text = "Move Backward"
 script = ExtResource( 13 )
 command = {
@@ -153,31 +174,46 @@ command = {
 }
 
 [node name="TurnRight" type="Button" parent="HUD/CommandPalette"]
-margin_left = 244.0
-margin_right = 320.0
-margin_bottom = 56.0
+anchor_top = -1.0
+anchor_bottom = -1.0
+margin_left = 248.0
+margin_top = 480.0
+margin_right = 369.0
+margin_bottom = 516.0
 text = "Turn Right"
 script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 command = {
 "method": "turn_right",
 "parameters": null
 }
 
 [node name="TurnLeft" type="Button" parent="HUD/CommandPalette"]
-margin_left = 336.0
-margin_right = 404.0
-margin_bottom = 56.0
+anchor_top = -1.0
+anchor_bottom = -1.0
+margin_left = 16.0
+margin_top = 480.0
+margin_right = 120.0
+margin_bottom = 516.0
 text = "Turn Left"
 script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 command = {
 "method": "turn_left",
 "parameters": null
 }
 
 [node name="AttackPrimary" type="Button" parent="HUD/CommandPalette"]
-margin_left = 420.0
-margin_right = 525.0
-margin_bottom = 56.0
+anchor_top = -1.0
+anchor_bottom = -1.0
+margin_left = 16.0
+margin_top = 432.0
+margin_right = 121.0
+margin_bottom = 468.0
 text = "Attack Primary"
 script = ExtResource( 13 )
 command = {
@@ -186,22 +222,34 @@ command = {
 }
 
 [node name="AttackSecondary" type="Button" parent="HUD/CommandPalette"]
-margin_left = 541.0
-margin_right = 662.0
-margin_bottom = 56.0
+anchor_top = -1.0
+anchor_bottom = -1.0
+margin_left = 248.0
+margin_top = 432.0
+margin_right = 369.0
+margin_bottom = 468.0
 text = "Attack Secondary"
 script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 command = {
 "method": "attack",
 "parameters": "secondary"
 }
 
 [node name="SkipMove" type="Button" parent="HUD/CommandPalette"]
-margin_left = 678.0
-margin_right = 755.0
-margin_bottom = 56.0
+anchor_top = -1.0
+anchor_bottom = -1.0
+margin_left = 128.0
+margin_top = 528.0
+margin_right = 240.0
+margin_bottom = 560.0
 text = "Skip Move"
 script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 command = {
 "method": "skip",
 "parameters": null
@@ -209,20 +257,10 @@ command = {
 
 [node name="CommandEditor" type="HBoxContainer" parent="HUD"]
 margin_left = 16.0
-margin_top = 16.0
-margin_right = 1008.0
-margin_bottom = 64.0
+margin_top = 544.0
+margin_right = 944.0
+margin_bottom = 592.0
 custom_constants/separation = 16
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StartBtn" type="Button" parent="HUD"]
-margin_left = 896.0
-margin_top = 448.0
-margin_right = 960.0
-margin_bottom = 512.0
-text = "Start"
 __meta__ = {
 "_edit_use_anchors_": false
 }
