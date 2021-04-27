@@ -147,41 +147,125 @@ var map = {
 }
 
 # tiles of the battlefield by row
-var level = [
+var levels = [
 	[
-		'top_left_corner','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_saw','top_right_corner'
+		['top_left_corner','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_window_wall','top_saw','top_right_corner'],
+		['left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'],
+		['left_window_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_window_wall'],
+		['left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'],
+		['left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'],
+		['left_window_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_window_wall'],
+		['left_saw','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'],
+		['left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_saw'],
+		['left_window_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_window_wall'],
+		['left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'],
+		['bottom_left_corner','bottom_window_wall','bottom_window_wall','bottom_saw','bottom_window_wall','bottom_window_wall','bottom_window_wall','bottom_window_wall','bottom_window_wall','bottom_right_corner']
 	],
 	[
-		'left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'
+		['top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_right_corner'],
+		['left_wall','spike','floor','floor','floor','spike','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','floor','barrel','floor','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','spike','floor','floor','floor','spike','right_wall'],
+		['bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner']
 	],
 	[
-		'left_window_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_window_wall'
+		['top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_right_corner'],
+		['left_wall','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','floor','spike','floor','floor','right_wall'],
+		['left_wall','floor','spike','barrel','spike','floor','right_wall'],
+		['left_wall','floor','floor','spike','floor','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','right_wall'],
+		['bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner']
 	],
 	[
-		'left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'
+		['top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_right_corner'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','barrel','barrel','floor','barrel','barrel','floor','right_wall'],
+		['left_wall','floor','barrel','floor','floor','floor','barrel','floor','right_wall'],
+		['left_wall','floor','floor','floor','spike','floor','floor','floor','right_wall'],
+		['left_wall','floor','barrel','floor','floor','floor','barrel','floor','right_wall'],
+		['left_wall','floor','barrel','barrel','floor','barrel','barrel','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner']
 	],
 	[
-		'left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'
+		['top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_right_corner'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','barrel','floor','spike','floor','barrel','floor','right_wall'],
+		['left_wall','floor','floor','floor','spike','floor','floor','floor','right_wall'],
+		['left_wall','floor','spike','spike','barrel','spike','spike','floor','right_wall'],
+		['left_wall','floor','floor','floor','spike','floor','floor','floor','right_wall'],
+		['left_wall','floor','barrel','floor','spike','floor','barrel','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner']
 	],
 	[
-		'left_window_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_window_wall'
+		['top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_right_corner'],
+		['left_wall','spike','spike','floor','floor','floor','spike','spike','right_wall'],
+		['left_wall','spike','floor','floor','barrel','floor','floor','spike','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','barrel','floor','barrel','floor','barrel','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','spike','floor','floor','barrel','floor','floor','spike','right_wall'],
+		['left_wall','spike','spike','floor','floor','floor','spike','spike','right_wall'],
+		['bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner']
 	],
 	[
-		'left_saw','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'
+		['top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_right_corner'],
+		['left_wall','spike','spike','spike','spike','spike','spike','spike','spike','spike','right_wall'],
+		['left_wall','spike','floor','floor','floor','floor','floor','floor','floor','spike','right_wall'],
+		['left_wall','spike','floor','barrel','floor','floor','floor','barrel','floor','spike','right_wall'],
+		['left_wall','spike','floor','floor','floor','spike','floor','floor','floor','spike','right_wall'],
+		['left_wall','spike','floor','floor','spike','spike','spike','floor','floor','spike','right_wall'],
+		['left_wall','spike','floor','floor','floor','spike','floor','floor','floor','spike','right_wall'],
+		['left_wall','spike','floor','barrel','floor','floor','floor','barrel','floor','spike','right_wall'],
+		['left_wall','spike','floor','floor','floor','floor','floor','floor','floor','spike','right_wall'],
+		['left_wall','spike','spike','spike','spike','spike','spike','spike','spike','spike','right_wall'],
+		['bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner']
 	],
 	[
-		'left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_saw'
+		['top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_right_corner'],
+		['left_wall','spike','spike','floor','floor','floor','floor','floor','spike','spike','right_wall'],
+		['left_wall','spike','floor','floor','floor','floor','floor','floor','floor','spike','right_wall'],
+		['left_wall','floor','floor','floor','floor','barrel','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','barrel','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','floor','barrel','barrel','barrel','barrel','barrel','floor','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','barrel','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','barrel','floor','floor','floor','floor','right_wall'],
+		['left_wall','spike','floor','floor','floor','floor','floor','floor','floor','spike','right_wall'],
+		['left_wall','spike','spike','floor','floor','floor','floor','floor','spike','spike','right_wall'],
+		['bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner']
 	],
 	[
-		'left_window_wall','floor','floor','floor','floor','floor','floor','floor','floor','right_window_wall'
+		['top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_right_corner'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','spike','floor','spike','floor','spike','floor','spike','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','spike','floor','spike','floor','spike','floor','spike','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','spike','floor','spike','floor','spike','floor','spike','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','spike','floor','spike','floor','spike','floor','spike','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner']
 	],
 	[
-		'left_window_wall','floor','spike','floor','floor','floor','floor','spike','floor','right_window_wall'
-	],
-	[
-		'bottom_left_corner','bottom_window_wall','bottom_window_wall','bottom_saw','bottom_window_wall','bottom_window_wall','bottom_window_wall','bottom_window_wall','bottom_window_wall','bottom_right_corner'
+		['top_left_corner','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_wall','top_right_corner'],
+		['left_wall','floor','floor','floor','floor','floor','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','floor','spike','spike','spike','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','floor','spike','floor','floor','floor','right_wall'],
+		['left_wall','floor','barrel','floor','floor','floor','floor','spike','floor','floor','right_wall'],
+		['left_wall','floor','barrel','barrel','barrel','barrel','barrel','barrel','barrel','floor','right_wall'],
+		['left_wall','floor','barrel','floor','floor','floor','floor','spike','floor','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','spike','spike','floor','floor','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','spike','floor','floor','floor','floor','right_wall'],
+		['left_wall','floor','floor','floor','floor','spike','floor','floor','floor','floor','right_wall'],
+		['bottom_left_corner','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_wall','bottom_right_corner']
 	]
 ]
+var level = []
 
 # list of all mechs on the map
 var mechs = []
@@ -236,10 +320,6 @@ func get_midpoint():
 		floor(len(level[0])/2)
 	)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 # add to the list of mechs
 func add_mech(mech):
 	mechs.append(mech)
@@ -247,6 +327,15 @@ func add_mech(mech):
 # get the mech list
 func get_mechs():
 	return mechs
+	
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass
+
+func _init():
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	level = levels[rng.randi_range(0, len(levels) - 1)]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

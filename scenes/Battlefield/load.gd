@@ -18,16 +18,27 @@ func _ready():
 	# get a map object
 	map = Map.new()	
 	
-	# position the player
-	var playerObject = self.get_node("WorldEnvironment/Player")
+	# setup player equipment
 	var armor = Armor.new(Armors.new().find(global.store['equipped']['armor']))
 	var cockpit = Cockpit.new(Cockpits.new().find(global.store['equipped']['cockpit']))
 	var leg = Leg.new(Legs.new().find(global.store['equipped']['leg']))
 	var primaryWeapon = Weapon.new(Weapons.new().find(global.store['equipped']['weapon'][0]))
 	var secondaryWeapon = Weapon.new(Weapons.new().find(global.store['equipped']['weapon'][1]))
+	
+	# position the player
+	var playerObject = self.get_node("WorldEnvironment/Player")
 	player = Mech.new(playerObject, Vector2.UP, map, 10, armor, cockpit, leg, primaryWeapon, secondaryWeapon)
-	var position = map.get_midpoint() + Vector3(0, 0, 2)
-	player.try_move(position)
+	var midpoint = map.get_midpoint()
+	var position = Vector3(midpoint.x, 0, midpoint.z + midpoint.z - 1)
+	var changeX = true
+	while map.get_tile_type(position) != 'floor':
+		if changeX:
+			position = Vector3(position.x - 1, 0, position.z)
+			changeX = false
+		else:
+			position = Vector3(position.x, 0, position.z - 1)
+			changeX = true
+	player.move(position)
 	
 	# get equipment for enemy
 	var enemyMoney = Global.enemy_money
@@ -48,9 +59,16 @@ func _ready():
 	# position the enemy
 	var enemyObject = self.get_node("WorldEnvironment/Enemy")
 	enemy = Mech.new(enemyObject, Vector2.DOWN, map, 10, enemyArmor, enemyCockpit, enemyLegs, enemyPrimaryWeapon, enemySecondaryWeapon)
-	var enemyPosition = position + Vector3(0, 0, -2)
-	enemyPosition.z -= 2
-	enemy.try_move(enemyPosition)
+	var enemyPosition = Vector3(midpoint.x, 0, 1)
+	changeX = true
+	while map.get_tile_type(enemyPosition) != 'floor':
+		if changeX:
+			enemyPosition = Vector3(enemyPosition.x + 1, 0, enemyPosition.z)
+			changeX = false
+		else:
+			enemyPosition = Vector3(enemyPosition.x, 0, enemyPosition.z + 1)
+			changeX = true
+	enemy.move(enemyPosition)
 	
 	# add mechs to the map
 	map.add_mech(player)
