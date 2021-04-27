@@ -95,7 +95,7 @@ func execute_commands():
 	# disable all selected commands
 	for block in command_editor.get_children():
 		block.set_disabled(true)
-		
+	
 	# execute the commands
 	while commands.size() > 0:
 		var command = commands[0]
@@ -115,7 +115,6 @@ func execute_commands():
 		enemy.call(enemyCommand.method, enemyCommand.parameters)
 		yield(enemy,"move_finished")
 		enemyCommands[enemy].remove(0)
-		
 	
 	command_palette.set_visible(true)
 	startBtn.set_visible(true)
@@ -249,6 +248,7 @@ func calculate_enemy_action(enemy=enemy):
 
 # Executes the commands(Starts Battle Phase)
 func _on_StartBtn_pressed() -> void:
+	if commands.size() <= 0: return
 	calculate_enemy_action(enemy)
 	execute_commands()
 	command_palette.set_visible(false)

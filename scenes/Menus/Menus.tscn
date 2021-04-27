@@ -59,9 +59,9 @@ __meta__ = {
 
 [node name="Next Button" type="Button" parent="."]
 margin_left = 899.0
-margin_top = 480.0
+margin_top = 479.5
 margin_right = 981.0
-margin_bottom = 526.0
+margin_bottom = 525.5
 text = "Next"
 script = ExtResource( 7 )
 __meta__ = {
