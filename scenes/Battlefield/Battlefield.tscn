@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/fbx/StandIn_BasicGroundTile.fbx" type="PackedScene" id=1]
 [ext_resource path="res://assets/fbx/MechJam-protag-unit.fbx" type="PackedScene" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://assets/audio/effects/New Project - Step Dusty 1 - 120.wav" type="AudioStream" id=26]
 [ext_resource path="res://assets/audio/effects/New Project - SFX MudWarble - 120.wav" type="AudioStream" id=27]
 [ext_resource path="res://assets/audio/effects/flamethrower.wav" type="AudioStream" id=28]
+[ext_resource path="res://assets/fbx/player.fbx" type="PackedScene" id=29]
 
 [sub_resource type="Environment" id=1]
 
@@ -58,7 +59,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MechJam-protag-unit" parent="WorldEnvironment/Player" instance=ExtResource( 2 )]
+[node name="player" parent="WorldEnvironment/Player" instance=ExtResource( 29 )]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 
 [node name="Enemy" type="KinematicBody" parent="WorldEnvironment"]
@@ -84,7 +85,6 @@ transform = Transform( -0.1, 0, -3.25841e-08, 0, 0.1, 0, 3.25841e-08, 0, -0.1, 0
 visible = false
 
 [node name="StandIn_BasicGroundTile" parent="WorldEnvironment" instance=ExtResource( 1 )]
-visible = false
 
 [node name="StandIn_BasicWallTile" parent="WorldEnvironment" instance=ExtResource( 5 )]
 visible = false
