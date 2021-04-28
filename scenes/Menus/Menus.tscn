@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/texture/intro1.png" type="Texture" id=3]
 [ext_resource path="res://assets/texture/Intro3.png" type="Texture" id=4]
 [ext_resource path="res://assets/texture/intro2.png" type="Texture" id=5]
-[ext_resource path="res://assets/fonts/tahoma_big.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/fonts/tahoma_smol.tres" type="DynamicFont" id=6]
 [ext_resource path="res://scenes/Menus/Next Button.gd" type="Script" id=7]
 [ext_resource path="res://scenes/Menus/Skip Intro Button.gd" type="Script" id=8]
 [ext_resource path="res://assets/fonts/tahoma.tres" type="DynamicFont" id=9]

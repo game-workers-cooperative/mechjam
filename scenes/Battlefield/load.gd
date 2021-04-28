@@ -143,7 +143,7 @@ func _on_command_selected(button):
 	if(player.get_speed() > len(command_editor.get_children())):
 		var block = CommandBlock.instance()
 		block.connect("block_selected", self, "_on_block_selected")
-		block.set_text(button.get_text())
+		block.set_text('  ' + button.get_text() + '  ')
 		block.index = commands.size()
 		commands.append(button.command)
 		command_editor.add_child(block)

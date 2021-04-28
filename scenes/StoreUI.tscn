@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/StoreUI.gd" type="Script" id=1]
 [ext_resource path="res://objects/ui/SceneSwitcher.gd" type="Script" id=2]
+[ext_resource path="res://theme/mechjam.tres" type="Theme" id=3]
+[ext_resource path="res://theme/mechjam_smol.tres" type="Theme" id=4]
 
 [node name="StoreUI" type="Node"]
 script = ExtResource( 1 )
@@ -15,10 +17,11 @@ __meta__ = {
 }
 
 [node name="ArmorButton" type="Button" parent="ColorRect"]
-margin_left = 112.0
+margin_left = 128.0
 margin_top = 192.0
-margin_right = 192.0
-margin_bottom = 224.0
+margin_right = 232.0
+margin_bottom = 232.0
+theme = ExtResource( 3 )
 text = "Armor"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -27,38 +30,42 @@ __meta__ = {
 [node name="WeaponButton" type="Button" parent="ColorRect"]
 margin_left = 16.0
 margin_top = 192.0
-margin_right = 88.0
-margin_bottom = 224.0
+margin_right = 120.0
+margin_bottom = 232.0
+theme = ExtResource( 3 )
 text = "Weapon"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Weapon2Button" type="Button" parent="ColorRect"]
-margin_left = 216.0
+margin_left = 240.0
 margin_top = 192.0
-margin_right = 288.0
-margin_bottom = 224.0
+margin_right = 344.0
+margin_bottom = 232.0
+theme = ExtResource( 3 )
 text = "Weapon"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CockpitButton" type="Button" parent="ColorRect"]
-margin_left = 112.0
+margin_left = 128.0
 margin_top = 144.0
-margin_right = 192.0
-margin_bottom = 180.0
+margin_right = 232.0
+margin_bottom = 184.0
+theme = ExtResource( 3 )
 text = "Cockpit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LegsButton" type="Button" parent="ColorRect"]
-margin_left = 112.0
+margin_left = 128.0
 margin_top = 240.0
-margin_right = 192.0
-margin_bottom = 272.0
+margin_right = 232.0
+margin_bottom = 280.0
+theme = ExtResource( 3 )
 text = "Legs"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -69,6 +76,7 @@ margin_left = 904.0
 margin_top = 528.0
 margin_right = 1000.0
 margin_bottom = 576.0
+theme = ExtResource( 3 )
 text = "Fight!"
 script = ExtResource( 2 )
 __meta__ = {
@@ -90,10 +98,10 @@ __meta__ = {
 margin_left = 424.0
 margin_right = 1024.0
 margin_bottom = 512.0
+theme = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
 [connection signal="pressed" from="ColorRect/ArmorButton" to="." method="_on_ArmorButton_pressed"]
 [connection signal="pressed" from="ColorRect/WeaponButton" to="." method="_on_WeaponButton_pressed"]
 [connection signal="pressed" from="ColorRect/Weapon2Button" to="." method="_on_WeaponButton_pressed"]

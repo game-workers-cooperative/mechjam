@@ -111,6 +111,7 @@ func attack(weaponSlot):
 	
 	# play sound effect based on name
 	var playerName
+	var player
 	match weapon.stats['name']:
 		'Gun Type Weapon':
 			playerName = 'Gunshot'
@@ -121,7 +122,7 @@ func attack(weaponSlot):
 		'FlameThrower':
 			playerName = 'Flamethrower'
 	if typeof(playerName) == TYPE_STRING:
-		var player = object.get_parent().get_parent().find_node(playerName)
+		player = object.get_parent().get_parent().find_node(playerName)
 		player.play()
 	
 	# AnimationPlayer.play("weapon.get_animation")
@@ -130,6 +131,10 @@ func attack(weaponSlot):
 	var attackArray = weapon.attack(get_position(),face_dir)
 	attackArray.append(get_position())
 	emit_signal("weapon_attack",attackArray)
+	
+	# make sure the sound is done
+	if typeof(playerName) == TYPE_STRING:
+		yield(player, 'finished')
 		
 	# let the command manager know we're done
 	emit_signal("move_finished")
