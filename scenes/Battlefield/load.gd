@@ -96,27 +96,42 @@ func execute_commands():
 	for block in command_editor.get_children():
 		block.set_disabled(true)
 	
+	# figure out max commands
+	var maxCommands = 0
+	for mech in map.get_mechs():
+		var speed = mech.get_speed()
+		if speed > maxCommands:
+			maxCommands = speed
+		
 	# execute the commands
-	while commands.size() > 0:
-		var command = commands[0]
+	var commandNum = 0
+	while commandNum <= maxCommands:
+		# run player command if possible
+		if commands.size() > 0:
+			var command = commands[0]
+			
+			if command.parameters:
+				player.call_deferred(command.method, command.parameters)
+			else:
+				player.call_deferred(command.method)
+			
+			yield(player, "move_finished")
+			player.check_environment_damage()
+			
+			commands.remove(0)
+			var child = command_editor.get_child(0)
+			command_editor.remove_child(child)
 		
-		if command.parameters:
-			player.call_deferred(command.method, command.parameters)
-		else:
-			player.call_deferred(command.method)
+		# run enemy command if possible
+		if enemyCommands[enemy].size() > 0:
+			var enemyCommand = enemyCommands[enemy][0]
+			enemy.call(enemyCommand.method, enemyCommand.parameters)
+			yield(enemy,"move_finished")
+			enemy.check_environment_damage()
+			enemyCommands[enemy].remove(0)
 		
-		yield(player, "move_finished")
-		player.check_environment_damage()
-		
-		commands.remove(0)
-		var child = command_editor.get_child(0)
-		command_editor.remove_child(child)
-		
-		var enemyCommand = enemyCommands[enemy][0]
-		enemy.call(enemyCommand.method, enemyCommand.parameters)
-		yield(enemy,"move_finished")
-		enemy.check_environment_damage()
-		enemyCommands[enemy].remove(0)
+		# increment the command counter
+		commandNum += 1
 	
 	command_palette.set_visible(true)
 	startBtn.set_visible(true)
@@ -156,6 +171,8 @@ func _on_block_selected(block):
 	check_block_index()
 
 func testMoves(position,facing,depth,moves=[]):
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
 	var possibleMoves = ['forward','backward','left','right','attack','attack2','skip']
 	var newPos = position
 	var newAngle = facing
@@ -190,6 +207,7 @@ func testMoves(position,facing,depth,moves=[]):
 					score +=.5
 			'skip':
 				pass
+		score += rng.randf_range(0, 1)
 		score += testAngle
 		score = position.distance_to(newPos)
 		score += abs(testAngle + position.angle_to(playerGridPos))
