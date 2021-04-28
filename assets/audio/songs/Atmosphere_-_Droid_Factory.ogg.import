@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Atmosphere_-_Droid_Factory.ogg-e0c013cbde0c8ccf342c607c2f549664.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/songs/Atmosphere_-_Droid_Factory.ogg"
+dest_files=[ "res://.import/Atmosphere_-_Droid_Factory.ogg-e0c013cbde0c8ccf342c607c2f549664.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

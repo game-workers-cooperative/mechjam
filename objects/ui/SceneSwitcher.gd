@@ -8,6 +8,8 @@ func _ready() -> void:
 	if err: print(err)
 
 func _on_pressed():
-#	var err = get_tree().change_scene(target_scene)
-#	if err: print(err)
+	# play the click noise
+	var player = self.get_parent().find_node('Click')
+	player.play()
+
 	Global.transition(get_tree().current_scene, target_scene, 1, Color.black)

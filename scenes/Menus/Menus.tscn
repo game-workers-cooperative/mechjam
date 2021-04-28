@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://objects/ui/SceneSwitcher.gd" type="Script" id=1]
 [ext_resource path="res://assets/audio/songs/Dellic - Space Soul - 102 (mastered).wav" type="AudioStream" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://scenes/Menus/Credits.gd" type="Script" id=10]
 [ext_resource path="res://assets/texture/title.PNG" type="Texture" id=11]
 [ext_resource path="res://theme/mechjam.tres" type="Theme" id=12]
+[ext_resource path="res://assets/audio/effects/click.wav" type="AudioStream" id=13]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -296,3 +297,6 @@ script = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )

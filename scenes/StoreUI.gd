@@ -1,22 +1,25 @@
 extends Node
 
+onready var global = get_node("/root/Global")
+var player
+
 func _ready():
 	_populate_store('cockpit')
 	$ColorRect/FightButton.disabled = true
-
-onready var global = get_node("/root/Global")
+	player = self.find_node('Click')
 
 func _clear_store():
 	for child in $StoreMarginContainer.get_children():
 		$StoreMarginContainer.remove_child(child)
 
 func _equip_button_pressed(name,type):
+	# play the click noise
+	player.play()
+	
 	global.store['equipped'][type] = name
 	_populate_store(type)
 
 func check_equipment():
-	print(Global.store['equipped'])
-
 	for item in ['armor','cockpit','leg']:
 		if Global.store['equipped'][item] == 'none':
 			return false
@@ -25,11 +28,17 @@ func check_equipment():
 	$ColorRect/FightButton.disabled = false
 
 func _equip_weapon_button_pressed(name,type,index):
+	# play the click noise
+	player.play()
+	
 	global.store['equipped'][type][index] = name
 	check_equipment()
 	_populate_store(type)
 	
 func _buy_button_pressed(store,equip,type,cost):
+	# play the click noise
+	player.play()
+	
 	store[equip] = true
 	if(Global.money - cost >= 0):
 		Global.money -= cost
@@ -122,15 +131,27 @@ func _populate_store(type):
 			$StoreMarginContainer.add_child(itemButton)
 
 func _on_CockpitButton_pressed():
+	# play the click noise
+	player.play()
+	
 	_populate_store("cockpit")
 
 func _on_ArmorButton_pressed():
+	# play the click noise
+	player.play()
+	
 	_populate_store("armor")
 
 func _on_WeaponButton_pressed():
+	# play the click noise
+	player.play()
+	
 	_populate_store("weapon")
 
 func _on_LegsButton_pressed():
+	# play the click noise
+	player.play()
+	
 	_populate_store("leg")
 
 func _process(_delta):

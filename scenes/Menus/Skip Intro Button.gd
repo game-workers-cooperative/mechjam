@@ -6,6 +6,10 @@ func _ready():
 	if err: print(err)
 
 func _on_pressed():
+	# play the click noise
+	var player = self.get_parent().find_node('Click')
+	player.play()
+	
 	var parent = get_parent()
 	var screen1 = parent.find_node('Screen1')
 	var screen2 = parent.find_node('Screen2')

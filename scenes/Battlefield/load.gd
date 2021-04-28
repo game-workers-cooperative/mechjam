@@ -150,6 +150,7 @@ func _on_command_selected(button):
 
 # Removes the command from the editor and list
 func _on_block_selected(block):
+	find_node('Click').play()
 	commands.remove(block.index)
 	block.queue_free()
 	check_block_index()
@@ -248,6 +249,7 @@ func calculate_enemy_action(enemy=enemy):
 
 # Executes the commands(Starts Battle Phase)
 func _on_StartBtn_pressed() -> void:
+	find_node('Click').play()
 	if commands.size() <= 0: return
 	calculate_enemy_action(enemy)
 	execute_commands()

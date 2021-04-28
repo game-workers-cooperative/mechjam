@@ -9,7 +9,13 @@ func _ready() -> void:
 	if err: print(err)
 
 func _on_pressed():
-	Global.money += 100
-	Global.enemy_money += 100
-	var err = get_tree().change_scene(target_scene)
-	if err: print(err)
+	# give player and enemy money to play with
+	Global.rounds += 1
+	Global.money += 100 * Global.rounds
+	Global.enemy_money += 100 * Global.rounds
+	
+	# play the sound
+	get_parent().find_node('Click').play()
+	
+	# change the scene
+	Global.transition(get_tree().current_scene, target_scene, 1, Color.black)

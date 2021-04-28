@@ -14,24 +14,41 @@ func _ready():
 
 func aim(grid_pos,facing):
 	var hitsquares = []
-	match(facing):
-		Vector2.UP:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x+spreadIndex,grid_pos.y+ndx))
-		Vector2.DOWN:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x+spreadIndex,grid_pos.y-ndx))
-		Vector2.LEFT:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x-ndx,grid_pos.y+spreadIndex))
-		Vector2.RIGHT:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x+ndx,grid_pos.y+spreadIndex))
-	return hitsquares
+
+	if stats['spread']==1:
+		match(facing):
+			Vector2(0,-1):
+				for ndx in range(1,stats['range']):
+					hitsquares.append(Vector2(grid_pos.x,grid_pos.y-ndx))
+			Vector2(0,1):
+				for ndx in range(1,stats['range']):
+					hitsquares.append(Vector2(grid_pos.x,grid_pos.y+ndx))
+			Vector2(-1,0):
+				for ndx in range(1,stats['range']):
+					hitsquares.append(Vector2(grid_pos.x-ndx,grid_pos.y))
+			Vector2(1,0):
+				for ndx in range(1,stats['range']):
+					hitsquares.append(Vector2(grid_pos.x+ndx,grid_pos.y))
+		return hitsquares
+	else:
+		match(facing):
+			Vector2(0,-1):
+				for ndx in range(1,stats['range']):
+					for spreadIndex in range(-ndx,ndx):
+						hitsquares.append(Vector2(grid_pos.x+spreadIndex,grid_pos.y-ndx))
+			Vector2(0,1):
+				for ndx in range(1,stats['range']):
+					for spreadIndex in range(-ndx,ndx):
+						hitsquares.append(Vector2(grid_pos.x+spreadIndex,grid_pos.y+ndx))
+			Vector2(-1,0):
+				for ndx in range(1,stats['range']):
+					for spreadIndex in range(-ndx,ndx):
+						hitsquares.append(Vector2(grid_pos.x-ndx,grid_pos.y+spreadIndex))
+			Vector2(1,0):
+				for ndx in range(1,stats['range']):
+					for spreadIndex in range(-ndx,ndx):
+						hitsquares.append(Vector2(grid_pos.x+ndx,grid_pos.y+spreadIndex))
+		return hitsquares
 	
 func attack(grid_pos,facing):
 	var hitsquares = []
@@ -39,25 +56,7 @@ func attack(grid_pos,facing):
 	var hitpercent = randf()
 	if hitpercent > stats['hitPercent']:
 		return ['miss',[],stats['damage'],0]
-
-	match(facing):
-		Vector2.UP:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x+spreadIndex,grid_pos.y+ndx))
-		Vector2.DOWN:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x+spreadIndex,grid_pos.y-ndx))
-		Vector2.LEFT:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x-ndx,grid_pos.y+spreadIndex))
-		Vector2.RIGHT:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x+ndx,grid_pos.y+spreadIndex))
-	
+	hitsquares = aim(Vector2(grid_pos.x,grid_pos.z),facing)
 	# make sure to not hit the mech that used the weapon
 	var index = hitsquares.find(Vector2(grid_pos.x, grid_pos.z))
 	if index > -1:

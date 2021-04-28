@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/StoreUI.gd" type="Script" id=1]
 [ext_resource path="res://objects/ui/SceneSwitcher.gd" type="Script" id=2]
 [ext_resource path="res://theme/mechjam.tres" type="Theme" id=3]
 [ext_resource path="res://theme/mechjam_smol.tres" type="Theme" id=4]
+[ext_resource path="res://assets/audio/songs/Atmosphere_-_Droid_Factory.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/effects/click.wav" type="AudioStream" id=6]
 
 [node name="StoreUI" type="Node"]
 script = ExtResource( 1 )
@@ -102,6 +104,13 @@ theme = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 [connection signal="pressed" from="ColorRect/ArmorButton" to="." method="_on_ArmorButton_pressed"]
 [connection signal="pressed" from="ColorRect/WeaponButton" to="." method="_on_WeaponButton_pressed"]
 [connection signal="pressed" from="ColorRect/Weapon2Button" to="." method="_on_WeaponButton_pressed"]

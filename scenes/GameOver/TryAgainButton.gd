@@ -11,6 +11,8 @@ func _on_pressed():
 	Global.money = Global.initial_money
 	Global.store = Global.initial_store
 	
+	# play the sound
+	get_parent().find_node('Click').play()
+	
 	# switch scene
-	var err = get_tree().change_scene(target_scene)
-	if err: print(err)
+	Global.transition(get_tree().current_scene, target_scene, 1, Color.black)
