@@ -207,7 +207,7 @@ func testMoves(position,facing,depth,moves=[]):
 					score +=.5
 			'skip':
 				pass
-		score += rng.randf_range(0, 1)
+		score += rng.randf_range(0, 0.5)
 		score += testAngle
 		score = position.distance_to(newPos)
 		score += abs(testAngle + position.angle_to(playerGridPos))
