@@ -10,6 +10,7 @@ func _ready() -> void:
 func _on_pressed():
 	# play the click noise
 	var player = self.get_parent().find_node('Click')
-	player.play()
+	if player:
+		player.play()
 
 	Global.transition(get_tree().current_scene, target_scene, 1, Color.black)
