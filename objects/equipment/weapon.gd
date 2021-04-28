@@ -14,20 +14,25 @@ func _ready():
 
 func aim(grid_pos,facing):
 	var hitsquares = []
-	match(facing):
-		Vector2.UP:
+	print(facing)
+	print(Vector2.UP)
+	print(Vector2.DOWN)
+	print(Vector2.LEFT)
+	print(Vector2.RIGHT)
+	match(Vector2(facing.x,facing.y)):
+		Vector2(0,-1):
 			for ndx in range(1,stats['range']):
 				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
 					hitsquares.append(Vector2(grid_pos.x+spreadIndex,grid_pos.y+ndx))
-		Vector2.DOWN:
+		Vector2(0,1):
 			for ndx in range(1,stats['range']):
 				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
 					hitsquares.append(Vector2(grid_pos.x+spreadIndex,grid_pos.y-ndx))
-		Vector2.LEFT:
+		Vector2(-1,0):
 			for ndx in range(1,stats['range']):
 				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
 					hitsquares.append(Vector2(grid_pos.x-ndx,grid_pos.y+spreadIndex))
-		Vector2.RIGHT:
+		Vector2(1,0):
 			for ndx in range(1,stats['range']):
 				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
 					hitsquares.append(Vector2(grid_pos.x+ndx,grid_pos.y+spreadIndex))
@@ -39,25 +44,7 @@ func attack(grid_pos,facing):
 	var hitpercent = randf()
 	if hitpercent > stats['hitPercent']:
 		return ['miss',[],stats['damage'],0]
-
-	match(facing):
-		Vector2.UP:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x+spreadIndex,grid_pos.y+ndx))
-		Vector2.DOWN:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x+spreadIndex,grid_pos.y-ndx))
-		Vector2.LEFT:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x-ndx,grid_pos.y+spreadIndex))
-		Vector2.RIGHT:
-			for ndx in range(1,stats['range']):
-				for spreadIndex in range(-stats['spread']*stats['range'],stats['spread']*stats['range']):
-					hitsquares.append(Vector2(grid_pos.x+ndx,grid_pos.y+spreadIndex))
-	
+	hitsquares = aim(grid_pos,facing)
 	# make sure to not hit the mech that used the weapon
 	var index = hitsquares.find(Vector2(grid_pos.x, grid_pos.z))
 	if index > -1:
