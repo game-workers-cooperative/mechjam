@@ -93,6 +93,7 @@ margin_bottom = 512.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="ColorRect/ArmorButton" to="." method="_on_ArmorButton_pressed"]
 [connection signal="pressed" from="ColorRect/WeaponButton" to="." method="_on_WeaponButton_pressed"]
 [connection signal="pressed" from="ColorRect/Weapon2Button" to="." method="_on_WeaponButton_pressed"]

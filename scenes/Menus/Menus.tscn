@@ -1,15 +1,17 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://objects/ui/SceneSwitcher.gd" type="Script" id=1]
 [ext_resource path="res://assets/audio/songs/Dellic - Space Soul - 102 (mastered).wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/texture/intro1.png" type="Texture" id=3]
-[ext_resource path="res://assets/texture/intro3.png" type="Texture" id=4]
+[ext_resource path="res://assets/texture/Intro3.png" type="Texture" id=4]
 [ext_resource path="res://assets/texture/intro2.png" type="Texture" id=5]
 [ext_resource path="res://assets/fonts/tahoma_big.tres" type="DynamicFont" id=6]
 [ext_resource path="res://scenes/Menus/Next Button.gd" type="Script" id=7]
 [ext_resource path="res://scenes/Menus/Skip Intro Button.gd" type="Script" id=8]
 [ext_resource path="res://assets/fonts/tahoma.tres" type="DynamicFont" id=9]
 [ext_resource path="res://scenes/Menus/Credits.gd" type="Script" id=10]
+[ext_resource path="res://assets/texture/title.PNG" type="Texture" id=11]
+[ext_resource path="res://theme/mechjam.tres" type="Theme" id=12]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -44,6 +46,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TitleScreen" type="TextureRect" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Dialogue1" type="Label" parent="."]
 margin_left = 32.0
 margin_top = 456.0
@@ -58,10 +69,11 @@ __meta__ = {
 }
 
 [node name="Next Button" type="Button" parent="."]
-margin_left = 899.0
-margin_top = 479.5
-margin_right = 981.0
-margin_bottom = 525.5
+margin_left = 872.0
+margin_top = 472.0
+margin_right = 1000.0
+margin_bottom = 518.0
+theme = ExtResource( 12 )
 text = "Next"
 script = ExtResource( 7 )
 __meta__ = {
@@ -69,10 +81,11 @@ __meta__ = {
 }
 
 [node name="Skip Intro Button" type="Button" parent="."]
-margin_left = 899.0
-margin_top = 540.0
-margin_right = 981.0
+margin_left = 872.0
+margin_top = 528.0
+margin_right = 1000.0
 margin_bottom = 560.0
+theme = ExtResource( 12 )
 text = "Skip Intro"
 script = ExtResource( 8 )
 __meta__ = {
@@ -105,19 +118,6 @@ margin_bottom = 588.714
 custom_fonts/font = ExtResource( 9 )
 text = "It’s still scientific research, o’course. But it’s something else too. It’s a sport. It’s a lifestyle. It’s..."
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Title" type="Label" parent="."]
-visible = false
-margin_left = 56.0
-margin_top = 448.0
-margin_right = 512.0
-margin_bottom = 542.0
-rect_scale = Vector2( 1.8, 1.8 )
-custom_fonts/font = ExtResource( 6 )
-text = "Mecha Battle Bots"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -257,6 +257,7 @@ margin_left = 40.1081
 margin_top = 41.6432
 margin_right = 128.108
 margin_bottom = 89.6432
+theme = ExtResource( 12 )
 custom_fonts/font = ExtResource( 9 )
 text = "Back"
 script = ExtResource( 8 )
@@ -266,10 +267,11 @@ visible = false
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = 840.0
-margin_top = 146.941
-margin_right = -16.0
-margin_bottom = 203.941
+margin_left = 360.0
+margin_top = -132.0
+margin_right = -448.0
+margin_bottom = -84.0
+theme = ExtResource( 12 )
 custom_fonts/font = ExtResource( 9 )
 text = "Start"
 script = ExtResource( 1 )
@@ -283,10 +285,11 @@ visible = false
 anchor_top = 0.5
 anchor_right = 1.172
 anchor_bottom = 0.5
-margin_left = 840.0
-margin_top = 220.0
-margin_right = -192.128
-margin_bottom = 276.0
+margin_left = 360.0
+margin_top = -68.0
+margin_right = -624.128
+margin_bottom = -20.0
+theme = ExtResource( 12 )
 custom_fonts/font = ExtResource( 9 )
 text = "Credits"
 script = ExtResource( 10 )

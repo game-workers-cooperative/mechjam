@@ -61,7 +61,7 @@ func move(translation):
 	player.play()
 	
 	# move the player
-	tween.interpolate_property(object, "translation", object.get_translation(), object.get_translation() + translation, 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	tween.interpolate_property(object, "translation", object.get_translation(), object.get_translation() + translation, 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
 	
 	# play the other step sound
@@ -76,29 +76,28 @@ func move(translation):
 # applies environment damage if needed
 func check_environment_damage():
 	var type = map.get_tile_type(object.translation)
+	
 	match type:
 		'spike':
 			if !JUMPSTATE and leg.stats['traction'] != legValues.HIGH:
 				take_damage(1)
-		'left_saw':
-			take_damage(1)
-		'right_saw':
-			take_damage(1)
-		'top_saw':
-			take_damage(1)
-		'bottom_saw':
-			take_damage(1)
+	
+	# see if adjacent tiles are saws
+	var adjacentSaw = 'left_saw' == map.get_tile_type(Vector3(object.translation.x - 1, 0, object.translation.z))
+	adjacentSaw = adjacentSaw or 'right_saw' == map.get_tile_type(Vector3(object.translation.x + 1, 0, object.translation.z))
+	adjacentSaw = adjacentSaw or 'top_saw' == map.get_tile_type(Vector3(object.translation.x, 0, object.translation.z - 1))
+	adjacentSaw = adjacentSaw or 'bottom_saw' == map.get_tile_type(Vector3(object.translation.x, 0, object.translation.z + 1))
+	if adjacentSaw:
+		take_damage(1)
 
 # tries to move
 func try_move(translation):
 	var translation_rotated = translation.rotated(Vector3(0, 1, 0), object.get_rotation().y)
-	print(translation_rotated)
 	
 	if(!can_move(translation_rotated)):
 		translation_rotated = Vector3(0,0,0)
 		
 	move(translation_rotated)
-	check_environment_damage()
 
 func jump():
 	if leg['jump'] == legValues.TRUE:
@@ -184,7 +183,7 @@ func knockback(origin):
 	
 func turn_left():
 	# turn the mech
-	tween.interpolate_property(object, "rotation", object.rotation, object.get_rotation() + Vector3(0, PI/2, 0), 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	tween.interpolate_property(object, "rotation", object.rotation, object.get_rotation() + Vector3(0, PI/2, 0), 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	
@@ -203,12 +202,11 @@ func turn_left():
 	emit_signal("move_finished")
 			
 func turn_right():
-	tween.interpolate_property(object, "rotation", object.rotation, object.get_rotation() - Vector3(0, PI/2, 0), 0.25, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	tween.interpolate_property(object, "rotation", object.rotation, object.get_rotation() - Vector3(0, PI/2, 0), 0.5, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	tween.start()
 	
 	yield(tween, "tween_all_completed")
 	
-#	object.set_rotation(Vector3(0, -PI/2, 0))
 	match(face_dir):
 		Vector2.LEFT:
 			face_dir = Vector2.UP
@@ -246,7 +244,7 @@ func _init(objectInScene, facingDirection, currentMap, maxHealth, equippedArmor,
 			SPEED += 1
 		effects.HEAVY:
 			MAX_HP += 2
-			HP -= 2
+			HP += 2
 			SPEED -= 1
 
 	# make sure legs are equipped before applying effects	

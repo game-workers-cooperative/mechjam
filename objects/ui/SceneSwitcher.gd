@@ -3,6 +3,7 @@ extends Button
 export(String, FILE, "*.tsc, *.tscn") var target_scene
 
 func _ready() -> void:
+	self.disabled
 	var err = self.connect("pressed", self, "_on_pressed")
 	if err: print(err)
 

@@ -5,12 +5,8 @@ extends Resource
 # var a = 2
 var stats
 
-
 func _init(newStats):
 	stats = newStats
-	
-	
-	#print(weaponStats)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,7 +35,7 @@ func aim(grid_pos,facing):
 	
 func attack(grid_pos,facing):
 	var hitsquares = []
-	print('attacking')
+	
 	var hitpercent = randf()
 	if hitpercent > stats['hitPercent']:
 		return ['miss',[],stats['damage'],0]

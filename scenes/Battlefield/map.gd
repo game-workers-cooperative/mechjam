@@ -13,7 +13,7 @@ var map = {
 	},
 	'barrel': {
 		'asset': 'StandIn_BarrelObstacle',
-		'wall': false,
+		'wall': true,
 		'rotate': 0,
 		'damage_touch': 0,
 		'damage_active': 1

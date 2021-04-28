@@ -135,19 +135,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CommandPalette" type="Container" parent="HUD"]
+[node name="CommandPalette" type="Control" parent="HUD"]
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MoveForward" type="Button" parent="HUD/CommandPalette"]
 anchor_top = -1.0
 anchor_bottom = -1.0
-margin_left = 128.0
+margin_left = 144.0
 margin_top = 432.0
-margin_right = 240.0
+margin_right = 265.0
 margin_bottom = 468.0
 text = "Move Forward"
 script = ExtResource( 13 )
@@ -162,9 +159,9 @@ command = {
 [node name="MoveBackward" type="Button" parent="HUD/CommandPalette"]
 anchor_top = -1.0
 anchor_bottom = -1.0
-margin_left = 128.0
+margin_left = 144.0
 margin_top = 480.0
-margin_right = 240.0
+margin_right = 264.0
 margin_bottom = 516.0
 text = "Move Backward"
 script = ExtResource( 13 )
@@ -176,9 +173,9 @@ command = {
 [node name="TurnRight" type="Button" parent="HUD/CommandPalette"]
 anchor_top = -1.0
 anchor_bottom = -1.0
-margin_left = 248.0
+margin_left = 272.0
 margin_top = 480.0
-margin_right = 369.0
+margin_right = 393.0
 margin_bottom = 516.0
 text = "Turn Right"
 script = ExtResource( 13 )
@@ -195,9 +192,48 @@ anchor_top = -1.0
 anchor_bottom = -1.0
 margin_left = 16.0
 margin_top = 480.0
-margin_right = 120.0
+margin_right = 136.0
 margin_bottom = 516.0
+rect_pivot_offset = Vector2( 64, 16 )
 text = "Turn Left"
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+command = {
+"method": "turn_left",
+"parameters": null
+}
+
+[node name="Jump" type="Button" parent="HUD/CommandPalette"]
+anchor_top = -1.0
+anchor_bottom = -1.0
+margin_left = 16.0
+margin_top = 528.0
+margin_right = 136.0
+margin_bottom = 564.0
+rect_pivot_offset = Vector2( 64, 16 )
+disabled = true
+text = "Jump"
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+command = {
+"method": "turn_left",
+"parameters": null
+}
+
+[node name="Shield" type="Button" parent="HUD/CommandPalette"]
+anchor_top = -1.0
+anchor_bottom = -1.0
+margin_left = 272.0
+margin_top = 528.0
+margin_right = 392.0
+margin_bottom = 564.0
+rect_pivot_offset = Vector2( 64, 16 )
+disabled = true
+text = "Shield"
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -212,7 +248,7 @@ anchor_top = -1.0
 anchor_bottom = -1.0
 margin_left = 16.0
 margin_top = 432.0
-margin_right = 121.0
+margin_right = 137.0
 margin_bottom = 468.0
 text = "Attack Primary"
 script = ExtResource( 13 )
@@ -224,9 +260,9 @@ command = {
 [node name="AttackSecondary" type="Button" parent="HUD/CommandPalette"]
 anchor_top = -1.0
 anchor_bottom = -1.0
-margin_left = 248.0
+margin_left = 272.0
 margin_top = 432.0
-margin_right = 369.0
+margin_right = 393.0
 margin_bottom = 468.0
 text = "Attack Secondary"
 script = ExtResource( 13 )
@@ -238,14 +274,15 @@ command = {
 "parameters": "secondary"
 }
 
-[node name="SkipMove" type="Button" parent="HUD/CommandPalette"]
+[node name="Equip" type="Button" parent="HUD/CommandPalette"]
 anchor_top = -1.0
 anchor_bottom = -1.0
-margin_left = 128.0
+margin_left = 144.0
 margin_top = 528.0
-margin_right = 240.0
-margin_bottom = 560.0
-text = "Skip Move"
+margin_right = 264.0
+margin_bottom = 564.0
+disabled = true
+text = "Equip"
 script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -253,6 +290,16 @@ __meta__ = {
 command = {
 "method": "skip",
 "parameters": null
+}
+
+[node name="MovesAvailable" type="Label" parent="HUD/CommandPalette"]
+margin_left = 16.0
+margin_top = 368.0
+margin_right = 137.0
+margin_bottom = 382.0
+text = "Moves Available: "
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="CommandEditor" type="HBoxContainer" parent="HUD"]

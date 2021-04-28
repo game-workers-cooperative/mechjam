@@ -106,6 +106,7 @@ func execute_commands():
 			player.call_deferred(command.method)
 		
 		yield(player, "move_finished")
+		player.check_environment_damage()
 		
 		commands.remove(0)
 		var child = command_editor.get_child(0)
@@ -114,6 +115,7 @@ func execute_commands():
 		var enemyCommand = enemyCommands[enemy][0]
 		enemy.call(enemyCommand.method, enemyCommand.parameters)
 		yield(enemy,"move_finished")
+		enemy.check_environment_damage()
 		enemyCommands[enemy].remove(0)
 	
 	command_palette.set_visible(true)
@@ -138,7 +140,7 @@ func clear_children(parent):
 # Adds the Command to the command editor and command list
 func _on_command_selected(button):
 	# limit by the mech's speed
-	if(player.get_speed() >= len(command_editor.get_children())):
+	if(player.get_speed() > len(command_editor.get_children())):
 		var block = CommandBlock.instance()
 		block.connect("block_selected", self, "_on_block_selected")
 		block.set_text(button.get_text())
@@ -193,8 +195,6 @@ func testMoves(position,facing,depth,moves=[]):
 		testMoves[testMove]=score
 	
 	for x in range(testMoves.size()):
-		print(testMoves.values()[x])
-		print(maxScore.values()[0])
 		if testMoves.values()[x] < maxScore.values()[0]:
 			maxScore = {testMoves.keys()[x]:testMoves.values()[x]}
 	moves.append(maxScore)
@@ -259,6 +259,9 @@ func _process(_delta):
 	# make sure the camera is always following the player
 	var playerPosition = $WorldEnvironment/Player.translation
 	$WorldEnvironment/Camera.translation = Vector3(playerPosition.x + 4, $WorldEnvironment/Camera.translation.y, playerPosition.z + 4)
+	
+	# show how many moves are available
+	$HUD/CommandPalette/MovesAvailable.text = 'Moves Available: ' + String(player.get_speed() - len(command_editor.get_children()))
 	
 	for mech in map.get_mechs():
 		# position health bars as necessary

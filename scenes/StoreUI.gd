@@ -2,6 +2,7 @@ extends Node
 
 func _ready():
 	_populate_store('cockpit')
+	$ColorRect/FightButton.disabled = true
 
 onready var global = get_node("/root/Global")
 
@@ -13,10 +14,19 @@ func _equip_button_pressed(name,type):
 	global.store['equipped'][type] = name
 	_populate_store(type)
 
+func check_equipment():
+	print(Global.store['equipped'])
+
+	for item in ['armor','cockpit','leg']:
+		if Global.store['equipped'][item] == 'none':
+			return false
+	if Global.store['equipped']['weapon'][0] == 'none' or Global.store['equipped']['weapon'][1] == 'none':
+		return false
+	$ColorRect/FightButton.disabled = false
+
 func _equip_weapon_button_pressed(name,type,index):
-	print('equip weapon')
-	print(name, ' ', index)
 	global.store['equipped'][type][index] = name
+	check_equipment()
 	_populate_store(type)
 	
 func _buy_button_pressed(store,equip,type,cost):
@@ -92,14 +102,6 @@ func _populate_store(type):
 				itemButton.text = "Item Equipped"
 				itemButton.disabled = true
 			else:
-				#if type == 'weapon':
-					
-			#		itemButtonPrimary.text= "Equip Primary Weapon"
-			#		itemButtonSecondary.text = "Equip Secondary Weapon"
-			#		print('connect function')
-			#		itemButtonPrimary.connect("pressed",self,"_equip_weapon_button_pressed",[equip.get('name'),type,0])
-			#		itemButtonSecondary.connect("pressed",self,"_equip_weapon_button_pressed",[equip.get('name'),type,1])
-			#	else:
 				itemButton.text = "Equip Purchased Item"
 			
 			equipLabel.text = textblock
@@ -111,6 +113,8 @@ func _populate_store(type):
 			equipLabel.text = textblock
 			$StoreMarginContainer.add_child(equipLabel)
 			itemButton.connect("pressed",self,"_buy_button_pressed",[store,i,type,equip.get("cost")])
+			if Global.money < equip.get("cost"):
+				itemButton.disabled = true
 		if multipleSlots:
 			$StoreMarginContainer.add_child(itemButtonPrimary)
 			$StoreMarginContainer.add_child(itemButtonSecondary)	

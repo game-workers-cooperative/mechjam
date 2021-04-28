@@ -6,9 +6,9 @@ extends VBoxContainer
 # var b = "text"
 
 var armorTypes = ['Carbon Nanotech','Steel','Ceramic','Radioactive Waste','Alien Hardwood','Rubber']
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("running script")
 	for armor in armorTypes:
 		var button = Button.new()
 		button.text = armor
