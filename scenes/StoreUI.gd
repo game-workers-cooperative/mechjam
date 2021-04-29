@@ -17,6 +17,7 @@ func _equip_button_pressed(name,type):
 	player.play()
 	
 	global.store['equipped'][type] = name
+	check_equipment()
 	_populate_store(type)
 
 func check_equipment():
