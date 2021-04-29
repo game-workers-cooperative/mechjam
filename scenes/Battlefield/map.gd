@@ -335,7 +335,7 @@ func _ready():
 func _init():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	level = levels[0]#levels[rng.randi_range(0, len(levels) - 1)]
+	level = levels[rng.randi_range(0, len(levels) - 1)]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
