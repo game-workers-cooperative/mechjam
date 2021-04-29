@@ -138,7 +138,7 @@ func attack(weaponSlot):
 		'Gun Type Weapon':
 			shot = object.get_parent().find_node('Shot')
 		'Energy Type weapon':
-			shot = object.get_parent().find_node('Laser')
+			shot = object.get_parent().find_node('LaserShot')
 			
 	# animate attack
 	if shot:
