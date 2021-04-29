@@ -177,7 +177,7 @@ func _on_block_selected(block):
 func testMoves(position,facing,depth,moves=[]):
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var possibleMoves = ['forward','backward','left','right','attack1','attack2','skip']
+	var possibleMoves = ['forward','backward','left','right','attack1','attack2']
 	var newPos = position
 	var newAngle = facing
 	var testAngle = facing
