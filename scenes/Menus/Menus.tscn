@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://objects/ui/SceneSwitcher.gd" type="Script" id=1]
 [ext_resource path="res://assets/audio/songs/Dellic - Space Soul - 102 (mastered).wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/texture/intro1.png" type="Texture" id=3]
 [ext_resource path="res://assets/texture/Intro3.png" type="Texture" id=4]
 [ext_resource path="res://assets/texture/intro2.png" type="Texture" id=5]
-[ext_resource path="res://assets/fonts/tahoma_smol.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/fonts/Tahoma Regular font.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://scenes/Menus/Next Button.gd" type="Script" id=7]
 [ext_resource path="res://scenes/Menus/Skip Intro Button.gd" type="Script" id=8]
 [ext_resource path="res://assets/fonts/tahoma.tres" type="DynamicFont" id=9]
@@ -13,6 +13,10 @@
 [ext_resource path="res://assets/texture/title.PNG" type="Texture" id=11]
 [ext_resource path="res://theme/mechjam.tres" type="Theme" id=12]
 [ext_resource path="res://assets/audio/effects/click.wav" type="AudioStream" id=13]
+
+[sub_resource type="DynamicFont" id=1]
+size = 37
+font_data = ExtResource( 6 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -174,7 +178,9 @@ text = "Music and Sound Effects
 
 Rev-Dellic
     dellic.bandcamp.com
-	    soundcloud.com/revdellic"
+	    soundcloud.com/revdellic
+http://www.joelsteudlermusic.com/
+https://freesound.org"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -244,7 +250,7 @@ margin_left = 568.0
 margin_top = 440.0
 margin_right = 944.0
 margin_bottom = 512.0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = SubResource( 1 )
 text = "lowercase games"
 align = 1
 valign = 1
