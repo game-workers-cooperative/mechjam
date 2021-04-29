@@ -177,7 +177,7 @@ func _on_block_selected(block):
 func testMoves(position,facing,depth,moves=[]):
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var possibleMoves = ['forward','backward','left','right','attack1','attack2','skip']
+	var possibleMoves = ['forward','backward','left','right','attack1','attack2']
 	var newPos = position
 	var newAngle = facing
 	var testAngle = facing
@@ -209,8 +209,6 @@ func testMoves(position,facing,depth,moves=[]):
 					score -=3
 				else:
 					score +=.1
-			'skip':
-				pass
 		var type = map.get_tile_type(Vector3(newPos.x,0,newPos.y))
 		if type != 'floor':
 			score += 5
