@@ -109,7 +109,7 @@ func execute_commands():
 		# run player command if possible
 		if commands.size() > 0:
 			var command = commands[0]
-			
+			print(commands)
 			if command.parameters:
 				player.call_deferred(command.method, command.parameters)
 			else:
@@ -124,8 +124,12 @@ func execute_commands():
 		
 		# run enemy command if possible
 		if enemyCommands[enemy].size() > 0:
+			print(enemyCommands)
 			var enemyCommand = enemyCommands[enemy][0]
-			enemy.call(enemyCommand.method, enemyCommand.parameters)
+			if enemyCommand.parameters:
+				enemy.call_deferred(enemyCommand.method, enemyCommand.parameters)
+			else:
+				enemy.call_deferred(enemyCommand.method)
 			yield(enemy,"move_finished")
 			enemy.check_environment_damage()
 			enemyCommands[enemy].remove(0)
@@ -248,11 +252,11 @@ func calculate_enemy_action(enemy=enemy):
 					)
 			'left':
 				enemyInstMoves.append(
-					{'method':'try_move','parameters':Vector3(1,0,0)}
+					{'method':'turn_left','parameters':null}
 					)
 			'right':
 				enemyInstMoves.append(
-					{'method':'try_move','parameters':Vector3(-1,0,0)}
+					{'method':'turn_right','parameters':null}
 					)
 			'attack1':
 				enemyInstMoves.append(
