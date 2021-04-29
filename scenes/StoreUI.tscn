@@ -12,7 +12,7 @@
 
 [sub_resource type="BoxShape" id=2]
 
-[node name="Spatial" type="Spatial"]
+[node name="Spatial2" type="Spatial"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -35,6 +35,7 @@ transform = Transform( -0.0368065, 0, -0.799153, 0, 0.8, 0, 0.799153, 0, -0.0368
 [node name="Camera" type="Camera" parent="WorldEnvironment"]
 transform = Transform( 0.606405, -0.271959, 0.747202, 0, 0.939693, 0.34202, -0.795156, -0.207403, 0.569834, 19.0186, 11.8994, 8.64189 )
 projection = 1
+current = true
 size = 10.0
 
 [node name="StoreUI" type="Node" parent="."]
@@ -122,6 +123,7 @@ text = "Money: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="pressed" from="StoreUI/ArmorButton" to="StoreUI" method="_on_ArmorButton_pressed"]
 [connection signal="pressed" from="StoreUI/WeaponButton" to="StoreUI" method="_on_WeaponButton_pressed"]
 [connection signal="pressed" from="StoreUI/CockpitButton" to="StoreUI" method="_on_CockpitButton_pressed"]

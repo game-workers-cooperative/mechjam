@@ -398,4 +398,5 @@ stream = ExtResource( 28 )
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
+
 [connection signal="pressed" from="HUD/StartBtn" to="." method="_on_StartBtn_pressed"]
