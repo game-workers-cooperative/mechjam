@@ -132,6 +132,46 @@ func attack(weaponSlot):
 	attackArray.append(get_position())
 	emit_signal("weapon_attack",attackArray)
 	
+	# find which animation to run
+	var shot = null
+	match weapon.stats['name']:
+		'Gun Type Weapon':
+			shot = object.get_parent().find_node('Shot')
+		'Energy Type weapon':
+			shot = object.get_parent().find_node('Laser')
+			
+	# animate attack
+	if shot:
+		shot.translation = object.translation
+		shot.visible = true
+		var offset = Vector3(0, 0, 0)
+		var length = 5
+		match(face_dir):
+			Vector2.LEFT:
+				length = map.get_midpoint().x * 2
+				offset = Vector3(-length, 0, 0)
+			Vector2.RIGHT:
+				length = map.get_midpoint().x * 2
+				offset = Vector3(length, 0, 0)
+			Vector2.UP:
+				length = map.get_midpoint().z * 2
+				offset = Vector3(0, 0, -length)
+			Vector2.DOWN:
+				length = map.get_midpoint().z * 2
+				offset = Vector3(0, 0, length)
+		tween.interpolate_property(
+			shot,
+			"translation",
+			shot.translation,
+			shot.translation + offset,
+			0.25,
+			Tween.TRANS_SINE,
+			Tween.EASE_IN_OUT
+		)
+		tween.start()
+		yield(tween, "tween_all_completed")
+		shot.visible = false
+	
 	# make sure the sound is done
 	if typeof(playerName) == TYPE_STRING:
 		yield(player, 'finished')

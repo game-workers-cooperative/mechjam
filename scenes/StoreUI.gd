@@ -5,7 +5,7 @@ var player
 
 func _ready():
 	_populate_store('cockpit')
-	$ColorRect/FightButton.disabled = true
+	find_node('FightButton').disabled = true
 	player = self.find_node('Click')
 
 func _clear_store():
@@ -25,7 +25,7 @@ func check_equipment():
 			return false
 	if Global.store['equipped']['weapon'][0] == 'none' or Global.store['equipped']['weapon'][1] == 'none':
 		return false
-	$ColorRect/FightButton.disabled = false
+	find_node('FightButton').disabled = false
 
 func _equip_weapon_button_pressed(name,type,index):
 	# play the click noise
@@ -155,4 +155,4 @@ func _on_LegsButton_pressed():
 	_populate_store("leg")
 
 func _process(_delta):
-	$ColorRect/Money.text = "Money: " + str(Global.money)
+	find_node('Money').text = "Money: " + str(Global.money)

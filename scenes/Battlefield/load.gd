@@ -109,7 +109,7 @@ func execute_commands():
 		# run player command if possible
 		if commands.size() > 0:
 			var command = commands[0]
-			
+			print(commands)
 			if command.parameters:
 				player.call_deferred(command.method, command.parameters)
 			else:
@@ -124,8 +124,12 @@ func execute_commands():
 		
 		# run enemy command if possible
 		if enemyCommands[enemy].size() > 0:
+			print(enemyCommands)
 			var enemyCommand = enemyCommands[enemy][0]
-			enemy.call(enemyCommand.method, enemyCommand.parameters)
+			if enemyCommand.parameters:
+				enemy.call_deferred(enemyCommand.method, enemyCommand.parameters)
+			else:
+				enemy.call_deferred(enemyCommand.method)
 			yield(enemy,"move_finished")
 			enemy.check_environment_damage()
 			enemyCommands[enemy].remove(0)
@@ -173,15 +177,15 @@ func _on_block_selected(block):
 func testMoves(position,facing,depth,moves=[]):
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var possibleMoves = ['forward','backward','left','right','attack','attack2','skip']
+	var possibleMoves = ['forward','backward','left','right','attack1','attack2','skip']
 	var newPos = position
 	var newAngle = facing
 	var testAngle = facing
 	var testMoves = {}
 	var maxScore = {'none':1000.0}
 	var playerGridPos = Vector2(player.object.translation.x,player.object.translation.z)
+	var score = 0
 	for testMove in possibleMoves:
-		var score = 0
 		match(testMove):
 			'forward':
 				newPos = position+facing
@@ -195,28 +199,36 @@ func testMoves(position,facing,depth,moves=[]):
 				newAngle = facing.rotated(deg2rad(90))
 			'attack1':
 				var weaponHitArea = enemy.primaryWeapon.aim(position,facing)
-				if weaponHitArea.search(playerGridPos):
-					score = 0
+				if weaponHitArea.find(playerGridPos):
+					score -=3
 				else:
-					score +=.5
+					score +=.1
 			'attack2':
 				var weaponHitArea = enemy.secondaryWeapon.aim(position,facing)
 				if weaponHitArea.find(playerGridPos):
-					score = 0
+					score -=3
 				else:
-					score +=.5
+					score +=.1
 			'skip':
 				pass
-		score += rng.randf_range(0, 0.5)
+		var type = map.get_tile_type(Vector3(newPos.x,0,newPos.y))
+		if type != 'floor':
+			score += 5
+		score += rng.randf_range(0, 2.0)
 		score += testAngle
 		score = position.distance_to(newPos)
 		score += abs(testAngle + position.angle_to(playerGridPos))
 		testMoves[testMove]=score
-	
+		score = 0
 	for x in range(testMoves.size()):
+		print('is '+str(testMoves.values()[x])+' less than '+str(maxScore.values()[0]))
 		if testMoves.values()[x] < maxScore.values()[0]:
 			maxScore = {testMoves.keys()[x]:testMoves.values()[x]}
-	moves.append(maxScore)
+	var lowMovesArray = []
+	for ndx in range(testMoves.size()):
+		if testMoves.values()[ndx] == maxScore.values()[0]:
+			lowMovesArray.append({testMoves.keys()[ndx]:testMoves.values()[ndx]})
+	moves.append(lowMovesArray[randi() % lowMovesArray.size()])
 	
 	if depth>=0:
 		var deepMoves = testMoves(newPos, newAngle, depth-1)
@@ -243,11 +255,11 @@ func calculate_enemy_action(enemy=enemy):
 					)
 			'left':
 				enemyInstMoves.append(
-					{'method':'try_move','parameters':Vector3(1,0,0)}
+					{'method':'turn_left','parameters':null}
 					)
 			'right':
 				enemyInstMoves.append(
-					{'method':'try_move','parameters':Vector3(-1,0,0)}
+					{'method':'turn_right','parameters':null}
 					)
 			'attack1':
 				enemyInstMoves.append(
