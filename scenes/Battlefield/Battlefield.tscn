@@ -152,7 +152,7 @@ material_override = SubResource( 3 )
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 6 )
 
-[node name="Laser" type="Particles" parent="WorldEnvironment"]
+[node name="LaserShot" type="Particles" parent="WorldEnvironment"]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.6, 0 )
 visible = false
 material_override = SubResource( 3 )
