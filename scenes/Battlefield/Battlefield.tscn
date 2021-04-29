@@ -60,7 +60,6 @@ transform = Transform( 0.346651, 0.639398, 0.686296, -0.169178, -0.677045, 0.716
 light_bake_mode = 2
 
 [node name="Player" type="KinematicBody" parent="WorldEnvironment"]
-visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="WorldEnvironment/Player"]
 transform = Transform( 0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.4, 0, 0.5, 0 )
@@ -80,7 +79,6 @@ __meta__ = {
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
 
 [node name="Enemy" type="KinematicBody" parent="WorldEnvironment"]
-visible = false
 
 [node name="CollisionShape" type="CollisionShape" parent="WorldEnvironment/Enemy"]
 transform = Transform( 0.4, 0, 0, 0, 0.5, 0, 0, 0, 0.4, 0, 0.5, 0 )
@@ -156,6 +154,7 @@ draw_pass_1 = SubResource( 6 )
 
 [node name="Laser" type="Particles" parent="WorldEnvironment"]
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.6, 0 )
+visible = false
 material_override = SubResource( 3 )
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 7 )
