@@ -91,28 +91,28 @@ var map = {
 	'top_window_wall': {
 		'asset': 'StandIn_WindowlessWallTile',
 		'wall': true,
-		'rotate': PI/2,
+		'rotate': -PI/2,
 		'damage_touch': 0,
 		'damage_active': 0
 	},
 	'left_window_wall': {
 		'asset': 'StandIn_WindowlessWallTile',
 		'wall': true,
-		'rotate': PI,
+		'rotate': PI*2,
 		'damage_touch': 0,
 		'damage_active': 0
 	},
 	'right_window_wall': {
 		'asset': 'StandIn_WindowlessWallTile',
 		'wall': true,
-		'rotate': PI*2,
+		'rotate': PI,
 		'damage_touch': 0,
 		'damage_active': 0
 	},
 	'bottom_window_wall': {
 		'asset': 'StandIn_WindowlessWallTile',
 		'wall': true,
-		'rotate': -PI/2,
+		'rotate': PI/2,
 		'damage_touch': 0,
 		'damage_active': 0
 	},
@@ -335,7 +335,7 @@ func _ready():
 func _init():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	level = levels[rng.randi_range(0, len(levels) - 1)]
+	level = levels[0]#levels[rng.randi_range(0, len(levels) - 1)]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
